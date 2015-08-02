@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+  <!--
+  Customize this policy to fit your own app's needs. For more guidance, see:
+      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+  Some notes:
+      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        Enable inline JS: add 'unsafe-inline' to default-src
+    http://stackoverflow.com/questions/29814717/getting-error-to-setup-ngcordova-firsttime
+    https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+    http://stackoverflow.com/questions/30212306/no-content-security-policy-meta-tag-found-error-in-my-phonegap-application
+  -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src &apos;self&apos; * data: gap: https://ssl.gstatic.com &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;; style-src &apos;self&apos; &apos;unsafe-inline&apos;; media-src *">
+
+  <title></title>
+
+  <!-- build:sass -->
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <!-- endbuild -->
+
+  <!-- build:css -->
+  <link href="css/app.css" rel="stylesheet">
+  <!-- endbuild -->
+
+  <!--
+      For DEV we can use ionic.bundle.js (non-minified) to debug moduleErr errors, see:
+      http://www.chrisgmyr.com/2014/08/debugging-uncaught-error-injectormodulerr-in-angularjs/
+
+      During a production build, this gets swapped out for the minified version (ionic.bundle.min.js).
+  -->
+  <!-- NOTE: the build-endbuild tags are used by gulp-htmlreplace - DO NOT REMOVE -->
+  <!-- build:ionic -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <!-- endbuild -->
+
+  <!-- Ionic.io services - Analytics -->
+  <script src="lib/ionic-service-core/ionic-core.js"></script>
+  <script src="lib/ionic-service-analytics/ionic-analytics.js"></script>
+
+  <!-- Parse.com integration -->
+  <script src="lib/parse/parse.min.js"></script>
+
+  <!-- Form validation with ng-messages -->
+  <script src="lib/angular-resource/angular-resource.min.js"></script>
+  <script src="lib/angular-messages/angular-messages.min.js"></script>
+
+  <!-- ngCordova - IMPORTANT : SHOULD be after ionic bundle and before cordova.js -->
+  <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+  <!-- Cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+
+  <!-- build:js -->
+  <script src="js/app/app.js"></script>
+
+  <script src="js/app/controllers/main.js"></script>
+
+  <script src="js/app/util/logging.js"></script>
+  <script src="js/app/util/localstorage.js"></script>
+
+  <script src="js/app/services/application.js"></script>
+
+  <script src="js/app/services/userService.js"></script>
+  <script src="js/app/services/parse/parseUserAdapter.js"></script>
+  <script src="js/app/services/parse/userServiceParseImpl.js"></script>
+  <script src="js/app/services/mock/userServiceMockImpl.js"></script>
+  <script src="js/app/models/user.js"></script>
+
+  <script src="js/app/services/chats.js"></script>
+
+  <script src="js/app/services/tracking.js"></script>
+  <script src="js/app/services/ionic/trackingIonicImpl.js"></script>
+  <script src="js/app/services/mock/trackingMockImpl.js"></script>
+
+  <script src="js/app/intro/Intro.js"></script>
+
+  <script src="js/app/signup/SignupRouter.js"></script>
+  <script src="js/app/signup/SignupCtrl.js"></script>
+
+  <script src="js/app/login/LoginRouter.js"></script>
+  <script src="js/app/login/LoginCtrl.js"></script>
+  <script src="js/app/login/LogoutCtrl.js"></script>
+
+  <script src="js/app/forgotPassword/ForgotPassword.js"></script>
+
+  <script src="js/app/mainPage/MainPageRouter.js"></script>
+  <script src="js/app/mainPage/MainPageDashCtrl.js"></script>
+  <script src="js/app/mainPage/MainPageChatsCtrl.js"></script>
+  <script src="js/app/mainPage/MainPageChatDetailCtrl.js"></script>
+  <script src="js/app/mainPage/MainPageAccountCtrl.js"></script>
+  <!-- endbuild -->
+
+  <script src="js/config/config.js"></script>
+
+  <!-- ANGULAR-TEMPLATECACHE -->
+  <script src="js/templates.js"></script>
+</head>
+
+<!-- MainCtrl: global/default controller -->
+<body ng-app="app" ng-controller="MainCtrl as main">
+  <!--
+    The views will be rendered in the <ion-nav-view> directive below
+  -->
+  <ion-nav-view></ion-nav-view>
+</body>
+</html>

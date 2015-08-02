@@ -1,0 +1,32 @@
+<ion-nav-bar class="bar-mainbar">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-nav-back-button nav-clear ng-show="true">
+    <!--Back-->
+  </ion-nav-back-button>
+</ion-nav-bar>
+
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+
+  <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/app/auth/main/dash">
+    <ion-nav-view name="main-dash"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/app/auth/main/chats">
+    <ion-nav-view name="main-chats"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/app/auth/main/account">
+    <ion-nav-view name="main-account"></ion-nav-view>
+  </ion-tab>
+
+
+</ion-tabs>

@@ -1,0 +1,72 @@
+<ion-view view-title="Welcome">
+
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-header-bar class="bar-subbar bar-subheader">
+    <button class="button button-positive button-clear no-animation pull-left"
+            ng-click="vm.startApp()" ng-if="!vm.slideIndex">
+      <small>Skip intro</small>
+    </button>
+    <button class="button button-positive button-clear no-animation pull-left"
+            ng-click="vm.previous()" ng-if="vm.slideIndex > 0">
+      <small>Previous</small>
+    </button>
+    <button class="button button-positive button-clear no-animation pull-right"
+            ng-click="vm.next()" ng-if="vm.slideIndex != 2">
+      <small>Next</small>
+    </button>
+    <button class="button button-positive button-clear no-animation pull-right"
+            ng-click="vm.startApp()" ng-if="vm.slideIndex == 2">
+      <small>Start</small>
+    </button>
+  </ion-header-bar>
+
+  <ion-slide-box class="has-subheader" on-slide-changed="vm.slideChanged(index)">
+    <ion-slide>
+      <ion-content>
+        <h3>Introduction</h3>
+
+        <div id="logo">
+          <img src="http://code.ionicframework.com/assets/img/app_icon.png">
+        </div>
+        <h5><b>Thanks for installing this wonderful app!</b></h5>
+
+        <p>
+          We'll give you a short overview.
+          Click 'Next' to proceed to the next screen.
+        </p>
+      </ion-content>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-content>
+        <h3>Starting out</h3>
+
+        <h5>Follow these steps to get started:</h5>
+
+        <div id="list">
+          <ol>
+            <li><h5>Sign up to create your account</h5></li>
+            <li><h5>Login with your account</h5></li>
+            <li><h5>Start using the app</h5></li>
+          </ol>
+        </div>
+
+        <h5><b>Note:</b> you need to do this only once.</h5>
+      </ion-content>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-content>
+        <h3>Have fun</h3>
+
+        <h5>Click 'Start' to create your account.</h5>
+        <b>And have fun!</b></p>
+      </ion-content>
+    </ion-slide>
+
+  </ion-slide-box>
+</ion-view>

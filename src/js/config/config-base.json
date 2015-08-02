@@ -1,0 +1,16 @@
+{
+  "name": "app.config",
+  "constants": {
+    "APP": {
+      "routerDefaultState": "app.auth.main.dash"
+    },
+    "ParseConfiguration": {
+      "applicationId": "applicationId",
+      "javascriptKey": "javascriptKey"
+    },
+    "ionicIO": {
+      "appId": "appId",
+      "apiKey": "apiKey"
+    }
+  }
+}

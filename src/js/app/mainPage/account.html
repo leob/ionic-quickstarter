@@ -1,0 +1,15 @@
+<ion-view view-title="Account">
+  <ion-content>
+    <ion-list>
+      <ion-item>
+        Logged in as: {{vm.user}}
+      </ion-item>
+      <ion-item>
+        Logged in for: {{vm.loginDuration()}}
+      </ion-item>
+      <ion-toggle ng-model="vm.settings.enableFriends">
+        Enable Friends
+      </ion-toggle>
+    </ion-list>
+  </ion-content>
+</ion-view>
