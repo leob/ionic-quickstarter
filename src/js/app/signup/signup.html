@@ -1,0 +1,64 @@
+<ion-view title="Sign up">
+  <ion-nav-bar class="bar-mainbar">
+  </ion-nav-bar>
+
+  <ion-content has-header="true" has-tabs="false" padding="false" scroll="true">
+
+    <form name="signupForm" novalidate="">
+      <div class="list">
+
+        <div class="item item-divider item-text-wrap">
+          Register with your email address and a password
+        </div>
+
+        <label class="item item-input" ng-class=
+            "{ 'has-error' : signupForm.email.$invalid && signupForm.$submitted, 'valid-lr' : signupForm.email.$valid  && signupForm.$submitted}">
+          <i class="icon ion-email placeholder-icon field-icon"></i>
+          <input type="email" ng-model="vm.user.email" placeholder="Enter your email address"
+                 name="email"
+                 ng-minlength="5"
+                 ng-maxlength="50"
+                 required>
+        </label>
+
+        <div class="form-errors"
+             ng-show="signupForm.email.$error && signupForm.$submitted"
+             ng-messages="signupForm.email.$error"
+             ng-messages-include="js/app/forms/form-errors.html">
+        </div>
+
+        <label class="item item-input" ng-class=
+            "{ 'has-error' : signupForm.password.$invalid && signupForm.$submitted, 'valid-lr' : signupForm.password.$valid  && signupForm.$submitted}">
+          <i class="icon ion-locked placeholder-icon field-icon"></i>
+          <input type="password" ng-model="vm.user.password" placeholder="Enter a password (at least 5 characters)"
+                 name="password"
+                 ng-model="user.password"
+                 ng-minlength="5"
+                 ng-maxlength="25"
+                 required>
+        </label>
+
+        <div class="form-errors"
+             ng-show="signupForm.password.$error && signupForm.$submitted"
+             ng-messages="signupForm.password.$error"
+             ng-messages-include="js/app/forms/form-errors.html">
+        </div>
+
+      </div>
+
+      <div class="padding assertive" ng-show="vm.error.message">{{vm.error.message}}</div>
+
+      <div class="padding">
+        <button class="button button-block button-positive" ng-click="vm.signup(signupForm)">
+          Create account
+        </button>
+        <a class="button button-block button-clear button-calm" ng-click="vm.login()">
+          Log in
+        </a>
+        <a class="button button-block button-clear button-calm" ng-click="vm.intro()">
+          Back to the intro page
+        </a>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,13 @@
+{
+  "constants": {
+    "APP": {
+      "devMode": false,
+      "testMode": false,
+      "noTracking": false,
+      "mockTracking": false
+    },
+    "ParseConfiguration": {
+      "serverURL": "https://api.parse.com"
+    }
+  }
+}
