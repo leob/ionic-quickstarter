@@ -128,15 +128,14 @@ For more details on configuring and using development, test and production mode,
 
 ## Improved project structure
 
-To support building bigger apps, I've structured the app in a different way than the basic 'tabs starter app' does.
+To support bigger apps, I've structured the app in a different way than the basic 'tabs starter app' does.
 
 The tabs starter app lumps all the route definitions and controllers together in one Javascript file, and puts all of
 the html templates in a separate directory.
 
 Instead, I'm organizing the files on a Module basis: for each module there is a separate directory which contains the
-Javascript (controllers etc) and the HTML (templates) that belong to that Module.
-
-This makes it much easier to keep a large app organized and maintainable.
+Javascript (controllers etc) and the HTML (templates) that belong to that Module. This makes it easier to keep a large
+app organized and maintainable.
 
 As an example, here is the default structure (slightly simplified) after installing the starter app:
 
@@ -190,21 +189,19 @@ As an example, here is the default structure (slightly simplified) after install
 └── www
 ```
 
-The structure shown above is slightly simplified, but the idea is as follows:
+The structure shown above is slightly simplified, but the idea is as follows.
+
+### Separate ```src``` and ```www``` directories
 
 The app's sources (Javascript, HTML, CSS) sit under ```src``` instead of under the default location ```www```.
 
-This is because of how the build process works:
+This is because of how the build process works.
 
 During a production build (```gulp build```), the sources (under ```src```) are minified and concatenated and so on and
 the products (build artifacts, the minified/concatenated files) are then placed in the ```www``` directory, where
 Cordova (through the ```ionic run``` or ```ionic build``` process) will pick them up.
 
-This arrangement keeps the sources (under ```src```) cleanly separated from the build artifacts (under ```www```).
-
-The Javacript AND the html files sit under ```src/js```, so we don't use a separate 'templates' directory.
-
-Right under ```src/js``` sits the index,html file, and under ```src/js/app``` sits app.js (the main app startup file).
+This arrangement keeps the sources under ```src``` cleanly separated from the build artifacts under ```www```.
 
 ### Modules
 
