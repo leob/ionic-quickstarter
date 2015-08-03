@@ -30,7 +30,7 @@ First off, I will explain how to install and use the starter app.
 To install the starter app, open a terminal, cd into the root directory where you want to install your app, and execute
 these commands:
 
-(note: in the commands below the app is called 'myapp', please replace this by the name you want to use for your app)
+(note: in the commands below the app is called ```myapp```, please replace this by the name you want to use for your app)
 
 <pre>
 git clone https://github.com/leob/ionic-quickstarter
@@ -51,11 +51,11 @@ ionic.project
 config.xml
 </pre>
 
-In these files, replace the name "app" with your app's name as follows:
+In these files, replace the name ```app``` with your app's name as follows:
 
-* in ionic.project: at line 2 ("name": "app"), replace "app" with your app name
-* in config.xml: at line 2, replace 'com.ionicframework.app' with your package name (e.g. 'com.mycompany.myapp'), and
-at line 3 replace "app" with your app name
+* in ionic.project: at line 2 ("name": "app"), replace ```app``` with your app name
+* in config.xml: at line 2, replace ```com.ionicframework.app``` with your package name (e.g.
+```com.mycompany.myapp```), and at line 3 replace ```app``` with your app name
 
 Finish the installation by entering the following commands:
 
@@ -86,10 +86,10 @@ ionic serve -l -c --browser google-chrome
 
 Click through the app: try the tabs, menus and so on.
 
-If you click the menu item 'logout' then you will be presented with the login page. This is (by default, in development
-mode) a 'fake' login page.
+If you click the menu item ```logout``` then you will be presented with the login page. This is (by default, in
+development mode) a 'fake' login page.
 
-To log in, simply type an arbitrary email address (can be fake too), and for the password type the text "password".
+To log in, simply type an arbitrary email address (can be fake too), and for the password type the text ```password```.
 
 ### Some notes on usage
 
@@ -197,9 +197,10 @@ The structure shown above is slightly simplified, but the idea is as follows:
 
 The app's sources (Javascript, HTML, CSS) sit under ```src``` instead of under the default location ```www```.
 
-This is because of how the build process works: during a production build ("gulp build"), the sources (under ```src```)
-are minified and concatenated and so on and the products (build artifacts, the minified/concatenated files) are then
-placed in the ```www``` directory where Cordova (through the "ionic run" or "ionic build" process) will pick them up.
+This is because of how the build process works: during a production build (```gulp build```), the sources (under
+```src```) are minified and concatenated and so on and the products (build artifacts, the minified/concatenated files)
+are then placed in the ```www``` directory where Cordova (through the "ionic run" or "ionic build" process) will pick
+them up.
 
 This arrangement keeps the sources (under ```src```) cleanly separated from the build artifacts (under ```www```).
 
