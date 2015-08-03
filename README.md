@@ -24,20 +24,26 @@ These topics will be explained in detail below. First I will explain how to inst
 To install the starter app, execute the following commands.
 In the commands below the new app is called 'myapp', please replace this by the name you want to use for your app.
 
-Open a terminal, cd into the rout directory where you want to install your app, and execute these commands:
+Open a terminal, cd into the root directory where you want to install your app, and execute these commands:
 
+<pre>
 git clone https://github.com/leob/ionic-quickstarter
 mv ionic-quickstarter myapp
 cd myapp
+</pre>
 
 Now if you want to put your app under source control and you use Git as your VCS, type the command:
 
+<pre>
 git init
+</pre>
 
 Next, edit the following two files using a text editor:
 
-edit ionic.project
-edit config.xml
+<pre>
+ionic.project
+config.xml
+</pre>
 
 In these files, replace the name "app" with your app's name as follows:
 
@@ -47,22 +53,30 @@ at line 3 replace "app" with your app name
 
 Now finish the installation by entering the following commands:
 
+<pre>
 npm install
 bower install
 ionic state restore --plugins
+</pre>
 
 Finally, if you want to add Android and iOS as a runtime platform, type:
 
+<pre>
 ionic platform add android
 ionic platform add ios
+</pre>
 
 The project is now ready to run. To run it in a browser ("ionic serve"), type:
 
+<pre>
 ionic serve
+</pre>
 
 or any other variation, e.g. (using the "labs" feature, logging to the console, and defaulting to Chrome):
 
+<pre>
 ionic serve -l -c --browser google-chrome
+</pre>
 
 ## Improved project structure
 More organised angular app structure using a single controller/service/... per file
