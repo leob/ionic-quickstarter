@@ -17,4 +17,4 @@ _*
 # EXCLUDE BUILD ARTIFACTS:
 src/css/ionic.app.css
 src/js/config/config.js
-www/
+www/*/
