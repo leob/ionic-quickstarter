@@ -1,4 +1,5 @@
 # Ionic Quickstarter
+
 A starter project for Ionic, sporting an improved build process (gulp file) and a better project structure (targeted at
 bigger apps).
 
@@ -16,10 +17,10 @@ Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has th
 
 The first two topics (Project structure and Gulp file) will be explained below.
 
-To keep this README readable (pun intended), I'm putting all of the other information in this repository's Wiki.
+To keep this README 'readable' (it is already too long), I'm putting all of the other information in the Wiki.
 
-My intention is to keep this starter app up to date with newer Ionic features and library/tool versions, and to add
-additional features and improvements where useful - see "To do's and Roadmap" below.
+My intention is to keep this starter app up to date with newer Ionic/library/tool versions, and to add more features
+and improvements; see "To do's and Roadmap" in the Wiki.
 
 Suggestions, contributions, pull requests (please discuss them in advance) are welcome.
 
@@ -103,17 +104,17 @@ As I've currently set it up, these modes are quite different.
 
 #### Development mode
 
-In 'development' mode, the gulp build process is simple and lightweight: it doesn't do minification/concatenation,
+In development mode, the gulp build process is simple and lightweight: it doesn't do minification/concatenation,
 template caching, annotations and so on. It only does a SASS compile (if you want).
 
-Also, in development mode, by default, the various (signup, login etc) use a "mock" implementation using 'fake' data
+Also, in development mode, by default, the various (signup, login etc) use a "mock" implementation using fake data
 (note however that you can easily override this through configuration parameters).
 
 All of this makes the development process fast and lightweight.
 
 #### Production mode
 
-Things are different in 'production' mode: the gulp build process does a complete build including minification,
+Things are different in production mode: the gulp build process does a complete build including minification,
 concatenation, template caching and so on, and the app runs with 'real' services.
 
 (e.g. the Parse service for signup/login, although you can replace this with an implementation of your own)
@@ -125,23 +126,21 @@ Production mode is used to run on a real device.
 Third mode is the test mode (gulp test/karma). This also uses the 'lightweight' build process and 'mock' service
 implementations.
 
-For more details on configuring and using 'development', 'test' and 'production' mode, see the Wiki.
+For more details on configuring and using development, test and production mode, see the Wiki.
 
 ## Improved project structure
 
 To support building bigger apps, I've structured the app in a different way than the basic 'tabs starter app' does.
 
-The 'tabs starter' app lumps all the route definitions and controllers together in one Javascript file, the services
-(if any) in another file, and all the html templates are put in a separate directory.
+The tabs starter app lumps all the route definitions and controllers together in one Javascript file, and puts all of
+the html templates in a separate directory.
 
-Instead, I'm organize the files on a Module basis, where the controllers and templates that belong to one Module are
-placed together in the same directory.
-
-Services that can be re-used across modules are put in a separate directory.
+Instead, I'm organizing the files on a Module basis: for each module there is a separate directory which contains the
+Javascript (controllers etc) and the HTML (templates) that belong to that Module.
 
 This makes it much easier to keep a large app organized and maintainable.
 
-As an example, here is the default structure (slightly simplified) after you've installed the starter app:
+As an example, here is the default structure (slightly simplified) after installing the starter app:
 
 ```
 /
@@ -197,10 +196,11 @@ The structure shown above is slightly simplified, but the idea is as follows:
 
 The app's sources (Javascript, HTML, CSS) sit under ```src``` instead of under the default location ```www```.
 
-This is because of how the build process works: during a production build (```gulp build```), the sources (under
-```src```) are minified and concatenated and so on and the products (build artifacts, the minified/concatenated files)
-are then placed in the ```www``` directory where Cordova (through the "ionic run" or "ionic build" process) will pick
-them up.
+This is because of how the build process works:
+
+During a production build (```gulp build```), the sources (under ```src```) are minified and concatenated and so on and
+the products (build artifacts, the minified/concatenated files) are then placed in the ```www``` directory, where
+Cordova (through the ```ionic run``` or ```ionic build``` process) will pick them up.
 
 This arrangement keeps the sources (under ```src```) cleanly separated from the build artifacts (under ```www```).
 
@@ -214,25 +214,11 @@ Right under ```src/js``` sits the index,html file, and under ```src/js/app``` si
 ### Services and mocks
 
 
-## Better gulp file
+## Improved gulp file
+
 * ```gulp default```: 
 * ```gulp watch```: 
 * ```gulp jshint```: 
 * ```gulp test```: 
 * ```gulp build```: Concatenate and uglify app into one JS file. A sourcemap can be included to enable easy debugging.
-
-## Unit test support
-* Add karma to enable unit testing the angular app
-* Run unit tests using ```npm test```.
-* Easy CI with travis. Simply add .travis.yml
-
-## Signup and login flow
-
-## The two main Ionic UI patterns: menus and tabs
-
-## Some useful features
-
-## Workarounds for some well-known issues
-
-# To do's and Roadmap
 
