@@ -17,14 +17,12 @@ Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has th
 
 The first two topics (Project structure and Gulp file) will be explained below.
 
-To keep this README 'readable' (it is already too long), I'm putting all of the other information in the Wiki.
+To keep this README 'readable' (it is already too long), I'm putting the rest of the information in the Wiki.
 
 My intention is to keep this starter app up to date with newer Ionic/library/tool versions, and to add more features
 and improvements; see "To do's and Roadmap" in the Wiki.
 
 Suggestions, contributions, pull requests (please discuss them in advance) are welcome.
-
-First off, I will explain how to install and use the starter app.
 
 ## Installation and usage
 
