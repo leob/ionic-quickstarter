@@ -8,12 +8,12 @@ For background, read the [blog post](http://codepen.io/write/ionic-quickstarter-
 Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has the following extras:
 
 * Improved project structure (a modular app structure suitable for bigger apps)
-* Better gulp file (including a build process optimized for production)
+* Improved gulp file (including a build process optimized for production)
 * Unit test support using Karma and Jasmine
 * Signup and login flow implemented using Parse (with the flexibility to plug in other implementations)
 * Support for the two main Ionic UI patterns: side menus and tabs
 * Includes some commonly used features, for instance form validation using ng-messages
-* Provides workarounds for some well-known issues in Ionic apps
+* Provides workarounds for a number of well-known issues in Ionic apps
 
 The first two topics (Project structure and Gulp file) will be explained below.
 
