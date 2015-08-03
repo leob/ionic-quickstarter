@@ -53,8 +53,8 @@ config.xml
 
 In these files, replace the name ```app``` with your app's name as follows:
 
-* in ionic.project: at line 2 ("name": "app"), replace ```app``` with your app name
-* in config.xml: at line 2, replace ```com.ionicframework.app``` with your package name (e.g.
+* in ```ionic.project```: at line 2 ("name": "app"), replace ```app``` with your app name
+* in ```config.xml```: at line 2, replace ```com.ionicframework.app``` with your package name (e.g.
 ```com.mycompany.myapp```), and at line 3 replace ```app``` with your app name
 
 Finish the installation by entering the following commands:
