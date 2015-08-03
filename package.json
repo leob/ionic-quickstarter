@@ -37,6 +37,7 @@
     "org.apache.cordova.device",
     "org.apache.cordova.console",
     "org.apache.cordova.splashscreen",
-    "com.ionic.keyboard"
+    "com.ionic.keyboard",
+    "cordova-plugin-whitelist"
   ]
 }
