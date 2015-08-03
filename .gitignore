@@ -5,7 +5,6 @@ node_modules/
 resources/
 platforms/
 plugins/
-scss/
 
 src/lib/
 
@@ -16,4 +15,5 @@ _*
 
 # EXCLUDE BUILD ARTIFACTS:
 src/css/ionic.app.css
+src/css/ionic.app.min.css
 src/js/config/config.js

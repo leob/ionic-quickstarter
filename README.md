@@ -2,11 +2,6 @@
 A starter project for Ionic, sporting an improved build process (gulp file) and project structure (targeted at bigger
 apps).
 
-My intention is to keep this starter app up to date with newer Ionic features and library/tool versions, and to add
-additional features and improvements where useful.
-
-For more information, read the [blog post](http://codepen.io/write/ionic-quickstarter-a-starter-app-with-an-improved-build-process-and-a-modular-app-structure/).
-
 Based on the "tabs starter" project from Ionic, but has the following extras: 
 
 * Improved project structure (a modular app structure suitable for bigger apps)
@@ -17,9 +12,16 @@ Based on the "tabs starter" project from Ionic, but has the following extras:
 * Includes some commonly used features, for instance form validation using ng-messages
 * Provides workarounds for some well-known issues in Ionic apps
 
-These topics will be explained in detail below. First I will explain how to install and use the starter app.
+These topics will be explained in detail below.
 
-## Installation
+My intention is to keep this starter app up to date with newer Ionic features and library/tool versions, and to add
+additional features and improvements where useful.
+
+For more information, read the [blog post](http://codepen.io/write/ionic-quickstarter-a-starter-app-with-an-improved-build-process-and-a-modular-app-structure/).
+
+First I will explain how to install and use the starter app.
+
+## Installation and usage
 
 To install the starter app, execute the following commands.
 In the commands below the new app is called 'myapp', please replace this by the name you want to use for your app.

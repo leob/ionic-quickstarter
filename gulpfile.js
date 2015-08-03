@@ -244,7 +244,7 @@ gulp.task('index', ['clean'], function() {
 });
 
 // copy all other files to dist directly
-gulp.task('copy', ['clean'], function() {
+gulp.task('copy', ['clean', 'styles', 'sass'], function() {
 
   gulp.src(paths.ionicfonts)
     .pipe(gulp.dest(paths.dist + '/lib/ionic/fonts'));
