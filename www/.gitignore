@@ -1,0 +1,3 @@
+# Ignore contents of this directory (www) but not the directory itself. See: http://stackoverflow.com/a/5581995/2474068
+*
+!.gitignore
