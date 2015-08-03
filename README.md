@@ -17,7 +17,7 @@ Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has th
 
 The first two topics (Project structure and Gulp file) will be explained below.
 
-To keep this README 'readable' (it is already too long), I'm putting the rest of the information in the Wiki.
+To keep this README readable (it's already too long), I'm putting the rest of the information in the Wiki.
 
 My intention is to keep this starter app up to date with newer Ionic/library/tool versions, and to add more features
 and improvements; see "To do's and Roadmap" in the Wiki.
@@ -115,7 +115,7 @@ All of this makes the development process fast and lightweight.
 Things are different in production mode: the gulp build process does a complete build including minification,
 concatenation, template caching and so on, and the app runs with 'real' services.
 
-(e.g. the Parse service for signup/login, although you can replace this with an implementation of your own)
+(e.g. the Parse service for signup/login, but you can replace this with an implementation of your own)
 
 Production mode is used to run on a real device.
 
@@ -191,7 +191,7 @@ As an example, here is the default structure (slightly simplified) after install
 
 The structure shown above is slightly simplified, but the idea is as follows.
 
-### Separate ```src``` and ```www``` directories
+### Separate "src" and "www" directories
 
 The app's sources (Javascript, HTML, CSS) sit under ```src``` instead of under the default location ```www```.
 
