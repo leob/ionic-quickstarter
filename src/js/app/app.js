@@ -96,8 +96,8 @@ angular.module('app', [
   })
 
   /*@ngInject*/
-  .run(function ($ionicPlatform, $ionicPopup, $ionicSideMenuDelegate, $state, $rootScope, $log, loggingDecorator,
-                 Application, APP, Tracking) {
+  .run(function ($ionicPlatform, $ionicPopup, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, $log,
+                 loggingDecorator, Application, APP, Tracking) {
 
     loggingDecorator.decorate($log);
 
@@ -141,8 +141,15 @@ angular.module('app', [
         }
       });
 
-      // prevent the Android hardware back button from exiting the app 'unvoluntarily' - ask the user to confirm; see:
+      // Prevent the Android hardware back button from exiting the app 'unvoluntarily' - ask the user to confirm; see:
+      //
       // http://www.gajotres.net/ionic-framework-handling-android-back-button-like-a-pro/
+      // http://forum.ionicframework.com/t/handling-the-hardware-back-buttons/1505/23
+      //
+      // If more flexibility is needed then one can implement something along these lines:
+      //
+      // https://gist.github.com/kyletns/93a510465e433c1981e1
+      //
       $ionicPlatform.registerBackButtonAction(function(event) {
         if ($ionicHistory.backView() === null) {  // no more previous screen in the history stack, so "back" would exit
           $ionicPopup.confirm({
@@ -153,6 +160,8 @@ angular.module('app', [
               ionic.Platform.exitApp();
             }
           })
+        } else {
+          $ionicHistory.goBack();
         }
       }, 100);  // 100 = previous view
 

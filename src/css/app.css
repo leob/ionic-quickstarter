@@ -5,6 +5,19 @@
 body {
 }
 
+/* ==== IONIC FIXES ==== */
+
+/*
+    CSS styles to eliminate the annoying flickering header when changing tabs in an Ionic app on Android:
+    http://forum.ionicframework.com/t/flickering-when-navigating-via-tabs-on-android/27281/2
+*/
+.platform-android .header-item.title {
+    transition-duration: 0ms;
+}
+.platform-android .header-item.buttons {
+    transition-duration: 0ms;
+}
+
 /* ==== UTILITY STYLES ==== */
 
 /* An "h2" style which (unlike a 'h2' element) does not get overridden by list styles */
