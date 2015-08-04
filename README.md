@@ -11,8 +11,8 @@ For background, read the [blog post](http://codepen.io/write/ionic-quickstarter-
 
 Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has the following extras:
 
-* Improved project structure (a modular app structure suitable for bigger apps)
 * Improved gulp file (including a build process optimized for production)
+* Improved project structure (a modular app structure suitable for bigger apps)
 * Unit test support using Karma and Jasmine
 * Signup and login flow implemented using Parse (with the flexibility to plug in other implementations)
 * Support for the two main Ionic UI patterns: side menus and tabs
@@ -117,14 +117,23 @@ Test mode (karma/jasmine) also uses the 'lightweight' build process and 'mock' s
 
 For more details on configuring and using development, test and production mode, see the Wiki.
 
-## Improved project structure
+## Gulp file
 
-To support bigger apps, I've structured the app in a different way than the basic 'tabs starter app' does.
+* ```gulp default```: 
+* ```gulp watch```: 
+* ```gulp jshint```: 
+* ```gulp test```: 
+* ```gulp build```: Concatenate and uglify app into one JS file. A sourcemap can be included to enable easy debugging.
+
+
+## Project structure
+
+To support bigger apps, the starter app is structured differently than the basic 'tabs starter app'.
 
 The tabs starter app lumps all the route definitions and controllers in one Javascript file, and puts the html
 templates in a separate directory.
 
-Instead, I'm organizing the files on a Module basis: for each module there is a separate directory containing the
+Instead, we've chosen to organize the files on a Module basis: each Module is in its own directory containing the
 Javascript (controllers etc) and the HTML (templates) for that Module. This makes it easier to keep a large app
 organized and maintainable.
 
@@ -218,13 +227,26 @@ concatenated into one file for efficiency reasons.
 
 ### Services and mocks
 
+Services which can be reused across modules are in a separate directory ```services```.
 
+A service (for instance the UserService) can have multiple implementations, for instance a "mock" implementation and a
+"Parse" implementation. To illustrate, here is the code for userService.js:
 
-## Improved gulp file
+```
+angular.module('app.user')
+  .factory('UserService', function ($injector, APP) {
+    if (  APP.testMode) {
+      return $injector.get('UserServiceMockImpl');
+    } else {
+      return $injector.get('UserServiceParseImpl');
+    }
+  });
+```
 
-* ```gulp default```: 
-* ```gulp watch```: 
-* ```gulp jshint```: 
-* ```gulp test```: 
-* ```gulp build```: Concatenate and uglify app into one JS file. A sourcemap can be included to enable easy debugging.
+Depending on "flags" set in the config.js (in this case, APP.testMode), the factory instantiates either a Mock
+implementation or a Parse implementation of the user service. These implementations are in subdirectories below the
+```service``` directory.
+
+Using this approach, service implementations can easily be changed or swapped out without the client code (controllers
+or other services) noticing anything.
 
