@@ -4,7 +4,7 @@ A starter project with an improved build process and a better project structure,
 
 I intend to keep this starter app up to date with the newest versions of Ionic etc, and to add features/improvements.
 See "To do's and Roadmap" on the [Wiki](https://github.com/leob/ionic-quickstarter/wiki/ionic-quickstarter-wiki), and
-feel free to [contribute](https://github.com/leob/ionic-quickstarter#contributing).
+feel free to [contribute](#contributing).
 
 For background, read the [blog post](http://codepen.io/write/ionic-quickstarter-a-starter-app-with-an-improved-build-process-and-a-modular-app-structure/).
 
