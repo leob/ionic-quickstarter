@@ -1,9 +1,9 @@
 # Ionic Quickstarter
 
-A starter project with an improved build process (gulp) and a better project structure, suitable for bigger Ionic apps.
+A starter project with an improved build process and a better project structure, suitable for bigger apps.
 
-I intend to keep this starter app up to date with the newest versions of Ionic etc, and to add features/improvements;
-see "To do's and Roadmap" in the Wiki.
+I intend to keep this starter app up to date with the newest versions of Ionic etc, and to add features/improvements.
+See "To do's and Roadmap" in the Wiki.
 
 For background, read the [blog post](http://codepen.io/write/ionic-quickstarter-a-starter-app-with-an-improved-build-process-and-a-modular-app-structure/).
 
@@ -25,7 +25,7 @@ To keep this README short (it's already too long), I'm putting the rest of the i
 
 ## Installation and usage
 
-To install the starter app, open a terminal and cd into the root directory where you want to install your app.
+To install the starter app, open a terminal and cd into the directory where you want to install your app.
 
 Run the following commands (note: below the app is named ```myapp```, replace this by your app's name):
 
@@ -35,7 +35,7 @@ mv ionic-quickstarter myapp
 cd myapp
 </pre>
 
-Now if you want to put your app under source control and you use Git as your VCS, type the command:
+If you want to put your app under source control and you use Git, type the command:
 
 <pre>
 git init
@@ -83,10 +83,9 @@ ionic serve -l -c --browser google-chrome
 
 Click through the app: try the tabs, menus and so on.
 
-If you click the menu item ```logout``` then you will be presented with the login page. This is (by default, in
-development mode) a 'fake' login page.
-
-To log in, simply type an arbitrary email address (can be fake too), and for the password type the text ```password```.
+If you click the menu item ```log out``` then you will be presented with the login page. In
+development mode this is a 'fake' login page. To log in, simply type an arbitrary email address (can be fake too), and
+for the password type the text ```password```.
 
 ### Some notes on usage
 
