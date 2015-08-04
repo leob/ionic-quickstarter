@@ -3,7 +3,7 @@
 A starter project with an improved build process and a better project structure, suitable for bigger apps.
 
 I intend to keep this starter app up to date with the newest versions of Ionic etc, and to add features/improvements.
-See "To do's and Roadmap" in the Wiki.
+See "To do's and Roadmap" on the Wiki.
 
 For background, read the [blog post](http://codepen.io/write/ionic-quickstarter-a-starter-app-with-an-improved-build-process-and-a-modular-app-structure/).
 
@@ -21,7 +21,7 @@ Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has th
 
 The first two topics (Project structure and Gulp file) will be explained below.
 
-To keep this README short (it's already too long), I'm putting the rest of the information in the Wiki.
+To keep this README short (it's already too long), I'm putting the rest of the information on the Wiki.
 
 ## Installation and usage
 
@@ -130,8 +130,8 @@ Here is how you use these commands.
 
 ### Gulp default and gulp watch
 
-Normally you don't run these manually. They will be executed automatically when you run ```ionic serve```. This is done
-through a configuration section in the ```ionic.project`` file:
+Normally you don't run these commands manually. They will be executed automatically when you run ```ionic serve```. This is done
+through a configuration section in the ```ionic.project``` file:
 
 ```
  "gulpStartupTasks": [
@@ -152,8 +152,7 @@ gulp jshint
 
 Use these commands to run your tests via the Karma test runner.
 
-```gulp test``` runs the tests and then keeps watching (and re-running) them until you abort the command.
-
+```gulp test``` runs the tests and then keeps watching (and re-running) them until you abort the command, while
 ```gulp test-single``` runs the tests only once and then exits. 
 
 ### Gulp build
@@ -290,4 +289,8 @@ implementation or a Parse implementation of the user service. These implementati
 
 Using this approach, service implementations can easily be changed or swapped out without the client code (controllers
 or other services) noticing anything.
+
+## Contributing
+
+Contributions are welcome. For details, see the 'Contributing' section on the Wiki.
 
