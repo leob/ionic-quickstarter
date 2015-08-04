@@ -93,7 +93,7 @@ I've set up the gulp file and the starter app in such a way that there are essen
 
 * 'development' mode which is what you use when running "ionic serve" (running in the browser)
 * 'test' mode: used when you run 'gulp test' or 'karma start'
-* 'production' mode which is what you use when doing a "gulp build" followed by "ionic run" (running on a device)
+* 'production' mode which is what you use when doing "gulp build" and then "ionic run" (running on a device)
 
 As I've currently set it up, these modes are quite different.
 
