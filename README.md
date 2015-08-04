@@ -1,10 +1,9 @@
 # Ionic Quickstarter
 
-A starter project for Ionic, sporting an improved build process (gulp file) and a better project structure (targeted at
-bigger apps).
+A starter project with an improved build process (gulp) and a better project structure, suitable for bigger Ionic apps.
 
-My intention is to keep this starter app up to date with newer Ionic/library/tool versions, and to add more features
-and improvements; see "To do's and Roadmap" in the Wiki.
+I intend to keep this starter app up to date with the newest versions of Ionic etc, and to add features/improvements;
+see "To do's and Roadmap" in the Wiki.
 
 For background, read the [blog post](http://codepen.io/write/ionic-quickstarter-a-starter-app-with-an-improved-build-process-and-a-modular-app-structure/).
 
