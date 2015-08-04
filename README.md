@@ -6,8 +6,10 @@ I intend to keep this starter app up to date with the newest versions of Ionic e
 See "To do's and Roadmap" on the [Wiki](https://github.com/leob/ionic-quickstarter/wiki/ionic-quickstarter-wiki), and
 feel free to [contribute](#contributing).
 
-For background, read the [blog post](http://codepen.io/write/ionic-quickstarter-a-starter-app-with-an-improved-build-process-and-a-modular-app-structure/).
-<a href="http://codepen.io/write/ionic-quickstarter-a-starter-app-with-an-improved-build-process-and-a-modular-app-structure/" target="_blank">example</a>
+For background, read my
+<a href="http://codepen.io/write/ionic-quickstarter-a-starter-app-with-an-improved-build-process-and-a-modular-app-structure/" target="_blank">
+blog post</a>.
+
 ## Introduction
 
 Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has the following extras:
