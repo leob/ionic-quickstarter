@@ -93,7 +93,7 @@ I've set up the gulp file and the starter app in such a way that there are essen
 
 * 'development' mode which is what you use when running "ionic serve" (running in the browser)
 * 'test' mode: used when you run 'gulp test' or 'karma start'
-* 'production' mode which is what you use when doing "gulp build" and then "ionic run" (running on a device)
+* 'production' mode which is what you use when doing "gulp build" and "ionic run" (running on a device)
 
 As I've currently set it up, these modes are quite different.
 
@@ -192,7 +192,7 @@ During a production build (```gulp build```), the sources (under ```src```) are 
 the products (build artifacts, the minified/concatenated files) are then placed in the ```www``` directory, where
 Cordova (through the ```ionic run``` or ```ionic build``` process) will pick them up.
 
-This arrangement keeps the sources under ```src``` cleanly separated from the build artifacts under ```www```.
+This setup keeps the sources under ```src``` cleanly separated from the build artifacts under ```www```.
 
 ### Modules
 
