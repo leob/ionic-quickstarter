@@ -119,12 +119,53 @@ For more details on configuring and using development, test and production mode,
 
 ## Gulp file
 
-* ```gulp default```: 
-* ```gulp watch```: 
-* ```gulp jshint```: 
-* ```gulp test```: 
-* ```gulp build```: Concatenate and uglify app into one JS file. A sourcemap can be included to enable easy debugging.
+The gulp.js file supports the following commands:
 
+* ```gulp default``` and ```gulp watch```
+* ```gulp jshint```
+* ```gulp test``` and ```gulp test-single```
+* ```gulp build```
+
+Here is how you use these commands.
+
+### Gulp default and gulp watch
+
+Normally you don't run these manually. They will be executed automatically when you run ```ionic serve```. This is done
+through a configuration section in the ```ionic.project`` file:
+
+```
+ "gulpStartupTasks": [
+    "default",
+    "watch"
+ ]
+```
+
+### Gulp jshint
+
+You can run this to hint/lint your Javascript code. Just execute:
+
+```
+gulp jshint
+```
+
+### Gulp test and gulp test-single
+
+Use these commands to run your tests via the Karma test runner.
+
+```gulp test``` runs the tests and then keeps watching (and re-running) them until you abort the command.
+
+```gulp test-single``` runs the tests only once and then exits. 
+
+### Gulp build
+
+You use this command to generate a production build to run on a real device. Invoke it like this:
+
+```
+gulp build
+ionic run
+```
+
+Replace ```ionic run``` by ```ionic build``` if you want to perform a build instead of a run.
 
 ## Project structure
 

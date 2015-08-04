@@ -108,7 +108,7 @@ gulp.task('test', function (done) {
   runtest(false), done;
 });
 
-gulp.task('singletest', function (done) {
+gulp.task('test-single', function (done) {
   runtest(true), done;
 });
 
