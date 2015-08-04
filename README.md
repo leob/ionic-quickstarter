@@ -18,7 +18,7 @@ Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has th
 * Improved project structure (a modular app structure suitable for bigger apps)
 * Unit test support using Karma and Jasmine
 * Signup and login flow implemented using Parse (with the flexibility to plug in other implementations)
-* Support for the two main Ionic UI patterns: side menus and tabs
+* Support for the two main Ionic UI patterns: side menus and tabs, and an Intro screen with a Slider
 * Includes some commonly used features, for instance form validation using ng-messages
 * Provides workarounds for a number of well-known issues in Ionic apps
 * Incorporates a number of 'best practices' for AngularJS and Ionic
