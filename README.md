@@ -196,8 +196,28 @@ This setup keeps the sources under ```src``` cleanly separated from the build ar
 
 ### Modules
 
+In the structure shown above you can see two Modules: 'forgotPassword' and 'login'.
+
+Each module is an AngularJS module ('angular.module(...')), and each module is in its own directory containing all of
+the Javasript and HTML making up that module.
+
+In the example of the 'forgotPassword' module, you see that the directory contains 2 files: a template file
+(forgotPassword.html) and a Javascript file (ForgotPassword.js). The Javascript file contains the route definition
+(UI-router $stateProvider) and the controller definition.
+
+In the example of the 'login' module you see that the directory contains 5 files: 2 template files (login.html and
+loggedOut.html) and 3 Javascript files. In this case you see that we've put the route definitions into a separate file
+(LoginRouter.js) and each of the two controllers also in separate files.
+
+Whether or not to put the route definitions and controllers in one Javascript file or in separate files is up to you
+and will probably depend on the complexity of the code ('forgotPassword' is simple enough for all the Javascript code
+to be put into one file).
+
+Note that during the production build process all of the separate files (Javascript and HTML) will be minified and
+concatenated into one file for efficiency reasons.
 
 ### Services and mocks
+
 
 
 ## Improved gulp file
