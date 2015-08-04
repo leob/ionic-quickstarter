@@ -21,6 +21,7 @@ Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has th
 * Support for the two main Ionic UI patterns: side menus and tabs
 * Includes some commonly used features, for instance form validation using ng-messages
 * Provides workarounds for a number of well-known issues in Ionic apps
+* Incorporates a number of 'best practices' for AngularJS and Ionic
 
 The first two topics (Project structure and Gulp file) will be explained below.
 
