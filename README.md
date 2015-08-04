@@ -7,7 +7,7 @@ See "To do's and Roadmap" on the [Wiki](https://github.com/leob/ionic-quickstart
 feel free to [contribute](#contributing).
 
 For background, read my
-<a href="http://codepen.io/write/ionic-quickstarter-a-starter-app-with-an-improved-build-process-and-a-modular-app-structure/" target="_blank">
+<a href="http://codepen.io/write/ionic-quickstarter-a-starter-app-to-kickstart-your-app-development" target="_blank">
 blog post</a>.
 
 ## Introduction
