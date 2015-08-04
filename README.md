@@ -99,7 +99,7 @@ As I've currently set it up, these modes are quite different.
 
 #### Development mode
 
-In development mode, the gulp build process is simple and lightweight: no minification, concatenation and so on.
+In development mode, the gulp build process is simple: no minification, concatenation etc.
 
 By default, in development mode, the various services (signup, login etc) use a "mock" implementation with fake data
 (but you can easily override this through configuration parameters).
@@ -113,7 +113,7 @@ concatenation etc, and the app runs with 'real' services.
 
 #### Test mode
 
-Third mode is the test mode (gulp test/karma). This also uses the 'lightweight' build process and 'mock' services.
+Test mode (karma/jasmine) also uses the 'lightweight' build process and 'mock' services.
 
 For more details on configuring and using development, test and production mode, see the Wiki.
 
