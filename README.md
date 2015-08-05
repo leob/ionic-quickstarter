@@ -305,7 +305,7 @@ implementation or a Parse implementation of the user service. These implementati
 Using this approach, service implementations can easily be changed or swapped out without the client code (controllers
 or other services) noticing anything.
 
-The ability to run with 'mock' implementations makes it easy to develop quickly without having to do a complicated
+The ability to run with 'mock' implementations makes it easy to develop quickly without having to perform a complicated
 production setup.
 
 In test mode, running with mocked implementations makes running your unit tests a lot faster of course.
