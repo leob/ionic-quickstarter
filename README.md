@@ -3,7 +3,7 @@
 A starter project with an improved build process and a better project structure, suitable for bigger apps.
 
 I intend to keep this starter app up to date with the newest versions of Ionic etc, and to add features/improvements.
-See "To do's and Roadmap" on the [Wiki](https://github.com/leob/ionic-quickstarter/wiki/ionic-quickstarter-wiki), and
+See "To do's and Roadmap" on the [Wiki](https://github.com/leob/ionic-quickstarter/wiki), and
 feel free to [contribute](#contributing).
 
 For background, read my
@@ -27,7 +27,7 @@ Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has th
 The first two topics (Project structure and Gulp file) will be explained below.
 
 To keep this README short (it's already too long), I'm putting the rest of the information on the
-[Wiki](https://github.com/leob/ionic-quickstarter/wiki/ionic-quickstarter-wiki).
+[Wiki](https://github.com/leob/ionic-quickstarter/wiki).
 
 ## Installation and usage
 
@@ -122,7 +122,7 @@ concatenation etc, and the app runs with 'real' services.
 Test mode (karma/jasmine) also uses the 'lightweight' build process and 'mock' services.
 
 For more details on configuring and using development, test and production mode, see the
-[Wiki](https://github.com/leob/ionic-quickstarter/wiki/ionic-quickstarter-wiki).
+[Wiki](https://github.com/leob/ionic-quickstarter/wiki).
 
 ## Gulp file
 
@@ -300,5 +300,5 @@ or other services) noticing anything.
 ## Contributing
 
 Contributions are welcome. For details, see the 'Contributing' section on the
-[Wiki](https://github.com/leob/ionic-quickstarter/wiki/ionic-quickstarter-wiki).
+[Wiki](https://github.com/leob/ionic-quickstarter/wiki).
 
