@@ -10,6 +10,14 @@ For background, read my
 <a href="http://codepen.io/leob6/blog/ionic-quickstarter-a-starter-app-to-kickstart-your-app-development" target="_blank">
 blog post</a>.
 
+## Table of contents
+
+[Introduction](#introduction)
+[Installation and usage](#installation-and-usage)
+[Gulp file](#gulp-file)
+[Project structure](#project-structure)
+[Contribute](#contributing)
+
 ## Introduction
 
 Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has the following extras:
