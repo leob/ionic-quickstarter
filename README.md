@@ -305,6 +305,11 @@ implementation or a Parse implementation of the user service. These implementati
 Using this approach, service implementations can easily be changed or swapped out without the client code (controllers
 or other services) noticing anything.
 
+The ability to run with 'mock' implementations makes it easy to develop quickly without needing to do carry out
+complicated production setup.
+
+In test mode, running with mocked implementations makes running your unit tests much faster of course.
+
 ## Contributing
 
 Contributions are welcome. For details, see the [Contributing](https://github.com/leob/ionic-quickstarter/wiki/Contributing) section on the Wiki.
