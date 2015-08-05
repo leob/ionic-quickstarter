@@ -306,9 +306,7 @@ Using this approach, service implementations can easily be changed or swapped ou
 or other services) noticing anything.
 
 The ability to run with 'mock' implementations makes it easy to develop quickly without having to perform a complicated
-production setup.
-
-In test mode, running with mocked implementations makes running your unit tests a lot faster of course.
+production setup, and in test mode, the mock implementations makes running your unit tests a lot faster of course.
 
 ## Contributing
 
