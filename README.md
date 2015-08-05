@@ -12,14 +12,10 @@ blog post</a>.
 
 ## Table of contents
 
-[Introduction](#introduction)
-
-[Installation and usage](#installation-and-usage)
-
-[Gulp file](#gulp-file)
-
-[Project structure](#project-structure)
-
+[Introduction](#introduction)<br>
+[Installation and usage](#installation-and-usage)<br>
+[Gulp file](#gulp-file)<br>
+[Project structure](#project-structure)<br>
 [Contribute](#contributing)
 
 ## Introduction
