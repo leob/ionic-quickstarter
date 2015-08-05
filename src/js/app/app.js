@@ -1,3 +1,14 @@
+//
+// app.js
+//
+// Main application sript
+//
+
+//
+// All modules used by the app are declared below - this convention prevents problems with unresolved dependencies due
+// to the order of loading of Javascript files. TO DO: make this simpler and less error-prone through a mechanism such
+// as require.js or browserify.
+//
 angular.module('app.config', []);
 
 angular.module('app.logging', []);
@@ -13,6 +24,9 @@ angular.module('app.login', []);
 angular.module('app.forgotPassword', []);
 angular.module('app.mainPage', []);
 
+//
+// Declare the main 'app' module and state its dependencies.
+//
 angular.module('app', [
   // libraries
   'ionic',  'ionic.service.core', 'ionic.service.analytics',  // IONIC.IO (Alpha software - disable for production?)
@@ -41,7 +55,18 @@ angular.module('app', [
         templateUrl: "js/app/menu/menu.html"
       })
 
-      // all children of 'app.auth' need a valid user
+      //
+      // All UI-router states that are children of 'app.auth' need a valid user - this is enforced through a Route
+      // Resolve, as you can see below ("UserService.checkUser()")
+      //
+      // When the resolve fails (meaning the user is not logged in), then "$rootScope.$on('$stateChangeError'..." (see
+      // below) is triggered, which then redirects the app to the login page.
+      //
+      // This technique was inspired by:
+      //
+      // http://www.clearlyinnovative.com/starter-ionic-application-template-wparse-integration
+      //
+
       .state('app.auth', {
         url: "/auth",
         abstract: true,
@@ -106,7 +131,8 @@ angular.module('app', [
 
         $log.debug('$stateChangeError, to: ' + JSON.stringify(toState) + ' error: ' + JSON.stringify(error));
 
-        // if the error is "noUser" then go to login state
+        // If the error is "noUser" then go to login state. For explanation see comments above. Technique inspired by:
+        // http://www.clearlyinnovative.com/starter-ionic-application-template-wparse-integration
         if (error && error.error === "noUser") {
 
           // event.preventDefault(): this is necessary to keep Ionic from loading the login page TWICE. See:
@@ -121,7 +147,7 @@ angular.module('app', [
 
       // tracking/analytics (Ionic.io)
       Tracking.init({
-        // SET TO FALSE TO ENABLE IONIC.IO TRACKING
+        // SET TO FALSE TO ENABLE IONIC.IO TRACKING, IF SET TO TRUE THEN THE IONIC ANALYTICS LIB DOES NOTHING
         dryRun: APP.noTracking
       });
 
@@ -159,7 +185,7 @@ angular.module('app', [
             if (res) {
               ionic.Platform.exitApp();
             }
-          })
+          });
         } else {
           $ionicHistory.goBack();
         }

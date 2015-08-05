@@ -25,6 +25,10 @@ angular.module('app.tracking')
       }
     };
 
+    //
+    // Function to manually track an event through the Ionic.io analytics service. Event tracking can also be automated
+    // by adding a directive to the "ion-view" elements in your templates - see Ionic.io documentation.
+    //
     var trackEvent = function (name, event) {
       try {
         $ionicAnalytics.track(name, {event: event});

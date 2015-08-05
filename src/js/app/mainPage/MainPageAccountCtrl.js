@@ -17,9 +17,9 @@ var MainPageAccountCtrl = function (user) {  // user is injected through UI-rout
     // call the model object's "getLoggedInDuration" method
     var duration = user.getLoggedInDuration() / 1000;
 
-    var seconds = parseInt(duration % 60)
-      , minutes = parseInt(duration / 60 % 60)
-      , hours = parseInt(duration / (60*60));
+    var seconds = parseInt(duration % 60),
+        minutes = parseInt(duration / 60 % 60),
+        hours = parseInt(duration / (60*60));
 
     return formatNumber(hours) + ':' + formatNumber(minutes) + ':' + formatNumber(seconds);
   };
