@@ -1,3 +1,9 @@
+//
+// logging.js
+//
+// Enhance the built-in angularjs ogger with some extra features (e.g. printing the timestamp, and logging the number
+// of AngularJS watchers in debug mode).
+//
 angular.module('app.logging')
 
   .factory('loggingDecorator', function (dateFilter) {
@@ -76,6 +82,18 @@ angular.module('app.logging')
   // see: http://blog.pdsullivan.com/posts/2015/02/19/ionicframework-googleanalytics-log-errors.html
   .factory('loggingService', function ($log, Tracking) {
 
+    // The idea of the logging service is that serious errors in your app can be sent to a remote server so that you
+    // can track problems in your app. Remote application logging, so to speak.
+    //
+    // Here, I've used "Tracking.trackEvent(...)" which means the Ionic.io Analytic service, but I'm not sure if this
+    // is a good solution (seems you can't see the full error trace in the Ionic.io Analytics dashboard).
+    //
+    // Other (better?) solutions would be to use Google Analytics, or a service such as loggly, or use your own server.
+    //
+
+    //
+    ///* use Google Analytics to log the error remotely */
+    //
     //var logError = function(error, logger) {
     //
     //  if (!logger) {

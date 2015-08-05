@@ -1,3 +1,11 @@
+//
+// localStorage.js
+//
+// Wrapper service for local storage.
+//
+// This could be overridden/reimplemented to use another storage mechanism e.g. SQLite or PouchDB.
+//
+
 angular.module('app.storage')
 
   .factory('$localStorage', function ($window) {
