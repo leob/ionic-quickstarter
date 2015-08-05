@@ -307,6 +307,5 @@ or other services) noticing anything.
 
 ## Contributing
 
-Contributions are welcome. For details, see the 'Contributing' section on the
-[Wiki](https://github.com/leob/ionic-quickstarter/wiki).
+Contributions are welcome. For details, see the [Contributing](https://github.com/leob/ionic-quickstarter/wiki/Contributing) section on the Wiki.
 
