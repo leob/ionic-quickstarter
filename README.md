@@ -1,6 +1,6 @@
 # Ionic Quickstarter
 
-A starter project with an improved build process and a better project structure, suitable for bigger apps.
+### A boilerplate and Reference app providing tools and best practices to kickstart your app development.
 
 I intend to keep this starter app up to date with the newest versions of Ionic etc, and to add features/improvements.
 See [Todo and Roadmap](https://github.com/leob/ionic-quickstarter/wiki/Todo-and-roadmap) on the Wiki, and feel free to

@@ -5,12 +5,12 @@
       "routerDefaultState": "app.auth.main.dash"
     },
     "ParseConfiguration": {
-      "applicationId": "ZCuRpz5drn3YMgfIM4jp4HyQzcv0ADNO8ccXrfy3",
-      "javascriptKey": "zo1TtZAFftzv2OHZmm50mu6NNtVquIPdn2yUMh6n"
+      "applicationId": "applicationId",
+      "javascriptKey": "javascriptKey"
     },
     "ionicIO": {
-      "appId": "9956e32c",
-      "apiKey": "549c5b79d8c91c6d55a81037f2682b3d81edabda16455bdf"
+      "appId": "appId",
+      "apiKey": "apiKey"
     }
   }
 }
