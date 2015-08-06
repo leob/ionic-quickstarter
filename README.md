@@ -22,13 +22,14 @@ See [Todo and Roadmap](https://github.com/leob/ionic-quickstarter/wiki/Todo-and-
 
 Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has the following extras:
 
-* Improved gulp file (including a build process optimized for production)
+* A better gulp file (including a build process optimized for production)
 * Improved project structure (a modular app structure suitable for bigger apps)
+* Implements a number of best practices, for instance naming of files and modules
 * Unit test support using Karma and Jasmine
 * Signup and login flow implemented using Parse (with the flexibility to plug in other implementations)
 * Basic integration with Ionic Analytics (this can be switched off easily if you don't use it)
 * Support for the two main Ionic UI patterns: side menus and tabs, and an Intro screen with a Slider
-* Includes some commonly used features, for instance form validation using ng-messages
+* Includes some commonly used features, for instance form validation using ng-messages and improved logging
 * Provides workarounds for a number of well-known issues in Ionic apps
 * Incorporates a number of 'best practices' for AngularJS and Ionic
 
