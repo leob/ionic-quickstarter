@@ -142,6 +142,7 @@ gulp.task('clean', function (cb) {
 var dosass = function(minify, sourcemaps, done) {
   gulp.src('./scss/ionic.app.scss')
   .pipe(sass())
+  // this keeps the gulp build from crashing when there are errors in your SASS file
   .on("error", function(err) {
     console.log(err.toString());
     this.emit("end");
@@ -196,7 +197,7 @@ gulp.task('scripts', ['clean' /*, 'templateCache'*/], function() {
       remove: true,
       add: true,
       single_quotes: true,
-      regexp: "^module(.*)$"
+      regexp: "^module(.*)$"  /* NOTE: this makes ngAnnotate work right even when defining modules with "module(...)" instead of "angular,module()" */
     }))
     .pipe(uglify())
     .pipe(concat(files.jsbundle))
