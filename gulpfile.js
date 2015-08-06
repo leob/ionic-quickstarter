@@ -197,7 +197,7 @@ gulp.task('scripts', ['clean' /*, 'templateCache'*/], function() {
       remove: true,
       add: true,
       single_quotes: true,
-      regexp: "^module(.*)$"  /* NOTE: this makes ngAnnotate work right even when defining modules with "module(...)" instead of "angular,module()" */
+      regexp: "^module(.*)$"  /* NOTE: this makes ngAnnotate work right even when defining modules with "module(...)" instead of "angular.module()" */
     }))
     .pipe(uglify())
     .pipe(concat(files.jsbundle))
