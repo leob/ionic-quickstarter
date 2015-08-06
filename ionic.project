@@ -15,5 +15,5 @@
     "src/**/*",
     "!src/lib/**/*"
  ],
- "documentRoot": "src"
+ "documentRoot": "www"
 }

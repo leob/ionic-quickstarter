@@ -7,4 +7,4 @@ var MainPageChatDetailCtrl = function ($stateParams, Chats) {
   vm.chat = Chats.get($stateParams.chatId);
 };
 
-angular.module('app.mainPage').controller('MainPageChatDetailCtrl', MainPageChatDetailCtrl);
+angular.module('app.mainPage').controller('ChatDetailCtrl', MainPageChatDetailCtrl);

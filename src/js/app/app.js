@@ -11,17 +11,18 @@
 //
 angular.module('app.config', []);
 
-angular.module('app.logging', []);
-angular.module('app.forms', []);
-angular.module('app.storage', []);
+angular.module('app.util.logging', []);
+angular.module('app.util.storage', []);
 
 angular.module('app.user', []);
 angular.module('app.tracking', []);
 
 angular.module('app.intro', []);
-angular.module('app.signup', []);
-angular.module('app.login', []);
-angular.module('app.forgotPassword', []);
+
+angular.module('app.auth.signup', []);
+angular.module('app.auth.login', []);
+angular.module('app.auth.forgotPassword', []);
+
 angular.module('app.mainPage', []);
 
 //
@@ -34,11 +35,11 @@ angular.module('app', [
   // config
   'app.config',
   // generic services
-  'app.logging', 'app.forms', 'app.storage',
+  'app.util.logging', 'app.util.storage',
   // app services
-  'app.user', 'app.tracking', 'app.chats',
+  'app.user', 'app.tracking',
   // controllers and routers
-  'app.intro', 'app.signup', 'app.login', 'app.forgotPassword', 'app.mainPage',
+  'app.intro', 'app.auth.signup', 'app.auth.login', 'app.auth.forgotPassword', 'app.mainPage',
   // ANGULAR-TEMPLATECACHE
   'templates'
 ])

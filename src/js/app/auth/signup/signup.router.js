@@ -1,10 +1,10 @@
-angular.module('app.signup')
+angular.module('app.auth.signup')
   /*@ngInject*/
   .config(function ($stateProvider) {
     $stateProvider
       .state('signup', {
         url: '/signup?firstUse',
-        templateUrl: 'js/app/signup/signup.html',
+        templateUrl: 'js/app/auth/signup/signup.html',
         controller: 'SignupCtrl as vm'
       });
   });

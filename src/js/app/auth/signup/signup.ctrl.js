@@ -59,4 +59,4 @@ var SignupCtrl = function ($scope, $stateParams, $state, $log, $ionicPopup, Appl
   };
 };
 
-angular.module('app.signup').controller('SignupCtrl', SignupCtrl);
+angular.module('app.auth.signup').controller('SignupCtrl', SignupCtrl);

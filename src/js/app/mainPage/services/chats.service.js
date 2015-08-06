@@ -1,4 +1,4 @@
-angular.module('app.chats', [])
+angular.module('app.mainPage')
 
 // COPIED FROM IONIC TABS STARTER APP
 .factory('Chats', function() {
