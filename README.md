@@ -260,7 +260,12 @@ This setup keeps the sources under ```src``` cleanly separated from the build ar
 
 ### Modules
 
-In the structure shown above you can see two Modules: 'forgotPassword' and 'login'.
+General principle: ONE DIRECTORY == ONE MODULE.
+
+So you can remove a module by removing that directory (but then you still need to remove the script includes from
+index.html and the module references from app.js).
+
+Example: in the structure shown above you can see two Modules: 'forgotPassword' and 'login'.
 
 Each module is an AngularJS module ('angular.module(...')), and each module is in its own directory containing all of
 the Javasript and HTML making up that module.
