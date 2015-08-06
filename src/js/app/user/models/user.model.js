@@ -1,4 +1,4 @@
-angular.module('app.user')
+module('app.user')
 
   //
   // A simple model object.

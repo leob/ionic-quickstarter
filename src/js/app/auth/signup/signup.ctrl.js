@@ -1,5 +1,4 @@
-/*@ngInject*/
-var SignupCtrl = function ($scope, $stateParams, $state, $log, $ionicPopup, Application, UserService) {
+var SignupCtrl = /*@ngInject*/function ($scope, $stateParams, $state, $log, $ionicPopup, Application, UserService) {
 
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
   var vm = this;
@@ -59,4 +58,4 @@ var SignupCtrl = function ($scope, $stateParams, $state, $log, $ionicPopup, Appl
   };
 };
 
-angular.module('app.auth.signup').controller('SignupCtrl', SignupCtrl);
+module('app.auth.signup').controller('SignupCtrl', SignupCtrl);

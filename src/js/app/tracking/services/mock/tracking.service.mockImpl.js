@@ -1,4 +1,4 @@
-angular.module('app.tracking')
+module('app.tracking')
 
   .factory('TrackingMockImpl', function ($log) {
 

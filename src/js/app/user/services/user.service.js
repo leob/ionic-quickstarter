@@ -1,4 +1,4 @@
-angular.module('app.user')
+module('app.user')
 
   // Conditional DI, technique taken from:
   // http://phonegap-tips.com/articles/conditional-dependency-injection-with-angularjs.html

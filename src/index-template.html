@@ -21,10 +21,12 @@
 
   <title></title>
 
+  <!-- NOTE: the build-endbuild tags are used by gulp-htmlreplace - DO NOT REMOVE -->
   <!-- build:sass -->
   <link href="lib/ionic/css/ionic.css" rel="stylesheet">
   <!-- endbuild -->
 
+  <!-- NOTE: the build-endbuild tags are used by gulp-htmlreplace - DO NOT REMOVE -->
   <!-- build:css -->
   <link href="css/app.css" rel="stylesheet">
   <!-- endbuild -->
@@ -56,44 +58,48 @@
   <!-- Cordova script (this will be a 404 during development) -->
   <script src="cordova.js"></script>
 
-  <!-- build:js -->
-  <script src="js/app/app.js"></script>
+  <script>
+    // Use this variable to maintain a list of registered modules (see 'module' function below)
+    var modules = {};
 
+    //
+    // This function is a simple wrapper around "angular.module(...)".
+    //
+    // It can replace both angular,module(..., []) AND angular.module(...) (the variants with and without a list of
+    // dependencies), so it can be used both to register/create a module AND to use a module;
+    //
+    // it will figure out automatically if the module was already registered and call the right 'angular.module()'
+    // variant (with or without a dependency array).
+    //
+    // This circumvents the problem where a module is defined in 2 separate Javascript source files, and the module is
+    // created in 1 file and used in the others. You then have to load the Javascript files in the right order, or it
+    // won't work. Using the 'module' function circumvents this.
+    //
+    // NOTE: practically speaking this is only useful if you don't have to declare dependencies for the module.
+    //
+    var module = function(moduleName, deps) {
+      var mod = modules[moduleName];
+
+      if (!mod) {
+        mod = angular.module(moduleName, deps || []);
+        modules[moduleName] = mod;
+      }
+
+      return mod;
+    }
+  </script>
+
+  <!-- NOTE: the build-endbuild tags are used by gulp-htmlreplace - DO NOT REMOVE -->
+  <!-- build:js -->
+
+  <!-- NOTE: the inject-endinject tags are used by gulp-inject - DO NOT REMOVE -->
+  <!-- inject:js -->
+  <!-- endinject -->
+
+  <!-- scripts belonging to the root "app" module are placed here -->
+  <script src="js/app/app.js"></script>
   <script src="js/app/application.ctrl.js"></script>
   <script src="js/app/application.service.js"></script>
-
-  <script src="js/app/services/util/logging.js"></script>
-  <script src="js/app/services/util/localStorage.js"></script>
-
-  <script src="js/app/user/models/user.model.js"></script>
-  <script src="js/app/user/services/user.service.js"></script>
-  <script src="js/app/user/services/parse/parseUser.adapter.js"></script>
-  <script src="js/app/user/services/parse/user.service.parseImpl.js"></script>
-  <script src="js/app/user/services/mock/user.service.mockImpl.js"></script>
-
-  <script src="js/app/tracking/services/tracking.service.js"></script>
-  <script src="js/app/tracking/services/ionic/tracking.service.ionicImpl.js"></script>
-  <script src="js/app/tracking/services/mock/tracking.service.mockImpl.js"></script>
-
-  <script src="js/app/intro/intro.js"></script>
-
-  <script src="js/app/auth/forgotPassword/forgotPassword.js"></script>
-
-  <script src="js/app/auth/login/login.router.js"></script>
-  <script src="js/app/auth/login/login.ctrl.js"></script>
-  <script src="js/app/auth/login/logout.ctrl.js"></script>
-
-  <script src="js/app/auth/signup/signup.router.js"></script>
-  <script src="js/app/auth/signup/signup.ctrl.js"></script>
-
-  <script src="js/app/mainPage/mainPage.router.js"></script>
-  <script src="js/app/mainPage/dash.ctrl.js"></script>
-  <script src="js/app/mainPage/chats.ctrl.js"></script>
-  <script src="js/app/mainPage/chatDetail.ctrl.js"></script>
-  <script src="js/app/mainPage/account.ctrl.js"></script>
-
-  <script src="js/app/mainPage/services/chats.service.js"></script>
-
   <!-- endbuild -->
 
   <script src="js/config/config.js"></script>
@@ -102,8 +108,8 @@
   <script src="js/templates.js"></script>
 </head>
 
-<!-- MainCtrl: global/default controller -->
-<body ng-app="app" ng-controller="ApplicationCtrl as main">
+<!-- NOTE: "ng-strict-di" will be added to the body tag during a production build (see gulp.js) -->
+<body ng-app="app" ng-controller="ApplicationCtrl as main">    <!-- ApplicationCtrl: global/default controller -->
   <!--
     The views will be rendered in the <ion-nav-view> directive below
   -->

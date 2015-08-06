@@ -1,5 +1,4 @@
-/*@ngInject*/
-var ForgotPasswordCtrl = function ($scope, $state, $log, Application, UserService) {
+var ForgotPasswordCtrl = /*@ngInject*/function ($scope, $state, $log, Application, UserService) {
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
   var vm = this;
   var log = $log.getLogger('ForgotPasswordCtrl');
@@ -43,9 +42,8 @@ var ForgotPasswordCtrl = function ($scope, $state, $log, Application, UserServic
 };
 
 // controller and router
-angular.module('app.auth.forgotPassword')
+module('app.auth.forgotPassword')
   .controller('ForgotPasswordCtrl', ForgotPasswordCtrl)
-  /*@ngInject*/
   .config(function ($stateProvider) {
     $stateProvider
       .state('forgotPassword', {

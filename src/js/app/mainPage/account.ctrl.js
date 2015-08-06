@@ -1,5 +1,4 @@
-/*@ngInject*/
-var MainPageAccountCtrl = function (user) {  // user is injected through UI-router resolve on the abstract state 'auth'
+var MainPageAccountCtrl = /*@ngInject*/function (user) {  // user is injected through UI-router resolve on the abstract state 'auth'
 
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
   var vm = this;
@@ -25,4 +24,4 @@ var MainPageAccountCtrl = function (user) {  // user is injected through UI-rout
   };
 };
 
-angular.module('app.mainPage').controller('AccountCtrl', MainPageAccountCtrl);
+module('app.mainPage').controller('AccountCtrl', MainPageAccountCtrl);

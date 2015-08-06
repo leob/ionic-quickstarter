@@ -1,5 +1,4 @@
-/*@ngInject*/
-var LoginCtrl = function ($scope, $state, $stateParams, Application, UserService) {
+var LoginCtrl = /*@ngInject*/function ($scope, $state, $stateParams, Application, UserService) {
   var vm = this;
 
   $scope.$on('$ionicView.beforeEnter', function () {
@@ -67,4 +66,4 @@ var LoginCtrl = function ($scope, $state, $stateParams, Application, UserService
   };
 };
 
-angular.module('app.auth.login').controller('LoginCtrl', LoginCtrl);
+module('app.auth.login').controller('LoginCtrl', LoginCtrl);

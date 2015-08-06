@@ -1,5 +1,4 @@
-angular.module('app.auth.signup')
-  /*@ngInject*/
+module('app.auth.signup')
   .config(function ($stateProvider) {
     $stateProvider
       .state('signup', {

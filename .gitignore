@@ -14,6 +14,7 @@ _*
 *.swp
 
 # EXCLUDE BUILD ARTIFACTS:
+src/index.html
 src/css/ionic.app.css
 src/css/ionic.app.min.css
 src/js/config/config.js

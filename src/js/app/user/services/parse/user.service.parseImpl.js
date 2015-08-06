@@ -1,4 +1,4 @@
-angular.module('app.user')
+module('app.user')
 
   .service('UserServiceParseImpl', function ($q, $log, loggingService, ParseConfiguration, ParseUserAdapter) {
 
