@@ -7,4 +7,4 @@ var LogoutCtrl = function ($state, Application) {
   };
 };
 
-angular.module('app.login').controller('LogoutCtrl', LogoutCtrl);
+angular.module('app.auth.login').controller('LogoutCtrl', LogoutCtrl);

@@ -34,7 +34,7 @@
         <label class="item item-input" ng-class=
             "{ 'has-error' : loginForm.password.$invalid && loginForm.$submitted, 'valid-lr' : loginForm.password.$valid  && loginForm.$submitted}">
           <i class="icon ion-locked placeholder-icon field-icon"></i>
-          <input type="password" placeholder="Your password" ng-model="vm.user.password"
+          <input type="password" placeholder="Your password, e.g: 'password'" ng-model="vm.user.password"
                  name="password"
                  ng-model="user.password"
                  ng-minlength="5"

@@ -67,4 +67,4 @@ var LoginCtrl = function ($scope, $state, $stateParams, Application, UserService
   };
 };
 
-angular.module('app.login').controller('LoginCtrl', LoginCtrl);
+angular.module('app.auth.login').controller('LoginCtrl', LoginCtrl);

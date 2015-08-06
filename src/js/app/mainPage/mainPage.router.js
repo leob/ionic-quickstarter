@@ -17,7 +17,7 @@ angular.module('app.mainPage')
         views: {
           'main-dash': {
             templateUrl: 'js/app/mainPage/dash.html',
-            controller: 'MainPageDashCtrl as vm'
+            controller: 'DashCtrl as vm'
           }
         }
       })
@@ -26,7 +26,7 @@ angular.module('app.mainPage')
         views: {
           'main-chats': {
             templateUrl: 'js/app/mainPage/chats.html',
-            controller: 'MainPageChatsCtrl as vm'
+            controller: 'ChatsCtrl as vm'
           }
         }
       })
@@ -34,8 +34,8 @@ angular.module('app.mainPage')
         url: '/chats/:chatId',
         views: {
           'main-chats': {
-            templateUrl: 'js/app/mainPage/chat-detail.html',
-            controller: 'MainPageChatDetailCtrl as vm'
+            templateUrl: 'js/app/mainPage/chatDetail.html',
+            controller: 'ChatDetailCtrl as vm'
           }
         }
       })
@@ -44,7 +44,7 @@ angular.module('app.mainPage')
         views: {
           'main-account': {
             templateUrl: 'js/app/mainPage/account.html',
-            controller: 'MainPageAccountCtrl as vm'
+            controller: 'AccountCtrl as vm'
           }
         }
       });

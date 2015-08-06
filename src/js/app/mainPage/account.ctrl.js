@@ -25,4 +25,4 @@ var MainPageAccountCtrl = function (user) {  // user is injected through UI-rout
   };
 };
 
-angular.module('app.mainPage').controller('MainPageAccountCtrl', MainPageAccountCtrl);
+angular.module('app.mainPage').controller('AccountCtrl', MainPageAccountCtrl);

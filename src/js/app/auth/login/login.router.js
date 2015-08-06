@@ -1,15 +1,15 @@
-angular.module('app.login')
+angular.module('app.auth.login')
   /*@ngInject*/
   .config(function ($stateProvider) {
     $stateProvider
       .state('login', {
         url: '/login?verifyEmail',
-        templateUrl: 'js/app/login/login.html',
+        templateUrl: 'js/app/auth/login/login.html',
         controller: 'LoginCtrl as vm'
       })
       .state('loggedout', {
         url: '/loggedout',
-        templateUrl: 'js/app/login/loggedout.html',
+        templateUrl: 'js/app/auth/login/loggedout.html',
         controller: 'LogoutCtrl as vm'
       });
   });

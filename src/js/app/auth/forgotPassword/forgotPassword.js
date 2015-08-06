@@ -43,14 +43,14 @@ var ForgotPasswordCtrl = function ($scope, $state, $log, Application, UserServic
 };
 
 // controller and router
-angular.module('app.forgotPassword')
+angular.module('app.auth.forgotPassword')
   .controller('ForgotPasswordCtrl', ForgotPasswordCtrl)
   /*@ngInject*/
   .config(function ($stateProvider) {
     $stateProvider
       .state('forgotPassword', {
         url: '/forgotPassword',
-        templateUrl: 'js/app/forgotPassword/forgotPassword.html',
+        templateUrl: 'js/app/auth/forgotPassword/forgotPassword.html',
         controller: 'ForgotPasswordCtrl as vm'
       });
   })

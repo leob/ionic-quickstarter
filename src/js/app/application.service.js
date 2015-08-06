@@ -1,6 +1,6 @@
 angular.module('app')
 
-  .factory('Application', function ($localStorage, UserService, Tracking, APP, $log, loggingService, $ionicHistory,
+  .factory('Application', function (LocalStorage, UserService, Tracking, APP, $log, loggingService, $ionicHistory,
                                     $ionicLoading, $q) {
 
     var init = function () {
@@ -68,19 +68,19 @@ angular.module('app')
     };
 
     var isInitialRun = function () {
-      return $localStorage.get("initialRun", "true") == "true";
+      return LocalStorage.get("initialRun", "true") == "true";
     };
 
     var setInitialRun = function (initial) {
-      $localStorage.set("initialRun", initial ? "true" : "false");
+      LocalStorage.set("initialRun", initial ? "true" : "false");
     };
 
     var isUserRegistered = function () {
-      return $localStorage.get("userRegistered", "false") == "true";
+      return LocalStorage.get("userRegistered", "false") == "true";
     };
 
     var setUserRegistered = function (registered) {
-      $localStorage.set("userRegistered", registered ? "true" : "false");
+      LocalStorage.set("userRegistered", registered ? "true" : "false");
     };
 
     var isUserLoggedIn = function () {

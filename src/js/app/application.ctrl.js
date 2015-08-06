@@ -6,7 +6,7 @@ angular.module('app')
   //
   // http://www.clearlyinnovative.com/ionic-framework-tabs-go-home-view/
   //
-  .controller('MainCtrl', function ($state, Application, UserService) {
+  .controller('ApplicationCtrl', function ($state, Application, UserService) {
     this.logout = function() {
       UserService.logout();
       $state.go('loggedout');

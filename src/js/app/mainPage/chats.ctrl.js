@@ -11,4 +11,4 @@ var MainPageChatsCtrl = function (Chats) {
   };
 };
 
-angular.module('app.mainPage').controller('MainPageChatsCtrl', MainPageChatsCtrl);
+angular.module('app.mainPage').controller('ChatsCtrl', MainPageChatsCtrl);

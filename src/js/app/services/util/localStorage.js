@@ -6,9 +6,9 @@
 // This could be overridden/reimplemented to use another storage mechanism e.g. SQLite or PouchDB.
 //
 
-angular.module('app.storage')
+angular.module('app.util.storage')
 
-  .factory('$localStorage', function ($window) {
+  .factory('LocalStorage', function ($window) {
     return {
       set: function (key, value) {
         $window.localStorage[key] = value;

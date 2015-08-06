@@ -16,4 +16,4 @@ var MainPageDashCtrl = function ($log, $scope) {
 
 };
 
-angular.module('app.mainPage').controller('MainPageDashCtrl', MainPageDashCtrl);
+angular.module('app.mainPage').controller('DashCtrl', MainPageDashCtrl);

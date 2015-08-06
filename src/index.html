@@ -59,41 +59,41 @@
   <!-- build:js -->
   <script src="js/app/app.js"></script>
 
-  <script src="js/app/controllers/main.js"></script>
+  <script src="js/app/application.ctrl.js"></script>
+  <script src="js/app/application.service.js"></script>
 
-  <script src="js/app/util/logging.js"></script>
-  <script src="js/app/util/localstorage.js"></script>
+  <script src="js/app/services/util/logging.js"></script>
+  <script src="js/app/services/util/localStorage.js"></script>
 
-  <script src="js/app/services/application.js"></script>
+  <script src="js/app/user/models/user.model.js"></script>
+  <script src="js/app/user/services/user.service.js"></script>
+  <script src="js/app/user/services/parse/parseUser.adapter.js"></script>
+  <script src="js/app/user/services/parse/user.service.parseImpl.js"></script>
+  <script src="js/app/user/services/mock/user.service.mockImpl.js"></script>
 
-  <script src="js/app/services/userService.js"></script>
-  <script src="js/app/services/parse/parseUserAdapter.js"></script>
-  <script src="js/app/services/parse/userServiceParseImpl.js"></script>
-  <script src="js/app/services/mock/userServiceMockImpl.js"></script>
-  <script src="js/app/models/user.js"></script>
+  <script src="js/app/tracking/services/tracking-service.js"></script>
+  <script src="js/app/tracking/services/ionic/tracking.service.ionicImpl.js"></script>
+  <script src="js/app/tracking/services/mock/tracking.service.mockImpl.js"></script>
 
-  <script src="js/app/services/chats.js"></script>
+  <script src="js/app/intro/intro.js"></script>
 
-  <script src="js/app/services/tracking.js"></script>
-  <script src="js/app/services/ionic/trackingIonicImpl.js"></script>
-  <script src="js/app/services/mock/trackingMockImpl.js"></script>
+  <script src="js/app/auth/forgotPassword/forgotPassword.js"></script>
 
-  <script src="js/app/intro/Intro.js"></script>
+  <script src="js/app/auth/login/login.router.js"></script>
+  <script src="js/app/auth/login/login.ctrl.js"></script>
+  <script src="js/app/auth/login/logout.ctrl.js"></script>
 
-  <script src="js/app/signup/SignupRouter.js"></script>
-  <script src="js/app/signup/SignupCtrl.js"></script>
+  <script src="js/app/auth/signup/signup.router.js"></script>
+  <script src="js/app/auth/signup/signup.ctrl.js"></script>
 
-  <script src="js/app/login/LoginRouter.js"></script>
-  <script src="js/app/login/LoginCtrl.js"></script>
-  <script src="js/app/login/LogoutCtrl.js"></script>
+  <script src="js/app/mainPage/mainPage.router.js"></script>
+  <script src="js/app/mainPage/dash.ctrl.js"></script>
+  <script src="js/app/mainPage/chats.ctrl.js"></script>
+  <script src="js/app/mainPage/chatDetail-ctrl.js"></script>
+  <script src="js/app/mainPage/account.ctrl.js"></script>
 
-  <script src="js/app/forgotPassword/ForgotPassword.js"></script>
+  <script src="js/app/mainPage/services/chats.service.js"></script>
 
-  <script src="js/app/mainPage/MainPageRouter.js"></script>
-  <script src="js/app/mainPage/MainPageDashCtrl.js"></script>
-  <script src="js/app/mainPage/MainPageChatsCtrl.js"></script>
-  <script src="js/app/mainPage/MainPageChatDetailCtrl.js"></script>
-  <script src="js/app/mainPage/MainPageAccountCtrl.js"></script>
   <!-- endbuild -->
 
   <script src="js/config/config.js"></script>
@@ -103,7 +103,7 @@
 </head>
 
 <!-- MainCtrl: global/default controller -->
-<body ng-app="app" ng-controller="MainCtrl as main">
+<body ng-app="app" ng-controller="ApplicationCtrl as main">
   <!--
     The views will be rendered in the <ion-nav-view> directive below
   -->
