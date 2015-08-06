@@ -1,6 +1,6 @@
 # Ionic Quickstarter
 
-### A boilerplate and Reference app providing tools and best practices to kickstart your app development.
+### A boilerplate and Reference app providing tools and best practices to kickstart your app development
 
 For background, read my
 <a href="http://codepen.io/leob6/blog/ionic-quickstarter-a-starter-app-to-kickstart-your-app-development" target="_blank">
