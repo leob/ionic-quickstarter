@@ -1,5 +1,4 @@
-/*@ngInject*/
-var LogoutCtrl = function ($state, Application) {
+var LogoutCtrl = /*@ngInject*/function ($state, Application) {
   var vm = this;
 
   vm.intro = function () {
@@ -7,4 +6,4 @@ var LogoutCtrl = function ($state, Application) {
   };
 };
 
-angular.module('app.auth.login').controller('LogoutCtrl', LogoutCtrl);
+module('app.auth.login').controller('LogoutCtrl', LogoutCtrl);

@@ -1,5 +1,4 @@
-/*@ngInject*/
-var IntroCtrl = function ($scope, $state, $ionicSlideBoxDelegate, Application) {
+var IntroCtrl = /*@ngInject*/function ($scope, $state, $ionicSlideBoxDelegate, Application) {
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
   var vm = this;
 
@@ -30,9 +29,8 @@ var IntroCtrl = function ($scope, $state, $ionicSlideBoxDelegate, Application) {
 };
 
 // controller and router
-angular.module('app.intro')
+module('app.intro')
   .controller('IntroCtrl', IntroCtrl)
-  /*@ngInject*/
   .config(function ($stateProvider) {
     $stateProvider
       .state('app.intro', {

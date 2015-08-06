@@ -29,6 +29,7 @@ var extend = require('gulp-extend');
 var gulpif = require('gulp-if');
 var minifyHtml    = require('gulp-minify-html');
 var templateCache = require('gulp-angular-templatecache');
+var inject = require('gulp-inject');
 
 //
 // === PATHS ===
@@ -55,11 +56,17 @@ var paths = {
   css: ['./src/css/**/*.css'],
   scripts: [
     './src/js/**/*.js',
-    '../shared/src/js/**/*.js',
     '!./src/js/config/config.js'   /* exclude config.js: handled separately */
+  ],
+  injectedScripts: [
+    './src/js/app/**/*.js',
+    '!./src/js/app/app.js',                   /* exclude the root module ('app' module) files */
+    '!./src/js/app/application.ctrl.js',      /* exclude the root module ('app' module) files */
+    '!./src/js/app/application.service.js'    /* exclude the root module ('app' module) files */
   ],
   images: ['./src/img/**/*'],
   templates: ['./src/js/**/*.html'],
+  indexTemplate: ['./src/index-template.html'],
   index: ['./src/index.html'],
   extras: [],  /* whatever extra files we need */
   ionicfonts: ['./src/lib/ionic/fonts/*'],
@@ -81,11 +88,15 @@ var paths = {
 //
 
 // default task for DEV
-gulp.task('default', ['dev-config', 'dev-sass']);
+gulp.task('default', ['dev-config', 'dev-sass', 'inject-index']);
 
 // watch task for DEV
+//
+// NOTE: inject-index commented out because this isn't reliable within the "watch" task - so, if you add or remove
+// Javascript files and you want to inject them into index.html, then you just need to restart "ionic serve" so that
+// the "default" task can re-run 'inject-index'
 gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['dev-sass']);
+  gulp.watch(paths.sass, ['dev-sass' /*, 'inject-index'*/]);
 });
 
 // jshint task for DEV
@@ -114,7 +125,8 @@ gulp.task('test-single', function (done) {
 
 // build task for PROD: use before 'ionic build' or 'ionic run'.
 // See: https://github.com/driftyco/ionic-cli/issues/345#issuecomment-88659079
-gulp.task('build', ['clean', 'sass', 'styles', 'scripts', 'prod-config', 'imagemin', 'templates', 'index', 'copy']);
+gulp.task('build', ['clean', 'sass', 'styles', 'scripts', 'prod-config', 'imagemin', 'templates',
+                    'inject-index', 'index', 'copy']);
 
 //
 // === CHILD TASKS ===
@@ -183,7 +195,8 @@ gulp.task('scripts', ['clean' /*, 'templateCache'*/], function() {
     .pipe(ngAnnotate({
       remove: true,
       add: true,
-      single_quotes: true
+      single_quotes: true,
+      regexp: "^module(.*)$"
     }))
     .pipe(uglify())
     .pipe(concat(files.jsbundle))
@@ -229,8 +242,21 @@ gulp.task('templates', ['clean', 'scripts'], function() {
     .pipe(gulp.dest(paths.dist + '/js'));
 });
 
-// prepare index.html for dist - i.e. using min files
-gulp.task('index', ['clean'], function() {
+// inject javascript paths into index-template.html, producing index.html
+gulp.task('inject-index', function() {
+  gulp.src(paths.indexTemplate)
+    .pipe(inject(
+      gulp.src(paths.injectedScripts,
+        {read: false}), {relative: true}))
+    .pipe(rename(function(path) {
+      path.basename = 'index';
+      path.extname = '.html';
+    }))
+    .pipe(gulp.dest('./src/'));
+});
+
+// prepare index.html for dist - i.e. using minimized files
+gulp.task('index', ['clean', 'inject-index'], function() {
   gulp.src(paths.index)
     .pipe(htmlreplace({
       'sass': 'css/ionic.app.min.css',

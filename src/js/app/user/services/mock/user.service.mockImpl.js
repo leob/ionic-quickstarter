@@ -1,4 +1,4 @@
-angular.module('app.user')
+module('app.user')
 
   .service('UserServiceMockImpl', function ($q, $log, loggingService, User) {
 

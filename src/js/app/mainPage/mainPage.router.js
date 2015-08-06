@@ -1,5 +1,4 @@
-angular.module('app.mainPage')
-  /*@ngInject*/
+module('app.mainPage')
   .config(function ($stateProvider) {
     $stateProvider
       .state('app.auth.main', {

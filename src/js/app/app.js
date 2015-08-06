@@ -4,29 +4,14 @@
 // Main application sript
 //
 
-//
-// All modules used by the app are declared below - this convention prevents problems with unresolved dependencies due
-// to the order of loading of Javascript files. TO DO: make this simpler and less error-prone through a mechanism such
-// as require.js or browserify.
-//
+// Declare the app.config module, this is because config.js is generated and doesn't the app.config module itself
 angular.module('app.config', []);
 
-angular.module('app.util.logging', []);
-angular.module('app.util.storage', []);
-
-angular.module('app.user', []);
-angular.module('app.tracking', []);
-
-angular.module('app.intro', []);
-
-angular.module('app.auth.signup', []);
-angular.module('app.auth.login', []);
-angular.module('app.auth.forgotPassword', []);
-
-angular.module('app.mainPage', []);
-
 //
-// Declare the main 'app' module and state its dependencies.
+// Declare the main 'app' module and state its dependencies. All of the other modules will "declare themselves".
+//
+// NOTE: looked at gulp-angular-modules (https://github.com/yagoferrer/gulp-angular-modules) which should make it
+// possible to get rid of manually managing the list of dependencies. However, I couldn't get this to work.
 //
 angular.module('app', [
   // libraries
@@ -44,7 +29,6 @@ angular.module('app', [
   'templates'
 ])
 
-  /*@ngInject*/
   .config(function ($stateProvider) {
 
     // top level routes (all other routes are defined within their own module)
@@ -80,7 +64,6 @@ angular.module('app', [
       });
   })
 
-  /*@ngInject*/
   .config(function ($ionicConfigProvider) {
 
     // http://forum.ionicframework.com/t/change-hide-ion-nav-back-button-text/5260/14
@@ -88,21 +71,18 @@ angular.module('app', [
     $ionicConfigProvider.backButton.previousTitleText(false).text('&emsp;&emsp;');
   })
 
-  /*@ngInject*/
   .config(function ($logProvider, APP) {
 
     // switch off debug logging in production
     $logProvider.debugEnabled(APP.devMode); // default is true
   })
 
-  /*@ngInject*/
   .config(function ($compileProvider, APP) {
 
     // switch off AngularJS debug info in production for better performance
     $compileProvider.debugInfoEnabled(APP.devMode);
   })
 
-  /*@ngInject*/
   .config(function ($ionicAppProvider, ionicIO) {
     $ionicAppProvider.identify({
       app_id: ionicIO.appId,
@@ -110,7 +90,6 @@ angular.module('app', [
     });
   })
 
-  /*@ngInject*/
   .factory('$exceptionHandler', function ($log) {
 
     // global AngularJS exception handler, see:
@@ -121,7 +100,6 @@ angular.module('app', [
     };
   })
 
-  /*@ngInject*/
   .run(function ($ionicPlatform, $ionicPopup, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, $log,
                  loggingDecorator, Application, APP, Tracking) {
 
