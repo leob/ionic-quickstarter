@@ -39,8 +39,8 @@ To keep this README short (it's already too long), I'm putting the rest of the i
 
 ## Installation and usage
 
-First, install nodejs, npm, gulp, bower, cordova, ionic & sass (if not already done).<br>
-Next, open a terminal and cd into the directory where you want to install your app.
+First, install ```nodejs```, ```npm```, ```gulp```, ```bower```, ```cordova```, ```ionic``` & ```sass``` (if not
+already done).<br> Next, open a terminal and cd into the directory where you want to install your app.
 
 Run the following commands (note: below the app is named ```myapp```, replace this by your app's name):
 
