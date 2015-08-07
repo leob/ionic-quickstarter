@@ -4,7 +4,7 @@
 // Main application sript
 //
 
-// Declare the app.config module, this is because config.js is generated and doesn't the app.config module itself
+// Declare the 'app.config' module, this is because config.js is generated and doesn't the app.config module itself
 angular.module('app.config', []);
 
 //
@@ -20,7 +20,7 @@ angular.module('app', [
   // config
   'app.config',
   // generic services
-  'app.util.logging', 'app.util.storage',
+  'app.util',
   // app services
   'app.user', 'app.tracking',
   // controllers and routers

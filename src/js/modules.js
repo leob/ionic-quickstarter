@@ -25,4 +25,4 @@ var appModule = function(moduleName, deps) {
   }
 
   return mod;
-}
+};
