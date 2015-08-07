@@ -30,7 +30,6 @@ var gulpif = require('gulp-if');
 var minifyHtml    = require('gulp-minify-html');
 var templateCache = require('gulp-angular-templatecache');
 var inject = require('gulp-inject');
-var iife = require("gulp-iife");
 
 //
 // === PATHS ===
@@ -133,12 +132,6 @@ gulp.task('jshint', function() {
   gulp.src(paths.scripts)
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
-});
-
-gulp.task("iife", function() {
-  return gulp.src('./src/js/app/**/*.js')
-    .pipe(iife())
-    .pipe(gulp.dest("./src/js/app"));
 });
 
 //
