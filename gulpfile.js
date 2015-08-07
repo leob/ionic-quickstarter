@@ -48,7 +48,7 @@ var files = {
   jsbundle: 'app.bundle.min.js',
   appcss: 'app.css',
   ionicappmincss: 'ionic.app.min.css',
-  ionicbundle: 'ionic.bundle.min.js'    // change to 'ionic.bundle.js' for debugging moduleErr errors
+  ionicbundle: 'ionic.bundle.js'    // change to 'ionic.bundle.js' for debugging moduleErr errors
 };
 // Paths
 var paths = {
@@ -197,7 +197,7 @@ gulp.task('scripts', ['clean' /*, 'templateCache'*/], function() {
       remove: true,
       add: true,
       single_quotes: true,
-      regexp: "^module(.*)$"  /* NOTE: this makes ngAnnotate work right even when defining modules with "module(...)" instead of "angular.module()" */
+      regexp: "appModule(.*)$"  /* NOTE: this makes ngAnnotate work right even when defining modules with "appModule(...)" instead of "angular.module()" */
     }))
     .pipe(uglify())
     .pipe(concat(files.jsbundle))

@@ -6,7 +6,7 @@
 // This could be overridden/reimplemented to use another storage mechanism e.g. SQLite or PouchDB.
 //
 
-module('app.util.storage')
+appModule('app.util.storage')
 
   .factory('LocalStorage', function ($window) {
     return {

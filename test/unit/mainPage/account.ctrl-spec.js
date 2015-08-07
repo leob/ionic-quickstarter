@@ -1,9 +1,9 @@
-describe('MainPageAccountCtrl', function() {
+describe('AccountCtrl', function() {
   beforeEach(module('ui.router'));
   beforeEach(module('app.mainPage'));
 
   beforeEach(inject(function($controller) {
-    ctrl = $controller('MainPageAccountCtrl', {user: null});
+    ctrl = $controller('AccountCtrl', {user: null});
   }));
 
   it('should have enabled friends to be true', function(){

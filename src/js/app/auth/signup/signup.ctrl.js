@@ -58,4 +58,4 @@ var SignupCtrl = /*@ngInject*/function ($scope, $stateParams, $state, $log, $ion
   };
 };
 
-module('app.auth.signup').controller('SignupCtrl', SignupCtrl);
+appModule('app.auth.signup').controller('SignupCtrl', SignupCtrl);

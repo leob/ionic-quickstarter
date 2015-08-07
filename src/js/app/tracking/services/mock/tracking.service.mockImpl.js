@@ -1,4 +1,4 @@
-module('app.tracking')
+appModule('app.tracking')
 
   .factory('TrackingMockImpl', function ($log) {
 

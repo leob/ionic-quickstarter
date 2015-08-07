@@ -6,4 +6,4 @@ var MainPageChatDetailCtrl = /*@ngInject*/function ($stateParams, Chats) {
   vm.chat = Chats.get($stateParams.chatId);
 };
 
-module('app.mainPage').controller('ChatDetailCtrl', MainPageChatDetailCtrl);
+appModule('app.mainPage').controller('ChatDetailCtrl', MainPageChatDetailCtrl);

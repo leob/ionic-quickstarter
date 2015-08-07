@@ -66,4 +66,4 @@ var LoginCtrl = /*@ngInject*/function ($scope, $state, $stateParams, Application
   };
 };
 
-module('app.auth.login').controller('LoginCtrl', LoginCtrl);
+appModule('app.auth.login').controller('LoginCtrl', LoginCtrl);

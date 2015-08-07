@@ -1,4 +1,4 @@
-module('app.user')
+appModule('app.user')
 
   .service('UserServiceMockImpl', function ($q, $log, loggingService, User) {
 

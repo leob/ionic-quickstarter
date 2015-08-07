@@ -10,4 +10,4 @@ var MainPageChatsCtrl = /*@ngInject*/function (Chats) {
   };
 };
 
-module('app.mainPage').controller('ChatsCtrl', MainPageChatsCtrl);
+appModule('app.mainPage').controller('ChatsCtrl', MainPageChatsCtrl);

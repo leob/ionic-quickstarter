@@ -4,7 +4,7 @@
 // Enhance the built-in angularjs ogger with some extra features (e.g. printing the timestamp, and logging the number
 // of AngularJS watchers in debug mode).
 //
-module('app.util.logging')
+appModule('app.util.logging')
 
   .factory('loggingDecorator', function (dateFilter) {
     var decorate = function(log) {

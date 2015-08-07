@@ -29,7 +29,7 @@ var IntroCtrl = /*@ngInject*/function ($scope, $state, $ionicSlideBoxDelegate, A
 };
 
 // controller and router
-module('app.intro')
+appModule('app.intro')
   .controller('IntroCtrl', IntroCtrl)
   .config(function ($stateProvider) {
     $stateProvider

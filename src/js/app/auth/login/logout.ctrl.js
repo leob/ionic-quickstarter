@@ -6,4 +6,4 @@ var LogoutCtrl = /*@ngInject*/function ($state, Application) {
   };
 };
 
-module('app.auth.login').controller('LogoutCtrl', LogoutCtrl);
+appModule('app.auth.login').controller('LogoutCtrl', LogoutCtrl);

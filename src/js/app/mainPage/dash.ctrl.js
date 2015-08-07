@@ -15,4 +15,4 @@ var MainPageDashCtrl = /*@ngInject*/function ($log, $scope) {
 
 };
 
-module('app.mainPage').controller('DashCtrl', MainPageDashCtrl);
+appModule('app.mainPage').controller('DashCtrl', MainPageDashCtrl);

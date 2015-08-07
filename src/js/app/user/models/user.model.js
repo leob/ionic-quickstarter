@@ -1,4 +1,4 @@
-module('app.user')
+appModule('app.user')
 
   //
   // A simple model object.
