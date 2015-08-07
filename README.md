@@ -22,15 +22,16 @@ See [Todo and Roadmap](https://github.com/leob/ionic-quickstarter/wiki/Todo-and-
 
 Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has the following extras:
 
-* An improved gulp.js file (including a build process optimized for production)
+* An improved gulp.js file (including a build process optimized for production, with template caching etc)
 * Improved project structure (a modular app structure suitable for bigger apps)
+* Application script files (Javascript) will be automatically included in your index.html by the gulp build process  
+* Per environment, you can define different values for constants (e.g. appKey and so on) which are then written into
+  config.js by the appropriate gulp task
 * Unit test support using Karma and Jasmine
 * Signup and login flow implemented using Parse (with the flexibility to plug in other implementations)
 * Basic integration with Ionic Analytics (this can be switched off easily if you don't use it)
 * Support for the two main Ionic UI patterns: side menus and tabs, and an Intro screen with a Slider
 * Includes some commonly used features, for instance form validation using ng-messages and improved logging
-* Per environment, you can define different values for constants (e.g. appKey and so on) which are then written into
-  config.js by the appropriate gulp task
 * Provides workarounds for a number of well-known issues in Ionic apps (swipe to close menu, hardware back button etc)
 * Incorporates a number of 'best practices' for AngularJS and Ionic (e.g. "Controller as" syntax)
 
@@ -154,8 +155,8 @@ Here is how you use these commands.
 
 ### Gulp default and gulp watch
 
-Normally you don't run these commands manually. They will be executed automatically when you run ```ionic serve```. This is done
-through a configuration section in the ```ionic.project``` file:
+Normally you don't run these commands manually. They will be executed automatically when you run ```ionic serve```.
+This is done through a configuration section in the ```ionic.project``` file:
 
 ```
  "gulpStartupTasks": [
@@ -216,31 +217,45 @@ As an example, here is the default structure (slightly simplified) after install
 │   ├── js
 │   │   ├── app
 │   │   │   │
-│   │   │   ├── forgotPassword
-│   │   │   │   ├── forgotPassword.html
-│   │   │   │   └── ForgotPassword.js
-│   │   │   │
-│   │   │   ├── login
-│   │   │   │   ├── loggedout.html
-│   │   │   │   ├── login.html
-│   │   │   │   ├── LoginCtrl.js
-│   │   │   │   ├── LoginRouter.js
-│   │   │   │   └── LogoutCtrl.js
-│   │   │   │
-│   │   │   ├── models
-│   │   │   │   └── user.js
-│   │   │   │
-│   │   │   ├── services
-│   │   │   │   ├── application.js
-│   │   │   │   ├── userService.js
-│   │   │   │   ├── mock
-│   │   │   │   │   └── userServiceMockImpl.js
-│   │   │   │   └── parse
-│   │   │   │       └── userServiceParseImpl.js
+│   │   │   ├── auth
+│   │   │   │   ├── forgotPassword
+│   │   │   │   │   ├── forgotPassword.html
+│   │   │   │   │   └── forgotPassword.js
+│   │   │   │   │
+│   │   │   │   ├── login
+│   │   │   │   │    ├── loggedout.html
+│   │   │   │   │    ├── login.html
+│   │   │   │   │    ├── login-ctrl.js
+│   │   │   │   │    ├── login-router.js
+│   │   │   │   │    └── logout-ctrl.js
+│   │   │   │   │
+│   │   │   │   └── signup
+│   │   │   │        ├── signup-ctrl.js
+│   │   │   │        ├── signup.html
+│   │   │   │        └── signup-router.js
+│   │   │   │    
+│   │   │   ├── user
+│   │   │   │   ├── models
+│   │   │   │   │   └── user.js
+│   │   │   │   │       
+│   │   │   │   └── services
+│   │   │   │        ├── userService.js
+│   │   │   │        ├── mock
+│   │   │   │        │   └── userServiceMockImpl.js
+│   │   │   │        └── parse
+│   │   │   │            └── userServiceParseImpl.js
+│   │   │   │      
 │   │   │   app.js
 │   │   │   
-│   │   └── config
-│   │       └── config.js
+│   │   ├── config
+│   │   │   ├── config-base.json
+│   │   │   ├── config-dev.json
+│   │   │   ├── config-prod.json
+│   │   │   └── config.js  [GENERATED]
+│   │   │   
+│   │   ├── modules.js
+│   │   │   
+│   │   └── templates.js
 │   │      
 │   ├─── lib
 │   │    ├── angular
@@ -248,7 +263,8 @@ As an example, here is the default structure (slightly simplified) after install
 │   │    ├── ngCordova
 │   │    └── parse
 │   │      
-│   └ index.html
+│   ├ index-template.html
+│   └ index.html  [GENERATED]
 │         
 └── www
 ```
@@ -269,30 +285,52 @@ This setup keeps the sources under ```src``` cleanly separated from the build ar
 
 ### Modules
 
-General principle: ONE DIRECTORY == ONE MODULE.
+General principle: ONE DIRECTORY == ONE MODULE (and one subdirectory == 1 sub module).
 
-So you can remove a module by removing that directory (but then you still need to remove the script includes from
-index.html and the module references from app.js).
+So you can remove a module by removing that directory (but then you still need to remove the module reference from
+app.js - the script include in index.html will be removed automatically by the build process).
 
-Example: in the structure shown above you can see two Modules: 'forgotPassword' and 'login'.
+Example: in the structure shown above you can see two Modules: 'app.auth' and 'app.user'.
 
-Each module is an AngularJS module ('angular.module(...')), and each module is in its own directory containing all of
-the Javasript and HTML making up that module.
+'app.auth' has 3 sub modules: 'app.auth.login', 'app.auth.signup' and 'app.auth.forgotPassword'.
+
+'app.user' does not have sub modules.
+
+Each (sub)module is an AngularJS module ('angular.module(...')), and each module is in its own directory containing all
+of the Javascript and HTML files making up that module.
 
 In the example of the 'forgotPassword' module, you see that the directory contains 2 files: a template file
-(forgotPassword.html) and a Javascript file (ForgotPassword.js). The Javascript file contains the route definition
+(forgotPassword.html) and a Javascript file (forgotPassword.js). The Javascript file contains the route definition
 (UI-router $stateProvider) and the controller definition.
 
 In the example of the 'login' module you see that the directory contains 5 files: 2 template files (login.html and
 loggedOut.html) and 3 Javascript files. In this case you see that we've put the route definitions into a separate file
-(LoginRouter.js) and each of the two controllers also in separate files.
+(login-router.js) and each of the two controllers also in separate files.
 
 Whether or not to put the route definitions and controllers in one Javascript file or in separate files is up to you
 and will probably depend on the complexity of the code ('forgotPassword' is simple enough for all the Javascript code
 to be put into one file).
 
+The 'app.user' module is a module that doesn't define controllers, routes or templates; it only contains services (and
+models). However, it is perfectly possible (and often logical) to have a module that contains everything: controllers,
+routes, templates, services and so on. An example of this is the 'app.mainPage' module (not shown above).
+
 Note that during the production build process all of the separate files (Javascript and HTML) will be minified and
-concatenated into one file for efficiency reasons.
+concatenated into one Javascript file for efficiency reasons.
+
+**Note:** apart from the directory structure (the 1 directory == 1 module principle), we've also introduced a file
+naming convention.
+
+For instance:
+
+Scripts defining in which controllers are defined are named 'feature.ctrl.js', where 'feature' is the name of the
+feature, e.g. "login".
+
+Scripts defining services are named 'feature.service.js', and their implementations (of any) are named
+'feature.service.mockImpl.js', 'feature.service.parseImpl.js'.
+
+The naming scheme is probably quite intuitive, but you can find a full explanation in the Wiki:
+[Naming conventions](https://github.com/leob/ionic-quickstarter/wiki/naming-conventions).
 
 ### Services and mocks
 
@@ -324,5 +362,6 @@ production setup, and in test mode, the mock implementations makes running your 
 
 ## Contributing
 
-Contributions are welcome. For details, see the [Contributing](https://github.com/leob/ionic-quickstarter/wiki/Contributing) section on the Wiki.
+Contributions are welcome. For details, see the
+[Contributing](https://github.com/leob/ionic-quickstarter/wiki/Contributing) section on the Wiki.
 
