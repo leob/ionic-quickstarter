@@ -3,8 +3,7 @@
     "APP": {
       "devMode": false,
       "testMode": false,
-      "noTracking": false,
-      "mockTracking": false
+      "noTracking": false
     },
     "ParseConfiguration": {
       "serverURL": "https://api.parse.com"
