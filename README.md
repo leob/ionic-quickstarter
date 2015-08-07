@@ -121,12 +121,18 @@ In development mode, the gulp build process is simple: no minification, concaten
 By default, in development mode, the various services (signup, login etc) use a "mock" implementation with fake data
 (but you can easily override this through configuration parameters).
 
+To define configuration parameters for development mode, add them to ```src/js/config/config-dev.json```.
+The ```gulp``` build process will write these values to ```src/js/config/config.js```.
+
 #### Production mode
 
 In production mode (used on a real device), the gulp build process does a complete build including minification,
 concatenation etc, and the app runs with 'real' services.
 
 (e.g. the Parse service for signup/login, but you can replace this with an implementation of your own)
+
+To define configuration parameters for development mode, add them to ```src/js/config/config-prod.json```.
+The ```gulp``` build process will write these values to ```src/js/config/config.js```.
 
 #### Test mode
 
