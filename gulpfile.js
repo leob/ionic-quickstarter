@@ -30,6 +30,7 @@ var gulpif = require('gulp-if');
 var minifyHtml    = require('gulp-minify-html');
 var templateCache = require('gulp-angular-templatecache');
 var inject = require('gulp-inject');
+var iife = require("gulp-iife");
 
 //
 // === PATHS ===
@@ -88,6 +89,7 @@ var paths = {
 //
 
 // default task for DEV
+
 gulp.task('default', ['dev-config', 'dev-sass', 'inject-index']);
 
 // watch task for DEV
@@ -95,18 +97,13 @@ gulp.task('default', ['dev-config', 'dev-sass', 'inject-index']);
 // NOTE: inject-index commented out because this isn't reliable within the "watch" task - so, if you add or remove
 // Javascript files and you want to inject them into index.html, then you just need to restart "ionic serve" so that
 // the "default" task can re-run 'inject-index'
+
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['dev-sass' /*, 'inject-index'*/]);
 });
 
-// jshint task for DEV
-gulp.task('jshint', function() {
-  gulp.src(paths.scripts)
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
-});
-
 // karma tasks for TEST
+
 var runtest = function (single) {
   karma.start({
     configFile: __dirname + '/karma.conf.js',
@@ -123,10 +120,26 @@ gulp.task('test-single', function (done) {
   runtest(true), done;
 });
 
-// build task for PROD: use before 'ionic build' or 'ionic run'.
+// build task for PROD
+
+// Note: use before 'ionic build' or 'ionic run'.
 // See: https://github.com/driftyco/ionic-cli/issues/345#issuecomment-88659079
 gulp.task('build', ['clean', 'sass', 'styles', 'scripts', 'prod-config', 'imagemin', 'templates',
                     'inject-index', 'index', 'copy']);
+
+// utility tasks for DEV/PROD/TEST (whichever)
+
+gulp.task('jshint', function() {
+  gulp.src(paths.scripts)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
+gulp.task("iife", function() {
+  return gulp.src(paths.scripts)
+    .pipe(iife())
+    .pipe(gulp.dest("./src"));
+});
 
 //
 // === CHILD TASKS ===
