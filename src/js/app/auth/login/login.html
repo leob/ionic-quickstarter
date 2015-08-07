@@ -16,7 +16,7 @@
         </div>
 
         <label class="item item-input" ng-class=
-            "{ 'has-error' : loginForm.email.$invalid && loginForm.$submitted, 'valid-lr' : loginForm.email.$valid  && loginForm.$submitted}">
+            "{ 'has-error' : loginForm.email.$invalid && loginForm.$submitted, 'valid' : loginForm.email.$valid  && loginForm.$submitted}">
           <i class="icon ion-email placeholder-icon field-icon"></i>
           <input type="email" placeholder="Your email address" ng-model="vm.user.username"
                  name="email"
@@ -32,7 +32,7 @@
         </div>
 
         <label class="item item-input" ng-class=
-            "{ 'has-error' : loginForm.password.$invalid && loginForm.$submitted, 'valid-lr' : loginForm.password.$valid  && loginForm.$submitted}">
+            "{ 'has-error' : loginForm.password.$invalid && loginForm.$submitted, 'valid' : loginForm.password.$valid  && loginForm.$submitted}">
           <i class="icon ion-locked placeholder-icon field-icon"></i>
           <input type="password" placeholder="Your password, e.g: 'password'" ng-model="vm.user.password"
                  name="password"

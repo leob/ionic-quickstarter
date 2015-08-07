@@ -18,58 +18,14 @@ body {
     transition-duration: 0ms;
 }
 
-/* ==== UTILITY STYLES ==== */
-
-/* An "h2" style which (unlike a 'h2' element) does not get overridden by list styles */
-.h2 {
-    font-size: 30px;
-    font-weight: 500;
-    bottom: 0;
-}
-
-/* An "h3" style which (unlike a 'h3' element) does not get overridden by list styles */
-.h3 {
-    font-size: 24px;
-    font-weight: 500;
-    bottom: 0;
-}
-
-/* An "h4" style which (unlike a 'h4' element) does not get overridden by list styles */
-.h4 {
-    font-size: 18px;
-    font-weight: 500;
-    bottom: 0;
-}
-
-.scroll {
-    height: 100%;
-}
-
-/* utility classes */
-.larger {
-    font-size: larger;
-}
-
-.smaller {
-    font-size: smaller;
-}
-
 /* ==== FORM VALIDATION ==== */
 
 /* BEGIN from https://calendee.com/2014/12/26/validation-in-ionic-framework-apps-with-ngmessages/ */
 label.item.has-error {
-    /** Styling for the username field **/
-    border-bottom: 2px solid red;
+    border-bottom: 1px solid red;
 }
 
-label.item.has-error-lr {
-    /** Styling for the password field when an error exists**/
-    border-left: 2px solid red;
-    border-right: 2px solid red;
-}
-
-label.item.valid-lr {
-    /** Styling for the password field when an error has been resolved**/
+label.item.valid {
     border-left: 2px solid green;
     border-right: 2px solid green;
 }
