@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 appModule('app.auth.login')
   .config(function ($stateProvider) {
     $stateProvider
@@ -12,3 +15,4 @@ appModule('app.auth.login')
         controller: 'LogoutCtrl as vm'
       });
   });
+}());

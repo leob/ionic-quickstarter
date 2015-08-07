@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 var MainPageAccountCtrl = /*@ngInject*/function (user) {  // user is injected through UI-router resolve on the abstract state 'auth'
 
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
@@ -25,3 +28,4 @@ var MainPageAccountCtrl = /*@ngInject*/function (user) {  // user is injected th
 };
 
 appModule('app.mainPage').controller('AccountCtrl', MainPageAccountCtrl);
+}());

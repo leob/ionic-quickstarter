@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 var SignupCtrl = /*@ngInject*/function ($scope, $stateParams, $state, $log, $ionicPopup, Application, UserService) {
 
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
@@ -59,3 +62,4 @@ var SignupCtrl = /*@ngInject*/function ($scope, $stateParams, $state, $log, $ion
 };
 
 appModule('app.auth.signup').controller('SignupCtrl', SignupCtrl);
+}());

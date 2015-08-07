@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 appModule('app.tracking')
 
    // Conditional DI, technique taken from:
@@ -10,3 +13,4 @@ appModule('app.tracking')
       return $injector.get('TrackingIonicImpl');
     }
   });
+}());

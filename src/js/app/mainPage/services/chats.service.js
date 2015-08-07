@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 appModule('app.mainPage')
 
 // COPIED FROM IONIC TABS STARTER APP
@@ -49,3 +52,4 @@ appModule('app.mainPage')
     }
   };
 });
+}());

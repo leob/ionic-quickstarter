@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 var IntroCtrl = /*@ngInject*/function ($scope, $state, $ionicSlideBoxDelegate, Application) {
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
   var vm = this;
@@ -43,4 +46,4 @@ appModule('app.intro')
         }
       });
   });
-
+}());

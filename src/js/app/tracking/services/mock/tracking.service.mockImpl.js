@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 appModule('app.tracking')
 
   .factory('TrackingMockImpl', function ($log) {
@@ -20,3 +23,4 @@ appModule('app.tracking')
       trackEvent: trackEvent
     };
   });
+}());

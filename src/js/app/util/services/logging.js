@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 //
 // logging.js
 //
@@ -126,3 +129,4 @@ appModule('app.util')
   })
 
 ;
+}());

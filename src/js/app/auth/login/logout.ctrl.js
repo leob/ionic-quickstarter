@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 var LogoutCtrl = /*@ngInject*/function ($state, Application) {
   var vm = this;
 
@@ -7,3 +10,4 @@ var LogoutCtrl = /*@ngInject*/function ($state, Application) {
 };
 
 appModule('app.auth.login').controller('LogoutCtrl', LogoutCtrl);
+}());
