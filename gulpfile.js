@@ -48,7 +48,7 @@ var files = {
   jsbundle: 'app.bundle.min.js',
   appcss: 'app.css',
   ionicappmincss: 'ionic.app.min.css',
-  ionicbundle: 'ionic.bundle.js'    // change to 'ionic.bundle.js' for debugging moduleErr errors
+  ionicbundle: 'ionic.bundle.min.js'    // change to 'ionic.bundle.js' for debugging moduleErr errors
 };
 // Paths
 var paths = {
