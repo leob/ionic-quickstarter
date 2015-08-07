@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 appModule('app.user')
 
   // Conditional DI, technique taken from:
@@ -10,3 +13,4 @@ appModule('app.user')
       return $injector.get('UserServiceParseImpl');
     }
   });
+}());

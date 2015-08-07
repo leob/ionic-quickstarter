@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 appModule('app.user')
 
   .service('UserServiceParseImpl', function ($q, $log, loggingService, ParseConfiguration, ParseUserAdapter) {
@@ -167,3 +170,4 @@ appModule('app.user')
     };
   })
 ;
+}());

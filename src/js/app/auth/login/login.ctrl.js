@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 var LoginCtrl = /*@ngInject*/function ($scope, $state, $stateParams, Application, UserService) {
   var vm = this;
 
@@ -67,3 +70,4 @@ var LoginCtrl = /*@ngInject*/function ($scope, $state, $stateParams, Application
 };
 
 appModule('app.auth.login').controller('LoginCtrl', LoginCtrl);
+}());

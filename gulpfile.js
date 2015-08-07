@@ -136,9 +136,9 @@ gulp.task('jshint', function() {
 });
 
 gulp.task("iife", function() {
-  return gulp.src(paths.scripts)
+  return gulp.src('./src/js/app/**/*.js')
     .pipe(iife())
-    .pipe(gulp.dest("./src"));
+    .pipe(gulp.dest("./src/js/app"));
 });
 
 //

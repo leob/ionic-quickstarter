@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 appModule('app.user')
 
   .service('UserServiceMockImpl', function ($q, $log, loggingService, User) {
@@ -103,3 +106,4 @@ appModule('app.user')
     };
   })
 ;
+}());

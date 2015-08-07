@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 //
 // app.js
 //
@@ -174,3 +177,4 @@ angular.module('app', [
       Application.gotoStartPage($state);
     });
   });
+}());

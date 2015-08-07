@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 var MainPageChatDetailCtrl = /*@ngInject*/function ($stateParams, Chats) {
 
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
@@ -7,3 +10,4 @@ var MainPageChatDetailCtrl = /*@ngInject*/function ($stateParams, Chats) {
 };
 
 appModule('app.mainPage').controller('ChatDetailCtrl', MainPageChatDetailCtrl);
+}());

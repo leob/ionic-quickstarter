@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 appModule('app.tracking')
 
   .factory('TrackingIonicImpl', function ($log, $ionicUser, $ionicAnalytics) {
@@ -43,3 +46,4 @@ appModule('app.tracking')
       trackEvent: trackEvent
     };
   });
+}());

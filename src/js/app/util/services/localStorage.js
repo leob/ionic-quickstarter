@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 //
 // localStorage.js
 //
@@ -24,3 +27,4 @@ appModule('app.util')
       }
     };
   });
+}());

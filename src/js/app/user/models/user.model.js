@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 appModule('app.user')
 
   //
@@ -44,3 +47,4 @@ appModule('app.user')
   })
 
 ;
+}());

@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 appModule('app.auth.signup')
   .config(function ($stateProvider) {
     $stateProvider
@@ -7,3 +10,4 @@ appModule('app.auth.signup')
         controller: 'SignupCtrl as vm'
       });
   });
+}());

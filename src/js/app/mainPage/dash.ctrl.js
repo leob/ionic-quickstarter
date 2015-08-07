@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 var MainPageDashCtrl = /*@ngInject*/function ($log, $scope) {
 
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
@@ -16,3 +19,4 @@ var MainPageDashCtrl = /*@ngInject*/function ($log, $scope) {
 };
 
 appModule('app.mainPage').controller('DashCtrl', MainPageDashCtrl);
+}());

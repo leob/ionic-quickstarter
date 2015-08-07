@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 angular.module('app')
 
   .factory('Application', function (LocalStorage, UserService, Tracking, APP, $log, loggingService, $ionicHistory,
@@ -157,3 +160,4 @@ angular.module('app')
       handleFailure: handleFailure
     };
   });
+}());

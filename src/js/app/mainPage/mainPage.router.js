@@ -1,3 +1,6 @@
+;(function() {
+"use strict";
+
 appModule('app.mainPage')
   .config(function ($stateProvider) {
     $stateProvider
@@ -49,3 +52,4 @@ appModule('app.mainPage')
       });
   })
 ;
+}());
