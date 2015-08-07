@@ -1,4 +1,4 @@
-module('app.user')
+appModule('app.user')
 
   //
   // Adapter between a User (model object) and a ParseUser

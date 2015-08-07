@@ -42,7 +42,7 @@ var ForgotPasswordCtrl = /*@ngInject*/function ($scope, $state, $log, Applicatio
 };
 
 // controller and router
-module('app.auth.forgotPassword')
+appModule('app.auth.forgotPassword')
   .controller('ForgotPasswordCtrl', ForgotPasswordCtrl)
   .config(function ($stateProvider) {
     $stateProvider

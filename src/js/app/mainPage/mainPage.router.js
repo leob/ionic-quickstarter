@@ -1,4 +1,4 @@
-module('app.mainPage')
+appModule('app.mainPage')
   .config(function ($stateProvider) {
     $stateProvider
       .state('app.auth.main', {

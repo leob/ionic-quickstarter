@@ -1,7 +1,8 @@
 describe('Chats', function() {
   var Chats;
 
-  beforeEach(module('app.chats'));
+  beforeEach(module('ui.router'));
+  beforeEach(module('app.mainPage'));
 
   beforeEach(inject(function (_Chats_) {
     Chats = _Chats_;

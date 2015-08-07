@@ -1,4 +1,4 @@
-module('app.auth.signup')
+appModule('app.auth.signup')
   .config(function ($stateProvider) {
     $stateProvider
       .state('signup', {

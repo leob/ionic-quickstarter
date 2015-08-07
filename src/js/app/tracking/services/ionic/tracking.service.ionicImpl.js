@@ -1,4 +1,4 @@
-module('app.tracking')
+appModule('app.tracking')
 
   .factory('TrackingIonicImpl', function ($log, $ionicUser, $ionicAnalytics) {
 

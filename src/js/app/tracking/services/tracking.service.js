@@ -1,4 +1,4 @@
-module('app.tracking')
+appModule('app.tracking')
 
    // Conditional DI, technique taken from:
    // http://phonegap-tips.com/articles/conditional-dependency-injection-with-angularjs.html

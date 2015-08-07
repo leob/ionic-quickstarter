@@ -1,4 +1,4 @@
-module('app.user')
+appModule('app.user')
 
   .service('UserServiceParseImpl', function ($q, $log, loggingService, ParseConfiguration, ParseUserAdapter) {
 

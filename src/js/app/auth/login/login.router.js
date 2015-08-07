@@ -1,4 +1,4 @@
-module('app.auth.login')
+appModule('app.auth.login')
   .config(function ($stateProvider) {
     $stateProvider
       .state('login', {

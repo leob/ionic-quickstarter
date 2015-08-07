@@ -24,4 +24,4 @@ var MainPageAccountCtrl = /*@ngInject*/function (user) {  // user is injected th
   };
 };
 
-module('app.mainPage').controller('AccountCtrl', MainPageAccountCtrl);
+appModule('app.mainPage').controller('AccountCtrl', MainPageAccountCtrl);
