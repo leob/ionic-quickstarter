@@ -123,7 +123,7 @@ gulp.task('test-single', function (done) {
 
 // Note: use before 'ionic build' or 'ionic run'.
 // See: https://github.com/driftyco/ionic-cli/issues/345#issuecomment-88659079
-gulp.task('build', ['clean', 'sass', 'styles', 'scripts', 'prod-config', 'imagemin', 'templates',
+gulp.task('build', ['clean', 'sass', 'scripts', 'prod-config', 'imagemin', 'templates',
                     'inject-index', 'index', 'copy']);
 
 // utility tasks for DEV/PROD/TEST (whichever)
@@ -182,22 +182,8 @@ gulp.task('dev-sass', function(done) {
   );
 });
 
-gulp.task('styles', ['sass'], function() {
-  return gulp.src('./src/css/' + files.appcss)
-    .pipe(gulp.dest(paths.dist + '/css/'))
-    //.pipe(sourcemaps.init())
-    .pipe(minifyCss())
-    // delete the source file, see: https://github.com/gulpjs/gulp/blob/master/docs/recipes/delete-files-folder.md#delete-files-in-a-pipeline
-    .pipe(vinylPaths(del))
-    //.pipe(sourcemaps.write())
-    .pipe(rename({
-      extname: '.min.css'
-    }))
-    .pipe(gulp.dest(paths.dist + '/css'));
-});
-
 // scripts - clean dist dir then annotate, uglify, concat
-gulp.task('scripts', ['clean' /*, 'templateCache'*/], function() {
+gulp.task('scripts', ['clean'], function() {
   gulp.src(paths.scripts)
     .pipe(ngAnnotate({
       remove: true,
@@ -277,7 +263,7 @@ gulp.task('index', ['clean', 'inject-index'], function() {
 });
 
 // copy all other files to dist directly
-gulp.task('copy', ['clean', 'styles', 'sass'], function() {
+gulp.task('copy', ['clean', 'sass'], function() {
 
   gulp.src(paths.ionicfonts)
     .pipe(gulp.dest(paths.dist + '/lib/ionic/fonts'));
