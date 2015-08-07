@@ -225,25 +225,25 @@ As an example, here is the default structure (slightly simplified) after install
 │   │   │   │   ├── login
 │   │   │   │   │    ├── loggedout.html
 │   │   │   │   │    ├── login.html
-│   │   │   │   │    ├── login-ctrl.js
-│   │   │   │   │    ├── login-router.js
-│   │   │   │   │    └── logout-ctrl.js
+│   │   │   │   │    ├── login.ctrl.js
+│   │   │   │   │    ├── login.router.js
+│   │   │   │   │    └── logout.ctrl.js
 │   │   │   │   │
 │   │   │   │   └── signup
-│   │   │   │        ├── signup-ctrl.js
+│   │   │   │        ├── signup.ctrl.js
 │   │   │   │        ├── signup.html
-│   │   │   │        └── signup-router.js
+│   │   │   │        └── signup.router.js
 │   │   │   │    
 │   │   │   ├── user
 │   │   │   │   ├── models
 │   │   │   │   │   └── user.js
 │   │   │   │   │       
 │   │   │   │   └── services
-│   │   │   │        ├── userService.js
+│   │   │   │        ├── user.service.js
 │   │   │   │        ├── mock
-│   │   │   │        │   └── userServiceMockImpl.js
+│   │   │   │        │   └── user.service.mockImpl.js
 │   │   │   │        └── parse
-│   │   │   │            └── userServiceParseImpl.js
+│   │   │   │            └── user.service.parseImpl.js
 │   │   │   │      
 │   │   │   app.js
 │   │   │   
@@ -305,7 +305,7 @@ In the example of the 'forgotPassword' module, you see that the directory contai
 
 In the example of the 'login' module you see that the directory contains 5 files: 2 template files (login.html and
 loggedOut.html) and 3 Javascript files. In this case you see that we've put the route definitions into a separate file
-(login-router.js) and each of the two controllers also in separate files.
+(login.router.js) and each of the two controllers also in separate files.
 
 Whether or not to put the route definitions and controllers in one Javascript file or in separate files is up to you
 and will probably depend on the complexity of the code ('forgotPassword' is simple enough for all the Javascript code
