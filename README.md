@@ -22,13 +22,13 @@ See [Todo and Roadmap](https://github.com/leob/ionic-quickstarter/wiki/Todo-and-
 
 Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has the following extras:
 
-* An improved gulp.js file (including a build process optimized for production, with template caching etc)
+* An improved gulp.js file (with a build process optimized for production, with template caching etc)
 * Improved project structure (a modular app structure suitable for bigger apps)
 * Application script files (Javascript) will be automatically included in your index.html by the gulp build process  
 * Per environment, you can define different values for constants (e.g. appKey and so on) which are then written into
   config.js by the appropriate gulp task
 * Unit test support using Karma and Jasmine
-* Signup and login flow implemented using Parse (with the flexibility to plug in other implementations)
+* Signup and login flow implemented with Parse (with the flexibility to plug in other implementations)
 * Basic integration with Ionic Analytics (this can be switched off easily if you don't use it)
 * Support for the two main Ionic UI patterns: side menus and tabs, and an Intro screen with a Slider
 * Includes some commonly used features, for instance form validation using ng-messages and improved logging
@@ -46,7 +46,7 @@ First, install ```nodejs```, ```npm```, ```gulp```, ```bower```, ```cordova```, 
 already done).
 
 ***Note:*** instead of locally installing all of the above tools, an alternative option may be to use the
-[Ionic Box](https://github.com/driftyco/ionic-box). This can be attractive especially attractive for Windows users.
+[Ionic Box](https://github.com/driftyco/ionic-box). This can be an attractive option especially for Windows users.
 
 Next, open a terminal and cd into the directory where you want to install your app.
 
