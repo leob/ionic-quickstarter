@@ -45,10 +45,9 @@ To keep this README short (it's already too long), I'm putting the rest of the i
 First, install ```nodejs```, ```npm```, ```gulp```, ```bower```, ```cordova```, ```ionic``` & ```sass``` (if not
 already done).
 
-***Note:*** instead of locally installing all of the above tools, an alternative option may be to use the
-<a href="https://github.com/driftyco/ionic-box" target="_blank">Ionic Box</a>.
-
-. This can be an attractive option especially for Windows users.
+***Note:*** instead of locally installing all of the above tools, an alternative may be to use the
+<a href="https://github.com/driftyco/ionic-box" target="_blank">Ionic Box</a>. This can be an attractive option,
+especially for Windows users.
 
 Next, open a terminal and cd into the directory where you want to install your app.
 
