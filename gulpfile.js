@@ -275,9 +275,6 @@ gulp.task('copy', ['clean', 'sass'], function() {
   gulp.src('./src/css/' + files.ionicappmincss)
     .pipe(gulp.dest(paths.dist + '/css'));
 
-  gulp.src(paths.lib, {base: './src/lib'})
-    .pipe(gulp.dest(paths.dist + '/lib'));
-
   gulp.src(paths.extras)
     .pipe(gulp.dest(paths.dist + '/.')
   );
