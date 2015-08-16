@@ -161,7 +161,7 @@ angular.module('app', [
       $ionicPlatform.registerBackButtonAction(function(event) {
         if ($ionicHistory.backView() === null) {  // no more previous screen in the history stack, so "back" would exit
           $ionicPopup.confirm({
-            title: 'Plase confirm',
+            title: 'Please confirm',
             template: 'Are you sure you want to exit the app?'
           }).then(function(res) {
             if (res) {
