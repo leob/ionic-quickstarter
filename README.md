@@ -156,13 +156,14 @@ their app.
 If you do an ```ionic upload```, then by default it will take your app from the ```src``` folder, not from ```www```.
 This is because ```ionic upload``` takes the setting from the ```ionic.project``` file.
 
-So that would mean that you'd see a "development" build, not a "production" build, when viewing your app in Ionic View.
+So that would mean that you'd see a ***development*** build, not a ***production*** build, when viewing your app in
+Ionic View.
 
-If you don't want this (i.e. if you want a production build in Ionic View) then you should (temporarily) change
+If you don't want this (i.e. if you want a **production** build in Ionic View) then you should (temporarily) change
 ```src``` to ```www``` in ```ionic.project```, do a ```gulp build``` and a ```ionic upload```, and then change
 ionic.project back to ```src```.
 
-Note that the same principles apply if you want to test a production build under ```ionic serve``` (so not in the
+Note that the same principles apply if you want to test a **production** build under ```ionic serve``` (so not in the
 Ionic View app but in a browser).
 
 However in this case you need to take one extra step to prevent ```ionic serve``` from overwriting your production
