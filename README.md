@@ -174,7 +174,7 @@ So the workflow then becomes:
 * temporarily change ```src``` to ```www``` in ```ionic.project```
 * run the command: ```gulp build```
 * run the command: ```ionic serve --nogulp```
-* when you are done, change ionic.project back to ```src```
+* when you are done, change ```ionic.project``` back to ```src```
 
 ## Gulp file
 
