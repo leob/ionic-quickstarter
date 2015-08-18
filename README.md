@@ -153,13 +153,14 @@ For more details on configuring and using development, test and production mode,
 Here is a warning for people who use the Ionic View app in conjunction with the ```ionic upload``` command to test
 their app.
 
-If you do an "ionic upload", then by default it will take your app from the 'src' folder, not from 'www'. This is
-because "ionic upload" takes the setting from the ionic.project file.
+If you do an ```ionic upload```, then by default it will take your app from the ```src``` folder, not from ```www```.
+This is because ```ionic upload``` takes the setting from the ```ionic.project``` file.
 
-So that would mean that you'd see a 'development' build, not a 'production' build, when viewing your app in Ionic View.
+So that would mean that you'd see a "development" build, not a "production" build, when viewing your app in Ionic View.
 
-If you don't want this (i.e. if you want a production build in Ionic View) then you should (temporarily) change 'src'
-to 'www' in ionic.project, do a ```gulp build``` and a ```ionic upload```, and then change ionic.project back to 'src'.
+If you don't want this (i.e. if you want a production build in Ionic View) then you should (temporarily) change
+```src``` to ```www``` in ```ionic.project```, do a ```gulp build``` and a ```ionic upload```, and then change
+ionic.project back to ```src```.
 
 ## Gulp file
 
