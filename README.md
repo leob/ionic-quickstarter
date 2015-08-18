@@ -162,6 +162,19 @@ If you don't want this (i.e. if you want a production build in Ionic View) then 
 ```src``` to ```www``` in ```ionic.project```, do a ```gulp build``` and a ```ionic upload```, and then change
 ionic.project back to ```src```.
 
+Note that the same principles apply if you want to test a production build under ```ionic serve``` (so not in the
+Ionic View app but in a browser).
+
+However in this case you need to take one extra step to prevent ```ionic serve``` from overwriting your production
+build: you need to run ```ionic serve``` with the ```--nogulp``` argument.
+
+So the workflow then becomes:
+
+* temporarily change ```src``` to ```www``` in ```ionic.project```
+* run the command: ```gulp build```
+* run the command: ```ionic serve --nogulp```
+* change ionic.project back to ```src```
+
 ## Gulp file
 
 The gulp.js file supports the following commands:
