@@ -37,7 +37,7 @@ Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has th
 * Provides workarounds for a number of well-known issues in Ionic apps (swipe to close menu, hardware back button etc)
 * Incorporates a number of 'best practices' for AngularJS and Ionic (e.g. "Controller as" syntax)
 * Includes a SASS setup with best practices for easy customization of colors and styles
-* Currently based on Ionic v.1.1.0 and AngularJS 1.4
+* Currently based on Ionic v.1.1.0 and AngularJS 1.4; tested on 3 devices: iPhone 4, Android smartphone, Android tablet
 
 The first two topics (Project structure and Gulp file) will be explained below.
 
