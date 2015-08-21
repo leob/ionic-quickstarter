@@ -1,5 +1,4 @@
-;
-(function () {
+;(function () {
   "use strict";
 
   var LoginCtrl = /*@ngInject*/function ($scope, $state, $stateParams, Application, UserService, $log,
