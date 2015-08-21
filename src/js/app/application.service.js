@@ -1,5 +1,4 @@
-;
-(function () {
+;(function () {
   "use strict";
 
   angular.module('app')
@@ -130,7 +129,7 @@
             });
 
           });
-      }
+      };
 
       var handleFailure = function (error, source, showPopup) {
         hideLoading();
