@@ -1,0 +1,106 @@
+/*
+    Intro/slider styles
+*/
+
+// base "slider" height for all the other calculations - DO NOT CHANGE THIS VALUE !
+$intro-slider-base-height: 630px;
+
+// overall slide height - this determines the vertical area on which a 'swipe' gesture can be made, therefore it's
+// deliberately set to a very high value (more than what would normally be the height of the screen) - DO NOT CHANGE
+// UNLESS YOU HAVE A GOOD REASON TO DO SO
+$intro-slider-height: 2030px !default;
+
+// this is the distance from the 'bottom' of the slide at which the pager and the nav buttons are placed, so a SMALLER
+// value means that the buttons/pager are placed LOWER on the screen and you have there for more room for the slide
+// contents (texts and images) - however the nav buttons and pager may then 'fall off' the screen and hence require the
+// user to scroll up to see them; the default value below (390px) is therefore a compromise (with this value the nav
+// buttons and pager can be seen without scrolling even on an iPhone 4 in 'portrait' mode)
+$intro-slide-nav-bottom: 390px !default;
+
+// calculated values
+$intro-slide-nav-buttons-bottom: $intro-slide-nav-bottom + $intro-slider-height - $intro-slider-base-height;
+$intro-slider-pager-bottom: $intro-slide-nav-buttons-bottom - 160px;
+
+// header with an image at the top of the slides, 120px high
+$intro-header-height: 120px !default;
+
+.slider {
+    height: $intro-slider-height;
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.slider-slides {
+    height: $intro-slider-height !important;
+    position: relative;
+}
+
+.slider-slide {
+    height: $intro-slider-height !important;
+    padding-top: 80px;
+    color: #000;
+    background-color: #fff;
+    text-align: center;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+}
+
+.slider-pager {
+    position: relative;
+    bottom: $intro-slider-pager-bottom !important;
+}
+
+.intro-body {
+    position: relative;
+    width: 100%;
+    //height: $intro-slider-height - 100;
+    height: $intro-slider-height !important;
+}
+
+.intro-nav-buttons {
+    position: absolute;
+    bottom: $intro-slide-nav-buttons-bottom;
+    width: 100%;
+}
+
+.intro-nav-button {
+    width: 90px;
+}
+
+.intro-slider-content {
+    height: 100%;
+    position: absolute;
+}
+
+.intro-slider-text {
+    text-align: left;
+    @extend .padding;
+}
+
+.intro-header {
+    position: relative;
+    width: 100%;
+    height: $intro-header-height;
+    padding: 0;
+}
+
+.intro-header img {
+    width: 100%;
+    max-height: $intro-header-height;
+    opacity: 0.6;
+}
+
+.intro-header-logo {
+    position: absolute;
+    width: 100%;
+    top: 25%;
+    text-align: center;
+}
+
+.intro-header-logo img {
+    width: auto;
+    opacity: 1;
+}

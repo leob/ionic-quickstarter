@@ -1,0 +1,15 @@
+<div class="intro-nav-buttons">
+  <button class="button button-secondary button-small intro-nav-button margin-right-5"
+          ng-click="vm.previous()"
+          ng-if="vm.slideIndex > 0"><i class="icon ion-ios-arrow-left">&nbsp; {{:: 'button.previous' | translate }}</i>
+  </button>
+
+  <button class="button button-small margin-right-5"
+          ng-click="vm.startApp()" translate>button.skip-intro
+  </button>
+
+  <button class="button button-secondary button-small intro-nav-button"
+          ng-click="vm.next()"
+          ng-if="vm.slideIndex < 2">{{:: 'button.next' | translate }} &nbsp;<i class="icon ion-ios-arrow-right"></i>
+  </button>
+</div>

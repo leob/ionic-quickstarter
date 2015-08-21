@@ -2,97 +2,15 @@
     Custom styles
 */
 
-body {
-}
+@import "bar";
+@import "button";
+@import "form";
+@import "intro";
+@import "layout";
+@import "styles";
+@import "tabs";
+@import "text";
+@import "util";
 
-/* ==== IONIC FIXES ==== */
-
-/*
-    CSS styles to eliminate the annoying flickering header when changing tabs in an Ionic app on Android:
-    http://forum.ionicframework.com/t/flickering-when-navigating-via-tabs-on-android/27281/2
-*/
-.platform-android .header-item.title {
-    transition-duration: 0ms;
-}
-.platform-android .header-item.buttons {
-    transition-duration: 0ms;
-}
-
-/* ==== FORM VALIDATION ==== */
-
-/* BEGIN from https://calendee.com/2014/12/26/validation-in-ionic-framework-apps-with-ngmessages/ */
-label.item.has-error {
-    border-bottom: 1px solid red;
-}
-
-label.item.valid {
-    border-left: 2px solid green;
-    border-right: 2px solid green;
-}
-
-.form-errors {
-    /** Styling for the error text and container **/
-    margin: 5px 0
-}
-
-.form-error {
-    padding: 2px 0 2px 16px;
-    color: red;
-}
-
-/* END from https://calendee.com/2014/12/26/validation-in-ionic-framework-apps-with-ngmessages/ */
-
-/* ==== SLIDER ==== */
-
-/* BEGIN from http://codepen.io/ionic/pen/AjgEB */
-.slider {
-    height: 100%;
-}
-
-.slider-slide {
-    padding-top: 80px;
-    color: #000;
-    background-color: #fff;
-    text-align: center;
-
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-weight: 300;
-}
-
-#logo {
-    margin: 30px 0px;
-}
-
-#list {
-    width: 170px;
-    margin: 30px auto;
-    font-size: 20px;
-}
-
-#list ol {
-    margin-top: 30px;
-}
-
-#list ol li {
-    text-align: left;
-    list-style: decimal;
-    margin: 10px 0px;
-}
-
-.button.ng-hide {
-    display: none;
-}
-
-.slider {
-    position: absolute !important;
-    top: 20px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-.slider-pager {
-    top: initial;
-    bottom: 60px !important;
-}
-/* END from http://codepen.io/ionic/pen/AjgEB */
+// ionic-content-banner: https://github.com/djett41/ionic-content-banner
+@import "../../src/lib/ionic-content-banner/scss/ionic.content.banner";

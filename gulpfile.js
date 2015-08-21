@@ -68,7 +68,9 @@ var paths = {
   templates: ['./src/js/**/*.html'],
   indexTemplate: ['./src/index-template.html'],
   index: ['./src/index.html'],
-  extras: [],  /* whatever extra files we need */
+  locales: [
+    './src/js/locales/*.json'
+  ],
   ionicfonts: ['./src/lib/ionic/fonts/*'],
   lib: [
     './src/lib/ionic/js/' + files.ionicbundle,
@@ -78,7 +80,10 @@ var paths = {
     './src/lib/angular-elastic/elastic.js',
     './src/lib/ngCordova/dist/ng-cordova.min.js',
     './src/lib/ionic-service-core/ionic-core.js',             /* Ionic.io libraries, to do: minify */
-    './src/lib/ionic-service-analytics/ionic-analytics.js'    /* Ionic.io libraries, to do: minify */
+    './src/lib/ionic-service-analytics/ionic-analytics.js',   /* Ionic.io libraries, to do: minify */
+    './src/lib/ionic-content-banner/dist/ionic.content.banner.min.js',
+    './src/lib/angular-translate/angular-translate.min.js',
+    './src/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js'
     ],
   dist: ['./www']
 };
@@ -98,7 +103,7 @@ gulp.task('default', ['dev-config', 'dev-sass', 'inject-index']);
 // the "default" task can re-run 'inject-index'
 
 gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['dev-sass' /*, 'inject-index'*/]);
+  gulp.watch(paths.sass, ['dev-sass', 'inject-index']);
 });
 
 // karma tasks for TEST
@@ -275,7 +280,7 @@ gulp.task('copy', ['clean', 'sass'], function() {
   gulp.src('./src/css/' + files.ionicappmincss)
     .pipe(gulp.dest(paths.dist + '/css'));
 
-  gulp.src(paths.extras)
+  gulp.src(paths.locales, {base: './src'})
     .pipe(gulp.dest(paths.dist + '/.')
   );
 });

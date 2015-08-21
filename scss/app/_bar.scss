@@ -1,0 +1,35 @@
+/*
+    Title bars, nav bars
+*/
+
+.bar {
+    &.bar-primary {
+        @include bar-style($bar-primary-bg, $bar-primary-border, $bar-primary-text);
+        &.bar-footer{
+            background-image: linear-gradient(180deg, $bar-primary-border, $bar-primary-border 50%, transparent 50%);
+        }
+    }
+}
+
+.bar-primary {
+    .button {
+        @include button-style($bar-primary-bg, $bar-primary-border, $bar-primary-active-bg, $bar-primary-active-border, $bar-primary-text);
+        @include button-clear(#fff, $bar-title-font-size);
+    }
+}
+
+.bar {
+    &.bar-menu {
+        @include bar-style($bar-secondary-bg, $bar-secondary-border, $bar-secondary-text);
+        &.bar-footer{
+            background-image: linear-gradient(180deg, $bar-secondary-border, $bar-secondary-border 50%, transparent 50%);
+        }
+    }
+}
+
+.bar-menu {
+    .button {
+        @include button-style($bar-secondary-bg, $bar-secondary-border, $bar-secondary-active-bg, $bar-secondary-active-border, $bar-secondary-text);
+        @include button-clear(#fff, $bar-title-font-size);
+    }
+}

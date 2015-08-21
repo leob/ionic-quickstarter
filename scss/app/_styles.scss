@@ -1,0 +1,26 @@
+/*
+    Various custom styles
+*/
+
+body {
+}
+
+//ion-content {
+//    //background: url(http://ioniconf.com/img/bg.jpg) no-repeat center center fixed;
+//    background: url(http://c1.staticflickr.com/1/552/19753857430_b83793100d_n.jpg) no-repeat center center fixed;
+//    background-size: cover;
+//    //background-color: lighten($secondary, 32%);
+//}
+
+/* ==== IONIC FIXES ==== */
+
+/*
+    CSS styles to eliminate the annoying flickering header when changing tabs in an Ionic app on Android:
+    http://forum.ionicframework.com/t/flickering-when-navigating-via-tabs-on-android/27281/2
+*/
+.platform-android .header-item.title {
+    transition-duration: 0ms;
+}
+.platform-android .header-item.buttons {
+    transition-duration: 0ms;
+}

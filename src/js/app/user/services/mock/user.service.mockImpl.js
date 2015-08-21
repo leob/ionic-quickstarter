@@ -3,7 +3,7 @@
 
 appModule('app.user')
 
-  .service('UserServiceMockImpl', function ($q, $log, loggingService, User) {
+  .service('UserServiceMockImpl', function ($q, $log, loggingService, User, $rootScope, $translate) {
 
     var currentLoggedinUser = null;
 
@@ -35,7 +35,11 @@ appModule('app.user')
     // 'checked' version of 'currentLoggedinUser()' returning a promise
     var checkUser = function () {
       if (currentLoggedinUser) {
-        return $q.when(currentLoggedinUser);
+        if (currentLoggedinUser.emailVerified) {
+          return $q.when(currentLoggedinUser);
+        } else {
+          return $q.reject({error: "userEmailNotVerified"});
+        }
       } else {
         return $q.reject({error: "noUser"});
       }

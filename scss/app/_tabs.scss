@@ -1,0 +1,33 @@
+/*
+    Tab styles
+*/
+
+.tabs-brand > .tabs,
+.tabs.tabs-brand {
+    @include tab-style($tabs-brand-bg, $tabs-brand-border, $tabs-brand-text);
+    @include tab-badge-style($tabs-brand-text, $tabs-brand-bg);
+}
+
+.tabs-striped {
+    @include tabs-striped('tabs-brand', $light, $tabs-brand);
+    @include tabs-striped-background('tabs-background-brand', $tabs-brand);
+    @include tabs-striped-color('tabs-color-brand', $tabs-brand);
+}
+
+@include tabs-background('tabs-background-brand', $tabs-brand, $bar-brand-border);
+
+@include tabs-color('tabs-color-brand', $tabs-brand);
+
+ion-tabs {
+    @include tabs-standard-color('tabs-color-active-brand', $tabs-brand, $dark);
+}
+
+.tab-item.tab-item-active,
+.tab-item.active,
+.tab-item.activated {
+    opacity: 1;
+
+    &.tab-item-brand {
+        color: $tabs-brand;
+    }
+}

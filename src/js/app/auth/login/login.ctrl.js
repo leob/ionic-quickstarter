@@ -1,40 +1,65 @@
-;(function() {
-"use strict";
+;
+(function () {
+  "use strict";
 
-var LoginCtrl = /*@ngInject*/function ($scope, $state, $stateParams, Application, UserService) {
-  var vm = this;
+  var LoginCtrl = /*@ngInject*/function ($scope, $state, $stateParams, Application, UserService, $log,
+                                         $translate, $ionicContentBanner) {
+    var vm = this;
 
-  $scope.$on('$ionicView.beforeEnter', function () {
-    // enforce/ensure no logged in user at this point
-    UserService.logout();
+    $scope.$on('$ionicView.beforeEnter', function () {
+      // enforce/ensure no logged in user at this point
+      UserService.logout();
 
-    if ($stateParams.verifyEmail) {
-      vm.showVerifyEmail = true;
-    }
+      Application.resetForm(vm);
 
-    vm.user = {
-      username: null,
-      password: null
-    };
+      vm.user = {
+        username: null,
+        password: null
+      };
+    });
 
-    vm.error = {};
-  });
+    var closeContentBanner = null;
 
-  vm.login = function (form) {
-    if (!form.$valid) {
-      return;
-    }
+      // the ionic-content-banner needs to be displayed in the 'enter' event because it will only work if the view
+      // is displayed completely
+      $scope.$on('$ionicView.enter', function () {
 
-    Application.showLoading(true, 'Login ...');
+        if ($stateParams.verifyEmail) {
+          var messageKey;
+          var messageParams;
 
-    UserService.login(('' + vm.user.username).toLowerCase(), vm.user.password)
-      .then(function (loggedinUser) {
+          if ($stateParams.verifyEmail === 'verify') {
+            messageKey = 'message.check-your-email';
+          } else {    // $stateParams.verifyEmail === 'notVerified'
+            messageKey = 'message.email-not-verified';
+          }
+
+          $translate(messageKey).then(function (translation) {
+            closeContentBanner = $ionicContentBanner.show({text: [translation]});
+          });
+        }
+    });
+
+    // before we leave the view then close/destroy the ionic-content-banner, if any
+    $scope.$on('$ionicView.beforeLeave', function () {
+      if (closeContentBanner) {
+        closeContentBanner();
+      }
+    });
+
+    vm.login = function (form) {
+      if (!form.$valid) {
+        return;
+      }
+
+      Application.showLoading(true);
+
+      UserService.login(('' + vm.user.username).toLowerCase(), vm.user.password).then(function (loggedinUser) {
         Application.hideLoading();
 
-        // if there's a "logged in user" but the user's email address isn't verified we consider the user not logged in
+        // if there's a "logged in user" but the user's email isn't verified then we consider the user not logged in
         if (!loggedinUser.emailVerified) {
-          vm.error.message = 'Your email address is not verified yet';
-          vm.showVerifyEmail = true;
+          vm.errorMessage('message.email-not-verified');
 
         } else {
           // user logged in implies the user is registered
@@ -43,31 +68,37 @@ var LoginCtrl = /*@ngInject*/function ($scope, $state, $stateParams, Application
           Application.gotoStartPage($state);
         }
       })
-      .catch(function (error) {
-        Application.hideLoading();
+        .catch(function (error) {
+          Application.hideLoading();
 
-        // login failed, check error to see why
-        if (error == "invalid_credentials") {
-          vm.error.message = 'Invalid user name or password, please try again.';
-        } else {
-          vm.error.message =
-            'An unknown error occurred, please check if you have network connectivity!';
-        }
+          // login failed, check error to see why
+          if (error == "invalid_credentials") {
+            vm.errorMessage('message.invalid-credentials');
+          } else {
+            vm.errorMessage('message.unknown-error');
+          }
+        });
+    };
+
+    vm.forgot = function () {
+      $state.go('forgotPassword');
+    };
+
+    vm.signup = function () {
+      $state.go('signup');
+    };
+
+    vm.intro = function () {
+      Application.gotoIntroPage($state);
+    };
+
+    vm.errorMessage = function (key, vars) {
+      $translate(key, vars || {}).then(function (translation) {
+        vm.error.message = translation;
       });
+    };
+
   };
 
-  vm.forgot = function () {
-    $state.go('forgotPassword');
-  };
-
-  vm.signup = function () {
-    $state.go('signup');
-  };
-
-  vm.intro = function () {
-    Application.gotoIntroPage($state);
-  };
-};
-
-appModule('app.auth.login').controller('LoginCtrl', LoginCtrl);
+  appModule('app.auth.login').controller('LoginCtrl', LoginCtrl);
 }());

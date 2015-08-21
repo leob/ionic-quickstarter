@@ -7,11 +7,8 @@ var ForgotPasswordCtrl = /*@ngInject*/function ($scope, $state, $log, Applicatio
   var log = $log.getLogger('ForgotPasswordCtrl');
 
   $scope.$on('$ionicView.beforeEnter', function () {
+    Application.resetForm(vm);
     vm.user = {};
-    vm.error = {};
-    vm.state = {
-      success: false
-    };
   });
 
   vm.reset = function (form) {
@@ -19,22 +16,23 @@ var ForgotPasswordCtrl = /*@ngInject*/function ($scope, $state, $log, Applicatio
       return;
     }
 
-    Application.showLoading(true, 'Processing ...');
+    Application.showLoading(true);
 
-    UserService.resetPassword(vm.user.email)
-      .then(function () {
+    UserService.resetPassword(vm.user.email).then(function () {
         Application.hideLoading();
-        vm.state.success = true;
 
         log.info("Password reset successfully");
+
+        // go to the login page, displaying a message asking the user to verify their email
+        $state.go('login', {verifyEmail: 'verify'});
       })
       .catch(function (error) {
         Application.hideLoading();
 
         if (error == "invalid_email") {
-          vm.error.message = 'This email address was not registered';
+          vm.errorMessage('message.not-registered');
         } else {
-          vm.error.message = 'An error occurred, please retry.';
+          vm.errorMessage('message.unknown-error');
         }
       });
   };
@@ -42,6 +40,13 @@ var ForgotPasswordCtrl = /*@ngInject*/function ($scope, $state, $log, Applicatio
   vm.login = function () {
     $state.go('login');
   };
+
+  vm.errorMessage = function (key, vars) {
+    $translate(key, vars || {}).then(function (translation) {
+      vm.error.message = translation;
+    });
+  };
+
 };
 
 // controller and router

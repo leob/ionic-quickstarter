@@ -1,0 +1,3 @@
+# Git-ignore override for this directory. See: http://stackoverflow.com/a/5581995/2474068
+!_*
+!.gitignore

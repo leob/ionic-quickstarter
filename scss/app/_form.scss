@@ -1,0 +1,27 @@
+/*
+    Form styles
+*/
+
+/* ==== FORM VALIDATION ==== */
+
+/* BEGIN from https://calendee.com/2014/12/26/validation-in-ionic-framework-apps-with-ngmessages/ */
+label.item.has-error {
+    border-bottom: 1px solid $primary;
+}
+
+label.item.valid {
+    border-left: 2px solid green;
+    border-right: 2px solid green;
+}
+
+.form-errors {
+    /** Styling for the error text and container **/
+    margin: 5px 0
+}
+
+.form-error {
+    padding: 2px 0 2px 16px;
+    color: $primary;
+}
+/* END from https://calendee.com/2014/12/26/validation-in-ionic-framework-apps-with-ngmessages/ */
+

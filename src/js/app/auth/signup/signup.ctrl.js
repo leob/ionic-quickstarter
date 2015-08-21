@@ -1,15 +1,15 @@
 ;(function() {
 "use strict";
 
-var SignupCtrl = /*@ngInject*/function ($scope, $stateParams, $state, $log, $ionicPopup, Application, UserService) {
+var SignupCtrl = /*@ngInject*/function ($scope, $state, $log, $ionicPopup, Application, UserService, $translate) {
 
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
   var vm = this;
   var log = $log.getLogger('SignupCtrl');
 
   $scope.$on('$ionicView.beforeEnter', function() {
+    Application.resetForm(vm);
     vm.user = {};
-    vm.error = {};
   });
 
   vm.signup = function(form) {
@@ -18,7 +18,7 @@ var SignupCtrl = /*@ngInject*/function ($scope, $stateParams, $state, $log, $ion
       return;
     }
 
-    Application.showLoading(true, 'Sign up ...');
+    Application.showLoading(true);
 
     var user = {
       username: vm.user.email,
@@ -27,8 +27,7 @@ var SignupCtrl = /*@ngInject*/function ($scope, $stateParams, $state, $log, $ion
       fullName: vm.user.name
     };
 
-    UserService.signup(user)
-      .then(function (signedupUser) {
+    UserService.signup(user).then(function (signedupUser) {
         Application.hideLoading();
 
         Application.setUserRegistered(true);
@@ -36,18 +35,17 @@ var SignupCtrl = /*@ngInject*/function ($scope, $stateParams, $state, $log, $ion
         log.info("User signed up successfully");
 
         // go to the login page, displaying a message asking the user to verify their email
-        $state.go('login', {verifyEmail: true});
+        $state.go('login', {verifyEmail: 'verify'});
       })
       .catch(function (error) {
         Application.hideLoading();
 
         if (error == "invalid_email") {
-          vm.error.message = 'The email address is not valid.';
+          vm.errorMessage('message.valid-email');
         } else if (error == "already_registered") {
-          vm.error.message = 'This email address is already registered.';
+          vm.errorMessage('message.already-registered');
         } else {
-          vm.error.message =
-            'An unknown error occurred, please check if you have network connectivity!';
+          vm.errorMessage('message.unknown-error');
         }
       });
   };
@@ -59,6 +57,13 @@ var SignupCtrl = /*@ngInject*/function ($scope, $stateParams, $state, $log, $ion
   vm.login = function() {
     $state.go('login');
   };
+
+  vm.errorMessage = function (key, vars) {
+    $translate(key, vars || {}).then(function (translation) {
+      vm.error.message = translation;
+    });
+  };
+
 };
 
 appModule('app.auth.signup').controller('SignupCtrl', SignupCtrl);

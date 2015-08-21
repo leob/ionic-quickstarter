@@ -1,72 +1,74 @@
-<ion-view view-title="Welcome">
+<ion-view view-title="{{:: 'intro.title' | translate }}">
 
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
     </button>
   </ion-nav-buttons>
 
-  <ion-header-bar class="bar-subbar bar-subheader">
-    <button class="button button-positive button-clear no-animation pull-left"
-            ng-click="vm.startApp()" ng-if="!vm.slideIndex">
-      <small>Skip intro</small>
-    </button>
-    <button class="button button-positive button-clear no-animation pull-left"
-            ng-click="vm.previous()" ng-if="vm.slideIndex > 0">
-      <small>Previous</small>
-    </button>
-    <button class="button button-positive button-clear no-animation pull-right"
-            ng-click="vm.next()" ng-if="vm.slideIndex != 2">
-      <small>Next</small>
-    </button>
-    <button class="button button-positive button-clear no-animation pull-right"
-            ng-click="vm.startApp()" ng-if="vm.slideIndex == 2">
-      <small>Start</small>
-    </button>
-  </ion-header-bar>
+  <ion-content class="scroll-content" has-header="true" padding="false" scroll="true">
+    <ion-slide-box class="intro-slide-box" on-slide-changed="vm.slideChanged(index)">
 
-  <ion-slide-box class="has-subheader" on-slide-changed="vm.slideChanged(index)">
-    <ion-slide>
-      <ion-content>
-        <h3>Introduction</h3>
+      <ion-slide>
+        <ion-content class="intro-slider-content scroll-content" has-header="true" padding="false" scroll="false">
+          <intro-header img="shop1.jpg"></intro-header>
 
-        <div id="logo">
-          <img src="http://code.ionicframework.com/assets/img/app_icon.png">
-        </div>
-        <h5><b>Thanks for installing this wonderful app!</b></h5>
+          <div class="intro-body">
+            <h4 class="margin-top-15" translate>intro.slide-1.title</h4>
 
-        <p>
-          We'll give you a short overview.
-          Click 'Next' to proceed to the next screen.
-        </p>
-      </ion-content>
-    </ion-slide>
+            <p class="intro-slider-text">
+              <span translate="intro.slide-1.text1"></span>
+              <br/>
+              <br/>
+              <span translate="intro.slide-1.text2"></span>
+            </p>
 
-    <ion-slide>
-      <ion-content>
-        <h3>Starting out</h3>
+            <ng-include src="'js/app/intro/nav-buttons.html'"></ng-include>
+          </div>
 
-        <h5>Follow these steps to get started:</h5>
+        </ion-content>
+      </ion-slide>
 
-        <div id="list">
-          <ol>
-            <li><h5>Sign up to create your account</h5></li>
-            <li><h5>Login with your account</h5></li>
-            <li><h5>Start using the app</h5></li>
-          </ol>
-        </div>
+      <ion-slide>
+        <ion-content class="intro-slider-content scroll-content" has-header="true" padding="false" scroll="false">
+          <intro-header img="shop2.jpg"></intro-header>
 
-        <h5><b>Note:</b> you need to do this only once.</h5>
-      </ion-content>
-    </ion-slide>
+          <div class="intro-body">
+            <h4 class="margin-top-15" translate>intro.slide-2.title</h4>
 
-    <ion-slide>
-      <ion-content>
-        <h3>Have fun</h3>
+            <p class="intro-slider-text">
+              <span translate="intro.slide-2.text1"></span>
+              <br/>
+              <br/>
+              - <span translate="intro.slide-2.text2a"></span>
+              <br/>
+              - <span translate="intro.slide-2.text2b"></span>
+              <br/>
+              - <span translate="intro.slide-2.text2c"></span>
+            </p>
 
-        <h5>Click 'Start' to create your account.</h5>
-        <b>And have fun!</b></p>
-      </ion-content>
-    </ion-slide>
+            <ng-include src="'js/app/intro/nav-buttons.html'"></ng-include>
+          </div>
 
-  </ion-slide-box>
+        </ion-content>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-content class="intro-slider-content scroll-content" has-header="true" padding="false" scroll="false">
+          <intro-header img="shop3.jpg"></intro-header>
+
+          <div class="intro-body">
+            <h4 class="margin-top-15" translate>intro.slide-3.title</h4>
+
+            <p class="intro-slider-text">
+              <span translate="intro.slide-3.text1"></span>
+            </p>
+
+            <ng-include src="'js/app/intro/nav-buttons.html'"></ng-include>
+          </div>
+
+        </ion-content>
+      </ion-slide>
+
+    </ion-slide-box>
+  </ion-content>
 </ion-view>

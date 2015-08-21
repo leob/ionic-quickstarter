@@ -1,0 +1,21 @@
+/*
+    Buttons
+*/
+
+.button {
+    &.button-primary {
+        @include button-style($button-primary-bg, $button-primary-border, $button-primary-active-bg, $button-primary-active-border, $button-primary-text);
+        @include button-clear($button-primary-bg);
+        @include button-outline($button-primary-bg);
+    }
+    &.button-secondary {
+        @include button-style($button-secondary-bg, $button-secondary-border, $button-secondary-active-bg, $button-secondary-active-border, $button-secondary-text);
+        @include button-clear($button-secondary-bg);
+        @include button-outline($button-secondary-bg);
+    }
+    &.button-neutral {
+        @include button-style($button-neutral-bg, $button-neutral-border, $button-neutral-active-bg, $button-neutral-active-border, $button-neutral-text);
+        @include button-clear($button-neutral-bg);
+        @include button-outline($button-neutral-bg);
+    }
+}

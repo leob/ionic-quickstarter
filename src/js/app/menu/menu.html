@@ -1,6 +1,11 @@
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-stable">
+    <ion-nav-bar class="bar-primary">
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+
       <ion-nav-back-button nav-clear>
         <!--Back-->
       </ion-nav-back-button>
@@ -10,15 +15,23 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left" expose-aside-when="large">
-    <ion-header-bar class="bar-stable">
-      <h1 class="title">Menu</h1>
+    <ion-header-bar class="bar-menu">
+      <!--<h1 class="title">Menu</h1>-->
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close href="#/app/auth/main/dash">Main page</ion-item>
-        <ion-item menu-close href="#/app/intro">Intro page</ion-item>
-        <ion-item menu-close ng-click="main.login()" ng-show="!main.isLoggedIn()">Log in</ion-item>
-        <ion-item menu-close ng-click="main.logout()" ng-show="main.isLoggedIn()">Log out</ion-item>
+        <ion-item class="item-icon-left" menu-close ng-show="main.isLoggedIn()" ui-sref="app.auth.main.dash">
+          <i class="icon primary ion-ios-home-outline"></i> <span translate>menu.home</span>
+        </ion-item>
+        <ion-item class="item-icon-left" menu-close ui-sref="app.intro">
+          <i class="icon primary ion-ios-information-outline"></i> <span translate>menu.intro</span>
+        </ion-item>
+        <ion-item class="item-icon-left" menu-close ng-show="!main.isLoggedIn()" ng-click="main.login()">
+          <i class="icon primary ion-log-in"></i> <span translate>menu.login</span>
+        </ion-item>
+        <ion-item class="item-icon-left" menu-close ng-show="main.isLoggedIn()" ng-click="main.logout()">
+          <i class="icon primary ion-log-out"></i> <span translate>menu.logout</span>
+        </ion-item>
       </ion-list>
     </ion-content>
   </ion-side-menu>

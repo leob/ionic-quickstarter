@@ -1,14 +1,16 @@
 ;(function() {
 "use strict";
 
-var IntroCtrl = /*@ngInject*/function ($scope, $state, $ionicSlideBoxDelegate, Application) {
+var IntroCtrl = /*@ngInject*/function ($scope, $state, $ionicSlideBoxDelegate, $ionicScrollDelegate, Application) {
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
   var vm = this;
 
   // when entering the view, always go to the first slide (instead of just showing whichever slide was shown last when
   // you left the view)
   $scope.$on('$ionicView.beforeEnter', function () {
+    vm.slideIndex = 0;
     $ionicSlideBoxDelegate.slide(0);
+    $ionicScrollDelegate.scrollTop();
   });
 
   vm.startApp = function () {
@@ -21,29 +23,17 @@ var IntroCtrl = /*@ngInject*/function ($scope, $state, $ionicSlideBoxDelegate, A
   };
   vm.next = function () {
     $ionicSlideBoxDelegate.next();
+    $ionicScrollDelegate.scrollTop();
   };
   vm.previous = function () {
     $ionicSlideBoxDelegate.previous();
+    $ionicScrollDelegate.scrollTop();
   };
 
   vm.slideChanged = function (index) {
-    this.slideIndex = index;
+    vm.slideIndex = index;
   };
 };
 
-// controller and router
-appModule('app.intro')
-  .controller('IntroCtrl', IntroCtrl)
-  .config(function ($stateProvider) {
-    $stateProvider
-      .state('app.intro', {
-        url: '/intro',
-        views: {
-          'menuContent@app': {
-            templateUrl: 'js/app/intro/intro.html',
-            controller: 'IntroCtrl as vm'
-          }
-        }
-      });
-  });
+appModule('app.intro').controller('IntroCtrl', IntroCtrl);
 }());
