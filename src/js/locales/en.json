@@ -1,0 +1,78 @@
+{
+  "menu": {
+    "home": "Home",
+    "intro": "Intro",
+    "login": "Log in",
+    "logout": "Log out"
+  },
+  "intro": {
+    "title": "Welcome",
+    "slide-1": {
+      "title": "Welcome to this app",
+      "text1": "This is the ionic-quickstarter app.",
+      "text2": "We will give you a brief introduction."
+    },
+    "slide-2": {
+      "title": "Getting started with the app",
+      "text1": "Please follow these steps:",
+      "text2a": "Create an account",
+      "text2b": "Log in with your account",
+      "text2c": "Start using the app"
+    },
+    "slide-3": {
+      "title": "Questions?",
+      "text1": "Then read the manual."
+    }
+  },
+  "field": {
+    "email": "Email",
+    "password": "Password"
+  },
+  "button": {
+    "reset-password": "Reset password",
+    "signup": "Create account",
+    "login": "Log in",
+    "previous": "Previous",
+    "next": "Next",
+    "skip-intro": "Skip intro"
+  },
+  "link": {
+    "back": "Back",
+    "forgot-password": "Forgot password?",
+    "signup": "Sign up",
+    "login": "Log in",
+    "login-again": "Log in again"
+  },
+  "prompt": {
+    "no-account": "Don't have an account yet?",
+    "have-an-account": "Already have an account?",
+    "signup": "Enter your email and a password to create your account",
+    "login": "Enter your email and password to log in",
+    "forgot-password": "Enter your email to reset your password"
+  },
+  "message": {
+    "required": "This field is required.",
+    "min-5": "Enter at least 5 characters.",
+    "max-50": "Enter at most 50 characters.",
+    "valid-email": "Enter a valid email address.",
+    "email-not-verified": "Your email address isn't verified yet",
+    "invalid-credentials": "Invalid user name or password",
+    "already-registered": "This email adress is already registered",
+    "not-registered": "This email adress is not registered yet",
+    "unknown-error": "Unknown error, please check your network",
+    "loggedout": "You are logged out",
+    "check-your-email": "Check your email and follow the instructions"
+  },
+  "error-popup": {
+    "title": "Unknown error",
+    "text":
+    "An unknown error occurred.<br/><br/>Please check your network connection, and retry.",
+    "ok-button": "OK"
+  },
+  "exit-popup": {
+    "title": "Exit app",
+    "text": "Are you sure you want to leave the app?",
+    "cancel-button": "Cancel",
+    "ok-button": "OK"
+  }
+}

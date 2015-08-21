@@ -10,6 +10,9 @@ angular.module('app')
   // http://www.clearlyinnovative.com/ionic-framework-tabs-go-home-view/
   //
   .controller('ApplicationCtrl', function ($state, Application, UserService) {
+
+    // UTILITY FUNCTIONS
+
     this.logout = function() {
       UserService.logout();
       $state.go('loggedout');
@@ -26,6 +29,7 @@ angular.module('app')
     this.isValidUser = function() {
       return Application.isValidUser();
     };
+
   })
 ;
 }());

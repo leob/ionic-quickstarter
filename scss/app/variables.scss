@@ -13,6 +13,83 @@ $calm:                            #43cee6 !default;
 $balanced:                        #66cc33 !default;
 $energized:                       #f0b840 !default;
 $assertive:                       #ef4e3a !default;
-$royal:                           #8a6de9 !default;
+$royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+
+// DEFINITION OF THEMEABLE PRIMARY AND SECONDARY 'BRAND' COLORS
+
+$positive:                          #4a87ee !default;
+
+// The primary 'brand' color
+$primary:                           $positive !default;
+// The secondary 'brand' color
+$secondary: lighten($primary, 15%);
+// A neutral "non-branded" color
+$neutral: lighten(grey, 20%);
+
+// For ionic-content-banner
+$content-banner-info-bg: $secondary !default;
+
+// dark color variable needed for definitions further on
+$dark:                              #444 !default;
+
+// ADDED: "note" and "link" text colors for our theme
+$note-color:                        #aaa !default;
+$link-color:                        darken($note-color, 35%) !default;
+
+// CUSTOMIZED: somewhat darker inpu field placeholder color
+$input-color-placeholder:           lighten($dark, 15%) !default;
+
+// CUSTOMIZE THE TITLE BAR HEIGHT HERE
+//$bar-height:                      44px !default;    // 50px !default;
+//$bar-title-font-size:             17px !default;    // 21px !default;
+
+$bar-transparency:                1 !default;
+
+$button-primary-bg:                 $primary !default;
+$button-primary-text:               #fff !default;
+$button-primary-border:             darken($primary, 8%) !default;
+$button-primary-active-bg:          darken($primary, 8%) !default;
+$button-primary-active-border:      darken($primary, 8%) !default;
+
+$bar-primary-bg:                    rgba($button-primary-bg, $bar-transparency) !default;
+$bar-primary-text:                  $button-primary-text !default;
+$bar-primary-border:                $button-primary-border !default;
+$bar-primary-active-bg:             $button-primary-active-bg !default;
+$bar-primary-active-border:         $button-primary-active-border !default;
+
+$button-secondary-bg:                 $secondary !default;
+$button-secondary-text:               #fff !default;
+$button-secondary-border:             darken($secondary, 8%) !default;
+$button-secondary-active-bg:          darken($secondary, 8%) !default;
+$button-secondary-active-border:      darken($secondary, 8%) !default;
+
+$bar-secondary-bg:                    rgba($button-secondary-bg, $bar-transparency) !default;
+$bar-secondary-text:                  $button-secondary-text !default;
+$bar-secondary-border:                $button-secondary-border !default;
+$bar-secondary-active-bg:             $button-secondary-active-bg !default;
+$bar-secondary-active-border:         $button-secondary-active-border !default;
+
+$button-neutral-bg:                 $neutral !default;
+$button-neutral-text:               #fff !default;
+$button-neutral-border:             darken($neutral, 8%) !default;
+$button-neutral-active-bg:          darken($neutral, 8%) !default;
+$button-neutral-active-border:      darken($neutral, 8%) !default;
+
+// TABS
+
+// customize the height etc here
+//$tabs-height:                     49px !default;
+$tabs-height:                     40px !default;
+//$tabs-text-font-size:             14px !default;
+//$tabs-text-font-size-side-icon:   10px !default;
+//$tabs-icon-size:                  32px !default;
+//$tabs-badge-padding:              1px 6px !default;
+//$tabs-badge-font-size:            12px !default;
+
+$tabs-brand:                         $secondary !default;
+$tabs-brand-bg:                      $button-secondary-bg !default;
+$tabs-brand-border:                  $button-secondary-border !default;
+$tabs-brand-text:                    $button-secondary-text !default;
+$bar-brand-border:                   $bar-secondary-border !default;
