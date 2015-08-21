@@ -32,8 +32,12 @@ Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has th
 * Basic integration with Ionic Analytics (this can be switched off easily if you don't use it)
 * Support for the two main Ionic UI patterns: side menus and tabs, and an Intro screen with a Slider
 * Includes some commonly used features, for instance form validation using ng-messages and improved logging
+* Supports internationalization (I18N) using the
+[angular-translate](https://github.com/angular-translate/angular-translate) library
 * Provides workarounds for a number of well-known issues in Ionic apps (swipe to close menu, hardware back button etc)
 * Incorporates a number of 'best practices' for AngularJS and Ionic (e.g. "Controller as" syntax)
+* Includes a SASS setup with best practices for easy customization of colors and styles
+* Currently based on Ionic v.1.1.0 and AngularJS 1.4
 
 The first two topics (Project structure and Gulp file) will be explained below.
 
