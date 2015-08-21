@@ -15,7 +15,7 @@
             "{ 'has-error' : vm.form.email.$invalid && vm.form.$submitted, 'valid' : vm.form.email.$valid  && vm.form.$submitted}">
           <i class="icon ion-ios-person-outline placeholder-icon field-icon"></i>
           <input type="email"
-                 placeholder="Email" translate translate-attr-placeholder="field.email"
+                 placeholder="Email" translate translate-attr-placeholder="field.login-email"
                  ng-model="vm.user.username"
                  name="email"
                  ng-minlength="5"
@@ -32,7 +32,7 @@
             "{ 'has-error' : vm.form.password.$invalid && vm.form.$submitted, 'valid' : vm.form.password.$valid  && vm.form.$submitted}">
           <i class="icon ion-ios-locked-outline placeholder-icon field-icon"></i>
           <input type="password"
-                 placeholder="Password" translate translate-attr-placeholder="field.password"
+                 placeholder="Password" translate translate-attr-placeholder="field.login-password"
                  ng-model="vm.user.password"
                  name="password"
                  ng-minlength="5"

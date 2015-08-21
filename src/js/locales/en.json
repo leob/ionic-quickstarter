@@ -26,7 +26,9 @@
   },
   "field": {
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "login-email": "Email (any real or fake email address)",
+    "login-password": "Password (e.g. 'password')"
   },
   "button": {
     "reset-password": "Reset password",
