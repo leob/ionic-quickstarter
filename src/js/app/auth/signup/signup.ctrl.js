@@ -1,7 +1,7 @@
 ;(function() {
 "use strict";
 
-var SignupCtrl = /*@ngInject*/function ($scope, $state, $ionicPopup, Application, UserService, $translate) {
+var SignupCtrl = /*@ngInject*/function ($scope, $state, Application, UserService, $translate) {
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
   var vm = this;
   var log = Application.getLogger('SignupCtrl');
