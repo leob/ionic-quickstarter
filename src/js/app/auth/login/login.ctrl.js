@@ -1,8 +1,8 @@
 ;(function () {
   "use strict";
 
-  var LoginCtrl = /*@ngInject*/function ($scope, $state, $stateParams, Application, UserService, $log,
-                                         $translate, $ionicContentBanner) {
+  var LoginCtrl = /*@ngInject*/function ($scope, $state, $stateParams, Application, UserService, $translate,
+                                         $ionicContentBanner) {
     var vm = this;
 
     $scope.$on('$ionicView.beforeEnter', function () {
@@ -63,7 +63,6 @@
         } else {
           // user logged in implies the user is registered
           Application.setUserRegistered(true);
-
           Application.gotoStartPage($state);
         }
       })

@@ -1,11 +1,10 @@
 ;(function() {
 "use strict";
 
-var SignupCtrl = /*@ngInject*/function ($scope, $state, $log, $ionicPopup, Application, UserService, $translate) {
-
+var SignupCtrl = /*@ngInject*/function ($scope, $state, $ionicPopup, Application, UserService, $translate) {
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
   var vm = this;
-  var log = $log.getLogger('SignupCtrl');
+  var log = Application.getLogger('SignupCtrl');
 
   $scope.$on('$ionicView.beforeEnter', function() {
     Application.resetForm(vm);
@@ -29,7 +28,6 @@ var SignupCtrl = /*@ngInject*/function ($scope, $state, $log, $ionicPopup, Appli
 
     UserService.signup(user).then(function (signedupUser) {
         Application.hideLoading();
-
         Application.setUserRegistered(true);
 
         log.info("User signed up successfully");
