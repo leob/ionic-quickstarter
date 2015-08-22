@@ -1,12 +1,10 @@
 ;(function() {
 "use strict";
 
-var DashCtrl = /*@ngInject*/function ($log, $scope) {
-
+var DashCtrl = /*@ngInject*/function (Application, $scope) {
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
   var vm = this;
-
-  var log = $log.getLogger('MainPageDashCtrl');
+  var log = Application.getLogger('MainPageDashCtrl');
 
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     log.debug("beforeEnter");

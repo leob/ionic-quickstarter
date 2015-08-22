@@ -1,10 +1,14 @@
-;(function () {
+;
+(function () {
   "use strict";
 
   angular.module('app')
 
+    //
+    // This service provides a set of convenience/utility methods that you can use throughout your app.
+    //
     .factory('Application', function (LocalStorage, UserService, Tracking, APP, $log, loggingService, $ionicHistory,
-                                      $ionicLoading, $q, $ionicPopup, $translate) {
+                                      $ionicLoading) {
 
       var init = function () {
         loggingService.log("Application#init", "start");
@@ -111,50 +115,8 @@
         vm.error = {};
       };
 
-      var showErrorPopup = function() {
-        var key = 'error-popup.';
-
-        $translate([key + 'title', key + 'text', key + 'ok-button']).then(function(translations) {
-
-            $ionicPopup.alert({
-              title: translations[key + 'title'],
-              template: translations[key + 'text'],
-              cssClass: 'info-popup',
-              buttons: [
-                {
-                  text: translations[key + 'ok-button'],
-                  type: 'button-primary'
-                }
-              ]
-            });
-
-          });
-      };
-
-      var handleFailure = function (error, source, showPopup) {
-        hideLoading();
-
-        $log.log((source ? (source + " - error: ") : "Error: ") + error);
-
-        if (showPopup) {
-          showErrorPopup();
-        }
-      };
-
-      var exec = function (execFunc, source, showPopup) {
-        var deferred = $q.defer();
-
-        showLoading(true);
-
-        execFunc().then(function (data) {
-          hideLoading();
-          deferred.resolve(data);
-        }).catch(function (error) {
-          handleFailure(error, source, showPopup);
-          deferred.reject(error);
-        });
-
-        return deferred.promise;
+      var getLogger = function (context) {
+        return $log.getLogger(context);
       };
 
       return {
@@ -171,7 +133,7 @@
         showLoading: showLoading,
         hideLoading: hideLoading,
         resetForm: resetForm,
-        exec: exec
+        getLogger: getLogger
       };
     });
 }());
