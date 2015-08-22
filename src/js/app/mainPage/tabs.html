@@ -3,15 +3,15 @@ Create tabs with an icon and label. Each tab's child <ion-nav-view> directive wi
 also transitions its views in and out.
 -->
 <ion-tabs class="tabs-striped tabs-top tabs-background-brand tabs-color-light">
-  <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/app/auth/main/dash">
+  <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" ui-sref="app.auth.main.dash">
     <ion-nav-view name="main-dash"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/app/auth/main/chats">
+  <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" ui-sref="app.auth.main.chats">
     <ion-nav-view name="main-chats"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/app/auth/main/account">
+  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ui-sref="app.auth.main.account">
     <ion-nav-view name="main-account"></ion-nav-view>
   </ion-tab>
 </ion-tabs>
