@@ -19,8 +19,8 @@
   angular.module('app', [
     // libraries
     'ionic', 'ionic.service.core', 'ionic.service.analytics',  // IONIC.IO (Alpha software - disable for production?)
-    'ngCordova', 'ngMessages',
-    // ng-translate
+    'ngCordova', 'ngMessages', 'fusionMessages',
+    // angular-translate
     'pascalprecht.translate',
     // ionic-content-banner
     'jett.ionic.content.banner',

@@ -11,8 +11,7 @@
 
         <span class="note item item-borderless" translate="prompt.login"></span>
 
-        <label class="item item-input" ng-class=
-            "{ 'has-error' : vm.form.email.$invalid && vm.form.$submitted, 'valid' : vm.form.email.$valid  && vm.form.$submitted}">
+        <label class="item item-input" form-field="vm.form.email">
           <i class="icon ion-ios-person-outline placeholder-icon field-icon"></i>
           <input type="email"
                  placeholder="Email" translate translate-attr-placeholder="field.login-email"
@@ -23,26 +22,22 @@
                  required>
         </label>
 
-        <div class="form-errors" ng-show="vm.form.email.$error && vm.form.$submitted"
-             ng-messages="vm.form.email.$error">
-          <div ng-messages-include="js/app/util/templates/form-errors.html"></div>
+        <div fus-messages="vm.form.email">
+          <div ng-messages-include="js/app/common/util/templates/form-errors.html"></div>
         </div>
 
-        <label class="item item-input" ng-class=
-            "{ 'has-error' : vm.form.password.$invalid && vm.form.$submitted, 'valid' : vm.form.password.$valid  && vm.form.$submitted}">
+        <label class="item item-input" form-field="vm.form.password">
           <i class="icon ion-ios-locked-outline placeholder-icon field-icon"></i>
           <input type="password"
                  placeholder="Password" translate translate-attr-placeholder="field.login-password"
                  ng-model="vm.user.password"
                  name="password"
                  ng-minlength="5"
-                 ng-maxlength="25"
                  required>
         </label>
 
-        <div class="form-errors" ng-show="vm.form.password.$error && vm.form.$submitted"
-             ng-messages="vm.form.password.$error">
-          <div ng-messages-include="js/app/util/templates/form-errors.html"></div>
+        <div fus-messages="vm.form.password">
+          <div ng-messages-include="js/app/common/util/templates/form-errors.html"></div>
         </div>
 
         <div class="item-note padding" ng-click="vm.forgot()" translate>link.forgot-password</div>
