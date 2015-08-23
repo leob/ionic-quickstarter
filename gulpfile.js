@@ -83,7 +83,8 @@ var paths = {
     './src/lib/ionic-service-analytics/ionic-analytics.js',   /* Ionic.io libraries, to do: minify */
     './src/lib/ionic-content-banner/dist/ionic.content.banner.min.js',
     './src/lib/angular-translate/angular-translate.min.js',
-    './src/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js'
+    './src/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js',
+    './src/lib/fus-messages/dist/fus-messages.js'
     ],
   dist: ['./www']
 };
