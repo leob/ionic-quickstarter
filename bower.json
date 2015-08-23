@@ -15,7 +15,6 @@
     "angular-translate-loader-static-files": "~2.7.2",
     "angular-ui-router": "0.2.13",
     "ionic-content-banner": "~1.0.1",
-    "ionic-filter-bar": "~1.0.4",
     "ngCordova": "~0.1.20-alpha",
     "parse": "~1.4.2",
     "fus-messages": "~0.0.2"
