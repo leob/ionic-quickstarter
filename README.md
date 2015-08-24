@@ -181,6 +181,22 @@ So the workflow then becomes:
 * run the command: ```ionic serve --nogulp```
 * when you are done, change ```ionic.project``` back to ```src```
 
+#### Adding libraries
+
+If you want to add a Javascript library (pre-made JS component) to the app, you will need to go through the following
+four steps (example: the "fus-messages" component, https://github.com/fusionalliance/fus-messages):
+
+* Install it with bower, e.g: ```bower install fus-messages --save``` (this also updates your project's
+```bower.json``` file).
+* Add the library path (e.g. ```'./src/lib/fus-messages/dist/fus-messages.js'``` to your ```gulp.js``` file so that
+```gulp build``` knows how to copy the library file(s) during the build. You need to add it to the ```lib``` section of
+the ```paths``` variable in ```gulp.js```, and normally you would choose the minified version (ending in ```.min.js```)
+of the library.
+* Add the library path to your project's ```index-template.html``` file inside a ```script``` tag, for instance:
+  ```<script src="lib/fus-messages/dist/fus-messages.js"></script>```
+* Finally, add the library's module name (e.g. ```fusionMessages```) to the list of your app dependencies inside the
+```app.module``` statement in your project's ```app.js``` file.
+
 ## Gulp file
 
 The gulp.js file supports the following commands:
