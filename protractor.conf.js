@@ -1,7 +1,7 @@
 /* global browser */
 exports.config = {
-        seleniumServerJar: './node_modules/protractor/selenium/selenium-server-standalone-2.44.0.jar',
-        chromeDriver: './node_modules/protractor/selenium/chromedriver',
+        // seleniumServerJar: './node_modules/protractor/selenium/selenium-server-standalone-2.44.0.jar',
+        // chromeDriver: './node_modules/protractor/selenium/chromedriver',
         allScriptsTimeout: 20000,
         specs: [
                 // E2E test specs are organized by user stories, not necessarily
