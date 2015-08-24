@@ -18,3 +18,4 @@ src/index.html
 src/css/ionic.app.css
 src/css/ionic.app.min.css
 src/js/config/config.js
+npm-debug.log
