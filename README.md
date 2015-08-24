@@ -184,11 +184,13 @@ So the workflow then becomes:
 #### Adding libraries
 
 If you want to add a Javascript library (pre-made JS component) to the app, you will need to go through the following
-four steps (example: the "fus-messages" component, https://github.com/fusionalliance/fus-messages):
+four steps.
+
+(example used below: the "fus-messages" component, https://github.com/fusionalliance/fus-messages)
 
 * Install it with bower, e.g: ```bower install fus-messages --save``` (this also updates your project's
 ```bower.json``` file).
-* Add the library path (e.g. ```'./src/lib/fus-messages/dist/fus-messages.js'``` to your ```gulp.js``` file so that
+* Add the library path (e.g. ```'./src/lib/fus-messages/dist/fus-messages.js'```) to your ```gulp.js``` file so that
 ```gulp build``` knows how to copy the library file(s) during the build. You need to add it to the ```lib``` section of
 the ```paths``` variable in ```gulp.js```, and normally you would choose the minified version (ending in ```.min.js```)
 of the library.
