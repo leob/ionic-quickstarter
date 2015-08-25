@@ -5,9 +5,7 @@ exports.config = {
                 // E2E test specs are organized by user stories, not necessarily
                 // reflecting the code structure of the project. Imagine things your
                 // users might do, and write e2e tests around those behaviors.
-                //'test/e2e/auth/forgotPassword.spec.js',
-                'test/e2e/auth/login.spec.js',
-                //'test/e2e/auth/signup.spec.js'
+                'test/e2e/**/*.spec.js',
         ],
         capabilities: {
                 // You can use other browsers
