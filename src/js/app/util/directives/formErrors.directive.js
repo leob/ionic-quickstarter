@@ -5,7 +5,7 @@
     return {
       restrict: 'E',
       replace: true,
-      template: '<div class="text-center" style="clear:both;" ng-show="vm.error.message">' +
+      template: '<div class="text-center form-error" ng-show="vm.error.message">' +
                     '<div class="padding badge badge-royal">' +
                       '{{vm.error.message}}' +
                     '</div>' +
