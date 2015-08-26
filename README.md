@@ -150,6 +150,9 @@ The ```gulp``` build process will write these values to ```src/js/config/config.
 
 Test mode (karma/jasmine) also uses the 'lightweight' build process and 'mock' services.
 
+We also support end-to-end (E2E) testing, see [here](https://github.com/leob/ionic-quickstarter/wiki/E2E-Testing) for
+details.
+
 For more details on configuring and using development, test and production mode, see the
 [Wiki](https://github.com/leob/ionic-quickstarter/wiki).
 
