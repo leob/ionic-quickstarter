@@ -9,16 +9,18 @@
   // The design of this directive was inspired by the fus-messages directive: github.com/fusionalliance/fus-messages
   //
 
-  appModule('app.util').directive('formField', formField);
-
-  function formField() {
+  appModule('app.util').directive('formField', function () {
     return {
       restrict: 'A',
       require: ['^form'],
       scope: true,
       link: function (scope, element, attrs, ctrls, transclude) {
         scope.inputModel = scope.$eval(attrs['formField']);
-        scope.$watchCollection(getFieldStatus, changeCssClasses);
+        var unwatch = scope.$watchCollection(getFieldStatus, changeCssClasses);
+
+        scope.$on('$destroy', function () {
+          unwatch();
+        });
 
         // get the field status depending on whether the input is dirty or when the form has been submitted, etc.
         function getFieldStatus () {
@@ -50,6 +52,6 @@
 
       }
     };
-  }
+  });
 
 }());
