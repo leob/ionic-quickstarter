@@ -29,7 +29,7 @@
         <ion-item class="item-icon-left" menu-close ng-show="!main.isLoggedIn()" ng-click="main.login()">
           <i class="icon primary ion-log-in"></i> <span translate>menu.login</span>
         </ion-item>
-        <ion-item class="item-icon-left" menu-close ng-show="main.isLoggedIn()" ng-click="main.logout()">
+        <ion-item name="logout" class="item-icon-left" menu-close ng-show="main.isLoggedIn()" ng-click="main.logout()">
           <i class="icon primary ion-log-out"></i> <span translate>menu.logout</span>
         </ion-item>
       </ion-list>
