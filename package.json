@@ -1,6 +1,7 @@
 {
   "name": "app",
   "version": "1.0.0",
+  "private": true,
   "description": "app: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
@@ -32,7 +33,8 @@
     "karma-jasmine": "^0.3.6",
     "karma-story-reporter": "^0.3.1",
     "shelljs": "^0.3.0",
-    "vinyl-paths": "^1.0.0"
+    "vinyl-paths": "^1.0.0",
+    "protractor": "^2.1.0"
   },
   "cordovaPlugins": [
     "org.apache.cordova.device",
@@ -40,5 +42,12 @@
     "org.apache.cordova.splashscreen",
     "com.ionic.keyboard",
     "cordova-plugin-whitelist"
-  ]
+  ],
+  "scripts": {
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor protractor.conf.js"
+  }
 }
