@@ -13,7 +13,7 @@ describe('Login', function(){
                 element(by.name('login')).click();
                 
                 // We should see an error message about the invalid password
-                var errorDisplay = element(by.css(".form-error"));
+                var errorDisplay = element(by.css(".form-errors"));
                 expect(errorDisplay.getText()).toContain('Invalid');
         });
         
