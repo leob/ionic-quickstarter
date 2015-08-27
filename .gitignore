@@ -18,7 +18,3 @@ src/css/ionic.app.css
 src/css/ionic.app.min.css
 src/js/config/config.js
 npm-debug.log
-
-# EXCLUDE TYPE DEFINITIONS, IF USED LOCALLY BY DEVELOPER
-typings/
-tsd.json
