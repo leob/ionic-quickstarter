@@ -1,0 +1,15 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "jasmine/jasmine.d.ts": {
+      "commit": "beba46f84f208cd9d03a329737fc04432d13f77f"
+    },
+    "angular-protractor/angular-protractor.d.ts": {
+      "commit": "beba46f84f208cd9d03a329737fc04432d13f77f"
+    }
+  }
+}
