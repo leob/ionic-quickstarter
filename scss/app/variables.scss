@@ -22,14 +22,14 @@ $dark:                            #444 !default;
 $positive:                          #4a87ee !default;
 
 // The primary 'brand' color
-$primary:                           $positive !default;
+$brand-primary:                           $positive !default;
 // The secondary 'brand' color
-$secondary: lighten($primary, 15%);
+$brand-secondary: lighten($brand-primary, 15%);
 // A neutral "non-branded" color
 $neutral: lighten(grey, 20%);
 
 // For ionic-content-banner
-$content-banner-info-bg: $secondary !default;
+$content-banner-info-bg: $brand-secondary !default;
 
 // dark color variable needed for definitions further on
 $dark:                              #444 !default;
@@ -47,11 +47,11 @@ $input-color-placeholder:           lighten($dark, 15%) !default;
 
 $bar-transparency:                1 !default;
 
-$button-primary-bg:                 $primary !default;
+$button-primary-bg:                 $brand-primary !default;
 $button-primary-text:               #fff !default;
-$button-primary-border:             darken($primary, 8%) !default;
-$button-primary-active-bg:          darken($primary, 8%) !default;
-$button-primary-active-border:      darken($primary, 8%) !default;
+$button-primary-border:             darken($brand-primary, 8%) !default;
+$button-primary-active-bg:          darken($brand-primary, 8%) !default;
+$button-primary-active-border:      darken($brand-primary, 8%) !default;
 
 $bar-primary-bg:                    rgba($button-primary-bg, $bar-transparency) !default;
 $bar-primary-text:                  $button-primary-text !default;
@@ -59,11 +59,11 @@ $bar-primary-border:                $button-primary-border !default;
 $bar-primary-active-bg:             $button-primary-active-bg !default;
 $bar-primary-active-border:         $button-primary-active-border !default;
 
-$button-secondary-bg:                 $secondary !default;
+$button-secondary-bg:                 $brand-secondary !default;
 $button-secondary-text:               #fff !default;
-$button-secondary-border:             darken($secondary, 8%) !default;
-$button-secondary-active-bg:          darken($secondary, 8%) !default;
-$button-secondary-active-border:      darken($secondary, 8%) !default;
+$button-secondary-border:             darken($brand-secondary, 8%) !default;
+$button-secondary-active-bg:          darken($brand-secondary, 8%) !default;
+$button-secondary-active-border:      darken($brand-secondary, 8%) !default;
 
 $bar-secondary-bg:                    rgba($button-secondary-bg, $bar-transparency) !default;
 $bar-secondary-text:                  $button-secondary-text !default;
@@ -88,7 +88,7 @@ $tabs-height:                     40px !default;
 //$tabs-badge-padding:              1px 6px !default;
 //$tabs-badge-font-size:            12px !default;
 
-$tabs-brand:                         $secondary !default;
+$tabs-brand:                         $brand-secondary !default;
 $tabs-brand-bg:                      $button-secondary-bg !default;
 $tabs-brand-border:                  $button-secondary-border !default;
 $tabs-brand-text:                    $button-secondary-text !default;

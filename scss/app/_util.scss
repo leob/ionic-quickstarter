@@ -2,14 +2,24 @@
     Title bars, nav bars
 */
 
-.primary, a.primary {
-    color: $primary;
+.brand-primary, a.brand-primary {
+    color: $brand-primary;
 }
 .primary-bg {
-    background-color: $primary;
+    background-color: $brand-primary;
 }
 .primary-border {
     border-color: $button-primary-border;
+}
+
+.brand-secondary, a.brand-secondary {
+    color: $brand-secondary;
+}
+.secondary-bg {
+    background-color: $brand-secondary;
+}
+.secondary-border {
+    border-color: $button-secondary-border;
 }
 
 .margin-left-5 {
@@ -20,7 +30,7 @@
 }
 
 .margin-top-15 {
-     margin-top: 15px;
+    margin-top: 15px;
 }
 .margin-bottom-15 {
     margin-bottom: 15px;
