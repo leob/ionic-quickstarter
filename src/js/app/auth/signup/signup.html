@@ -11,11 +11,12 @@
 
         <span class="note item item-borderless" translate="prompt.signup"></span>
 
-        <label class="item item-input" form-field="vm.form.email">
+        <label class="item item-input first-field">
           <i class="icon ion-ios-person-outline placeholder-icon field-icon"></i>
           <input type="email"
                  placeholder="Email" translate translate-attr-placeholder="field.email"
                  ng-model="vm.user.email"
+                 form-field="vm.form.email"
                  name="email"
                  ng-minlength="5"
                  ng-maxlength="50"
@@ -26,11 +27,12 @@
           <div ng-messages-include="js/app/util/templates/form-errors.html"></div>
         </div>
 
-        <label class="item item-input" form-field="vm.form.password">
+        <label class="item item-input">
           <i class="icon ion-ios-locked-outline placeholder-icon field-icon"></i>
           <input type="password"
                  placeholder="Password" translate translate-attr-placeholder="field.password"
                  ng-model="vm.user.password"
+                 form-field="vm.form.password"
                  name="password"
                  ng-model="user.password"
                  ng-minlength="5"

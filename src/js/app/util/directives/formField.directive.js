@@ -3,8 +3,8 @@
   "use strict";
 
   //
-  // A directive that can be used on a 'label' element to indicate the form field associated with the label.
-  // This is then used to highlight the field (using CSS classes) when the field becomes 'valid' or 'invalid'.
+  // A directive that can be used on an input or textarea element to indicate the form field associated with the input.
+  // This is then used to highlight the label (using CSS classes) when the field becomes 'valid' or 'invalid'.
   //
   // The design of this directive was inspired by the fus-messages directive: github.com/fusionalliance/fus-messages
   //
@@ -15,8 +15,17 @@
       require: ['^form'],
       scope: true,
       link: function (scope, element, attrs, ctrls, transclude) {
+
         scope.inputModel = scope.$eval(attrs['formField']);
         var unwatch = scope.$watchCollection(getFieldStatus, changeCssClasses);
+
+        var parent = element.parent();
+
+        element.bind('focus',function () {
+          parent.addClass('has-focus');
+        }).bind('blur', function () {
+          parent.removeClass('has-focus');
+        });
 
         scope.$on('$destroy', function () {
           unwatch();
@@ -39,14 +48,14 @@
 
         function changeCssClasses(state) {
           if (state == 'I') {
-            element.addClass('has-error');
-            element.removeClass('valid-lr');
+            parent.addClass('has-error');
+            parent.removeClass('valid-lr');
           } else if (state == 'V') {
-            element.removeClass('has-error');
-            element.addClass('valid-lr');
+            parent.removeClass('has-error');
+            parent.addClass('valid-lr');
           } else {
-            element.removeClass('has-error');
-            element.removeClass('valid-lr');
+            parent.removeClass('has-error');
+            parent.removeClass('valid-lr');
           }
         }
 

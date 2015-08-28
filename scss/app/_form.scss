@@ -4,25 +4,45 @@
 
 /* ==== FORM VALIDATION ==== */
 
-/* BEGIN from https://calendee.com/2014/12/26/validation-in-ionic-framework-apps-with-ngmessages/ */
-.has-error {
-    border-bottom: 1px solid $primary;
-}
-
-.valid {
+/* BEGIN inspired by: https://calendee.com/2014/12/26/validation-in-ionic-framework-apps-with-ngmessages/ */
+label.item.valid {
     border-left: 2px solid green;
     border-right: 2px solid green;
 }
 
+label.item.has-error {
+    border-bottom: 1px solid $brand-primary;
+}
+
+// Override the "label.item.has-focus" style: give the field the error style (not the focus style) even if it has focus
+label.item.has-focus.has-error {
+    border-bottom: 1px solid $brand-primary;
+}
+
+// fix/hack/workaround for the first field on a form which uses inline labels and has more than 1 field
+label.item.has-focus.first-field {
+    border-bottom: 2px solid darken(lightgrey,15%);
+    padding-bottom: 1px;
+}
+
+// Override the "label.item.has-focus" style: give the field the error style (not the focus style) even if it has focus
+label.item.has-focus.has-error.first-field {
+    border-bottom: 1px solid $brand-primary;
+}
+
+// on focus give the field a lightgrey 2 px bottom border; also need a 1px padding to make it visible
+label.item.has-focus {
+    border-bottom: 2px solid darken(lightgrey,15%);
+}
+
 .form-errors {
-    /** Styling for the error text and container **/
     margin: 5px;
     clear: both;
 }
 
 .form-error {
     padding: 2px 0 2px 16px;
-    color: $primary;
+    color: $brand-primary;
 }
-/* END from https://calendee.com/2014/12/26/validation-in-ionic-framework-apps-with-ngmessages/ */
+/* END inspired by: https://calendee.com/2014/12/26/validation-in-ionic-framework-apps-with-ngmessages/ */
 
