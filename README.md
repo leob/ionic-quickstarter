@@ -202,6 +202,15 @@ of the library.
 * Finally, add the library's module name (e.g. ```fusionMessages```) to the list of your app dependencies inside the
 ```app.module``` statement in your project's ```app.js``` file.
 
+#### Troubleshooting modulerr errors in a production build
+
+Sometimes, after doing a production build/run (```gulp build``` followed by ```ionic build``` or ```ionic run```) you
+will see nothing but a blank page when starting the app on your device.
+
+The most common cause is that you have the infamous AngularJS 'modulerr' error. To debug and fix this, please consult
+[this](https://github.com/leob/ionic-quickstarter/wiki/Troubleshooting-modulerr-errors-in-a-production-build) Wiki
+page.
+
 ## Gulp file
 
 The gulp.js file supports the following commands:
