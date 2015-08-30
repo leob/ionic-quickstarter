@@ -33,6 +33,10 @@ appModule('app.user')
      * Instance ('this') is not available in static context
      */
     User.build = function (data) {
+      if (!data) {
+        return null;
+      }
+
       return new User(
         data.userName,
         new Date(),
