@@ -91,10 +91,6 @@
         return UserService.currentUser() !== null;
       };
 
-      var isValidUser = function () {
-        return UserService.currentUser() !== null && UserService.currentUser().emailVerified;
-      };
-
       var showLoading = function (showBackdrop) {
         $ionicLoading.show({
           content: '',
@@ -124,7 +120,6 @@
         setInitialRun: setInitialRun,
         isUserRegistered: isUserRegistered,
         setUserRegistered: setUserRegistered,
-        isValidUser: isValidUser,
         isUserLoggedIn: isUserLoggedIn,
         gotoPage: gotoPage,
         gotoStartPage: gotoStartPage,
