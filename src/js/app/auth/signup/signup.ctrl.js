@@ -32,8 +32,8 @@ var SignupCtrl = /*@ngInject*/function ($scope, $state, Application, UserService
 
         log.info("User signed up successfully");
 
-        // go to the login page, displaying a message asking the user to verify their email
-        $state.go('login', {verifyEmail: 'verify'});
+        // go to the login page, optionally displaying a message asking the user to verify their email
+        $state.go('login', !signedupUser.emailVerified ? {verifyEmail: 'verify'} : {});
       })
       .catch(function (error) {
         Application.hideLoading();
