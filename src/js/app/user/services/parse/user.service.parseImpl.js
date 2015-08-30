@@ -7,17 +7,11 @@ appModule('app.user')
 
     var parseInitialized = false;
     var currentLoggedinUser = null;
-    var currentParseUser = null;
 
     var setCurrentUser = function (parseUser) {
-      currentParseUser = parseUser;
       currentLoggedinUser = ParseUserAdapter.getUserFromParseUser(parseUser);
 
       return currentLoggedinUser;
-    };
-
-    var getCurrentParseUser = function () {
-      return currentParseUser;
     };
 
     var init = function () {
@@ -104,9 +98,13 @@ appModule('app.user')
 
       Parse.User.logIn(username, password).then(
         function (loggedinUser) {
-          $log.debug("Login done");
-
-          deferred.resolve(setCurrentUser(loggedinUser));
+          if (!loggedinUser.attributes.emailVerified) {
+            $log.debug("Login: user not verified");
+            deferred.reject("not_verified");
+          } else {
+            $log.debug("Login done");
+            deferred.resolve(setCurrentUser(loggedinUser));
+          }
         },
         function (error) {
           $log.debug("Error logging in user (" + error.code + "): " + error.message);

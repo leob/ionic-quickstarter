@@ -56,15 +56,9 @@
       UserService.login(('' + vm.user.username).toLowerCase(), vm.user.password).then(function (loggedinUser) {
         Application.hideLoading();
 
-        // if there's a "logged in user" but the user's email isn't verified then we consider the user not logged in
-        if (!loggedinUser.emailVerified) {
-          vm.errorMessage('message.email-not-verified');
-
-        } else {
-          // user logged in implies the user is registered
-          Application.setUserRegistered(true);
-          Application.gotoStartPage($state);
-        }
+        // user logged in implies the user is registered
+        Application.setUserRegistered(true);
+        Application.gotoStartPage($state);
       })
         .catch(function (error) {
           Application.hideLoading();
@@ -72,6 +66,8 @@
           // login failed, check error to see why
           if (error == "invalid_credentials") {
             vm.errorMessage('message.invalid-credentials');
+          } else if (error == "not_verified") {
+            vm.errorMessage('message.email-not-verified');
           } else {
             vm.errorMessage('message.unknown-error');
           }

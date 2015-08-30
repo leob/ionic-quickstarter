@@ -1,7 +1,7 @@
 ;(function() {
 "use strict";
 
-var ForgotPasswordCtrl = /*@ngInject*/function ($scope, $state, Application, UserService) {
+var ForgotPasswordCtrl = /*@ngInject*/function ($scope, $state, $translate, Application, UserService) {
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
   var vm = this;
   var log = Application.getLogger('ForgotPasswordCtrl');

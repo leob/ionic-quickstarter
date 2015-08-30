@@ -26,10 +26,6 @@ angular.module('app')
       return Application.isUserLoggedIn();
     };
 
-    this.isValidUser = function() {
-      return Application.isValidUser();
-    };
-
   })
 ;
 }());
