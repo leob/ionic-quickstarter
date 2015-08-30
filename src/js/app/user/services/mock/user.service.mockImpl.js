@@ -14,14 +14,14 @@ appModule('app.user')
     };
 
     var setCurrentUser = function (userData) {
-      currentLoggedinUser = userData === null ? null : User.build(userData);
+      currentLoggedinUser = User.build(userData);
 
       return currentLoggedinUser;
     };
 
     var init = function () {
 
-      setCurrentUser(User.build(userData));     // set logged in user at app startup
+      setCurrentUser(userData);     // set logged in user at app startup
       // comment out the line above and uncomment the next line to require login at startup
       //setCurrentUser(null);     // no valid user at application init, forcing login at start up
 
