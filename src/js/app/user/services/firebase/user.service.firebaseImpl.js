@@ -3,13 +3,10 @@
 
   appModule('app.user')
 
-    .service('UserServiceFirebaseImpl', function ($q, $log, loggingService, User, FirebaseConfiguration,
-                                                  $firebaseAuth) {
+    .service('UserServiceFirebaseImpl', function ($q, $log, loggingService, User, fbutil, $firebaseAuth) {
 
       var currentLoggedinUser = null;
-
-      var ref = new Firebase(FirebaseConfiguration.url);
-      var auth = $firebaseAuth(ref);
+      var auth = $firebaseAuth(fbutil.ref());
 
       // make a canonical user from a Firebase user object
       function createUser(fbUser) {

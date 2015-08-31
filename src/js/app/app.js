@@ -28,7 +28,7 @@
     // config
     'app.config',
     // generic services
-    'app.util',
+    'app.util', 'app.firebase',
     // app services
     'app.user', 'app.tracking',
     // controllers and routers
