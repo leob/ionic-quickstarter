@@ -14,6 +14,8 @@
     "angular-translate": "~2.7.2",
     "angular-translate-loader-static-files": "~2.7.2",
     "angular-ui-router": "0.2.13",
+    "angularfire": "~1.1.2",
+    "firebase": "~2.2.9",
     "ionic-content-banner": "~1.0.1",
     "ngCordova": "~0.1.20-alpha",
     "parse": "~1.4.2",

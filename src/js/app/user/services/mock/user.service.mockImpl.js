@@ -3,7 +3,7 @@
 
 appModule('app.user')
 
-  .service('UserServiceMockImpl', function ($q, $log, loggingService, User, $rootScope, $translate) {
+  .service('UserServiceMockImpl', function ($q, $log, loggingService, User) {
 
     var currentLoggedinUser = null;
 
@@ -13,11 +13,11 @@ appModule('app.user')
       password: 'password'
     };
 
-    var setCurrentUser = function (userData) {
+    function setCurrentUser(userData) {
       currentLoggedinUser = User.build(userData);
 
       return currentLoggedinUser;
-    };
+    }
 
     var init = function () {
 
