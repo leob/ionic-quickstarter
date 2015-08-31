@@ -8,11 +8,48 @@ appModule('app.user')
     var parseInitialized = false;
     var currentLoggedinUser = null;
 
-    var setCurrentUser = function (parseUser) {
+    function setCurrentUser(parseUser) {
       currentLoggedinUser = ParseUserAdapter.getUserFromParseUser(parseUser);
 
       return currentLoggedinUser;
-    };
+    }
+
+    function mapError(error, context) {
+
+      if (!error || !error.code) {
+        loggingService.log("UserServiceParseImpl - " + context,
+          "Error (" + context + "): " + JSON.stringify(error));
+        return "unknown_error";
+      }
+
+      var code = error.code;
+
+      if (context === 'signup') {
+        if (error.code === 125) {
+          return 'invalid_email';
+        }
+        if (error.code === 202) {
+          return "already_registered";
+        }
+      }
+
+      if (context === 'login') {
+        if (error.code === 101) {
+          return "invalid_credentials";
+        }
+      }
+
+      if (context === 'reset-password') {
+        if (error.code === 205) {
+          return "invalid_email";
+        }
+      }
+
+      loggingService.log("UserServiceParseImpl - " + context,
+        "Error (" + context + "): " + JSON.stringify(error));
+
+      return "unknown_error";
+    }
 
     var init = function () {
 
@@ -70,20 +107,9 @@ appModule('app.user')
           deferred.resolve(ParseUserAdapter.getUserFromParseUser(signedupParseUser));
         },
         function (error) {
-          $log.debug("Error signing up user (" + error.code + "): " + error.message);
+          $log.debug("Error creating user: " + JSON.stringify(error));
 
-          if (error.code === 125) {
-            error = 'invalid_email';
-          } else if (error.code === 202) {
-            error = "already_registered";
-          } else {
-            loggingService.log("Signup:", "Unknown error during signup (" + error.code + ") for user '" +
-              user.email + "': " + error.message);
-
-            error = "unknown_error";
-          }
-
-          deferred.reject(error);
+          deferred.reject(mapError(error, "signup"));
         });
 
       return deferred.promise;
@@ -107,18 +133,9 @@ appModule('app.user')
           }
         },
         function (error) {
-          $log.debug("Error logging in user (" + error.code + "): " + error.message);
+          $log.debug("Login Failed: " + JSON.stringify(error));
 
-          if (error.code === 101) {
-            error = "invalid_credentials";
-          } else {
-            loggingService.log("Login:", "Unknown error during login (" + error.code + ") for user '" + username +
-              "': " + error.message);
-
-            error = "unknown_error";
-          }
-
-          deferred.reject(error);
+          deferred.reject(mapError(error, "login"));
         });
 
       return deferred.promise;
@@ -144,18 +161,9 @@ appModule('app.user')
           deferred.resolve();
         },
         function (error) {
-          $log.debug("Error resetting password (" + error.code + "): " + error.message);
+          $log.debug("Error resetting password for user (" + email + "): " + JSON.stringify(error));
 
-          if (error.code === 205) {
-            error = "invalid_email";
-          } else {
-            loggingService.log("Password reset:", "Unknown error during pssword reset (" + error.code +
-              ") for user '" + email + "': " + error.message);
-
-            error = "unknown_error";
-          }
-
-          deferred.reject(error);
+          deferred.reject(mapError(error, "reset-password"));
         });
 
       return deferred.promise;

@@ -8,6 +8,9 @@
       "applicationId": "applicationId",
       "javascriptKey": "javascriptKey"
     },
+    "FirebaseConfiguration": {
+      "url": "https://your-firebase-app.firebaseio.com"
+    },
     "ionicIO": {
       "appId": "appId",
       "apiKey": "apiKey"

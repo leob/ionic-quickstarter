@@ -19,6 +19,7 @@
   angular.module('app', [
     // libraries
     'ionic', 'ionic.service.core', 'ionic.service.analytics',  // IONIC.IO (Alpha software - disable for production?)
+    "firebase",
     'ngCordova', 'ngMessages', 'fusionMessages',
     // angular-translate
     'pascalprecht.translate',

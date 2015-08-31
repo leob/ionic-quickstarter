@@ -84,7 +84,9 @@ var paths = {
     './src/lib/ionic-content-banner/dist/ionic.content.banner.min.js',
     './src/lib/angular-translate/angular-translate.min.js',
     './src/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js',
-    './src/lib/fus-messages/dist/fus-messages.js'
+    './src/lib/fus-messages/dist/fus-messages.js',
+    './src/lib/firebase/firebase.js',
+    './src/lib/angularfire/dist/angularfire.min.js'
     ],
   dist: ['./www']
 };
