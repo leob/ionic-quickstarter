@@ -101,12 +101,12 @@ gulp.task('default', ['dev-config', 'dev-sass', 'inject-index']);
 
 // watch task for DEV
 //
-// NOTE: inject-index commented out because this isn't reliable within the "watch" task - so, if you add or remove
-// Javascript files and you want to inject them into index.html, then you just need to restart "ionic serve" so that
-// the "default" task can re-run 'inject-index'
+// NOTE: inject-index does not run automatically within the "watch" task - so, if you add or remove Javascript files
+// and you want to inject them into index.html, then you just need to restart "ionic serve" so that the "default" task
+// can re-run 'inject-index'.
 
 gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['dev-sass', 'inject-index']);
+  gulp.watch(paths.sass, ['dev-sass']);
 });
 
 // karma tasks for TEST
