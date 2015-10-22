@@ -15,9 +15,15 @@
     http://stackoverflow.com/questions/29814717/getting-error-to-setup-ngcordova-firsttime
     https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
     http://stackoverflow.com/questions/30212306/no-content-security-policy-meta-tag-found-error-in-my-phonegap-application
+    http://forum.ionicframework.com/t/ionic-google-maps-referenceerror-google-is-not-defined/22550/3
+
+    NOTE: this article uses a different meta-tag:
+        http://www.gajotres.net/using-cordova-geoloacation-api-with-google-maps-in-ionic-framework/
+    NAMELY, as follows:
+        <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
   -->
   <meta http-equiv="Content-Security-Policy"
-        content="default-src &apos;self&apos; * data: gap: https://ssl.gstatic.com &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;; style-src &apos;self&apos; &apos;unsafe-inline&apos;; media-src *">
+        content="default-src 'self' * data: gap: https://ssl.gstatic.com https://maps.googleapis.com/ https://maps.gstatic.com/ https://mts0.googleapis.com/ 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
 
   <title></title>
 
@@ -58,10 +64,12 @@
 
   <script src="lib/ionic-content-banner/dist/ionic.content.banner.min.js"></script>
 
+  <script src="js/lib/ng-img-crop-customized/ng-img-crop.min.js"></script>
+
   <!-- ngCordova - IMPORTANT : SHOULD be after ionic bundle and before cordova.js -->
   <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
   <!-- Cordova script (this will be a 404 during development) -->
-  <script src="cordova.js"></script>
+  <!--<script src="cordova.js"></script>-->
 
   <script src="js/modules.js"></script>
 

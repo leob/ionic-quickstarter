@@ -2,15 +2,21 @@
     Custom styles
 */
 
+@import "action-sheet-customized";
 @import "bar";
 @import "button";
+@import "content-banner";
 @import "form";
 @import "intro";
 @import "layout";
+@import "profile";
 @import "styles";
 @import "tabs";
 @import "text";
 @import "util";
 
 // ionic-content-banner: https://github.com/djett41/ionic-content-banner
-@import "../../src/lib/ionic-content-banner/scss/ionic.content.banner";
+//@import "../../src/lib/ionic-content-banner/scss/ionic.content.banner";
+
+@import "../../src/js/lib/ng-img-crop-customized/ng-img-crop";
+

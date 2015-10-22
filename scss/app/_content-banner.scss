@@ -1,0 +1,89 @@
+// Content Banner
+
+// Variables
+//-----------------------------------
+
+
+$content-banner-opacity: 0.95     !default;
+$content-banner-error-opacity: 1.0     !default;
+
+$content-banner-info-bg: $brand-secondary !default;
+$content-banner-error-bg: $brand-secondary   !default;
+
+$content-banner-height: 50px    !default;
+$content-banner-error-height: 30px    !default;
+
+// Styles
+//-----------------------------------
+
+.content-banner {
+  width: 100%;
+  color: white;
+  position: absolute;
+  top: 0;
+
+  &.error {
+    background-color: $content-banner-error-bg;
+    opacity: $content-banner-error-opacity;
+    height: $content-banner-error-height;
+    line-height: $content-banner-error-height;
+
+    .content-banner-close {
+      line-height: $content-banner-error-height;
+      &:before {
+        line-height: $content-banner-error-height;
+      }
+    }
+  }
+  &.info {
+    background-color: $content-banner-info-bg;
+    opacity: $content-banner-opacity;
+    height: $content-banner-height;
+    line-height: $content-banner-height;
+
+    .content-banner-close {
+      line-height: $content-banner-height;
+      &:before {
+        line-height: $content-banner-height;
+      }
+    }
+  }
+  .content-banner-text {
+    @include transition(opacity 500ms linear) ;
+    position: absolute;
+    top: 0;
+    right: ($button-padding * 2) + 5px + 12px;
+    left: ($button-padding * 2) + 5px + 12px;
+    text-align: center;
+    &.active {
+      opacity: 1;
+    }
+    &:not(.active){
+      opacity: 0;
+    }
+  }
+  .content-banner-close {
+    position: absolute;
+    right: 5px;
+    top: 0;
+    padding: 0 $button-padding;
+    height: 100%;
+    min-height: 0;
+    color: white;
+  }
+}
+
+.content-banner-transition-vertical {
+  @include transition-transform(linear 250ms);
+  @include translate3d(0, -100%, 0);
+}
+
+.content-banner-transition-fade {
+  @include transition(opacity 400ms linear) ;
+  opacity: 0;
+}
+
+.content-banner-in {
+  @include translate3d(0, 0, 0);
+  opacity: $content-banner-opacity;
+}

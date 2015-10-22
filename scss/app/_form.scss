@@ -4,11 +4,15 @@
 
 /* ==== FORM VALIDATION ==== */
 
-/* BEGIN inspired by: https://calendee.com/2014/12/26/validation-in-ionic-framework-apps-with-ngmessages/ */
-label.item.valid {
-    border-left: 2px solid green;
-    border-right: 2px solid green;
+.label-no-border {
+    border: none;
 }
+
+/* BEGIN inspired by: https://calendee.com/2014/12/26/validation-in-ionic-framework-apps-with-ngmessages/ */
+//.valid-lr {
+//    border-left: 2px solid green;
+//    border-right: 2px solid green;
+//}
 
 label.item.has-error {
     border-bottom: 1px solid $brand-primary;
@@ -45,4 +49,3 @@ label.item.has-focus {
     color: $brand-primary;
 }
 /* END inspired by: https://calendee.com/2014/12/26/validation-in-ionic-framework-apps-with-ngmessages/ */
-

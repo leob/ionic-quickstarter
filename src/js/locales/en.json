@@ -2,6 +2,7 @@
   "menu": {
     "home": "Home",
     "intro": "Intro",
+    "user-profile": "User Profile",
     "login": "Log in",
     "logout": "Log out"
   },
@@ -24,6 +25,33 @@
       "text1": "Then read the manual."
     }
   },
+  "manage": {
+    "userProfile": {
+      "title": "User Profile",
+      "fields": {
+        "name": "First and last name",
+        "name-placeholder": "Your name (first and last)",
+        "sex": "Sex (M/F)",
+        "sex-message": "Select please",
+        "sex-male": "Male",
+        "sex-female": "Female",
+        "images": "Profile picture",
+        "images-hint1": "Click to change photo:",
+        "images-hint2": "Uploading a photo is not mandatory.",
+        "images-hint3": "NOTE: only available when running on a device (Cordova)",
+        "images-profile-photo1": "Profile",
+        "images-profile-photo2": "picture",
+        "other": "Other data",
+        "email": "Email adress"
+      },
+      "upload-profile-photo": "Upload profile picture"
+    },
+    "image-crop-dialog": {
+      "title": "Crop image",
+      "subtitle1": "Select the desired portion of the image ny moving or resizing the frame.",
+      "subtitle2": "This is what the image will look like:"
+    }
+  },
   "field": {
     "email": "Email",
     "password": "Password",
@@ -36,7 +64,8 @@
     "login": "Log in",
     "previous": "Previous",
     "next": "Next",
-    "skip-intro": "Skip intro"
+    "close-intro": "Close intro",
+    "save": "Save"
   },
   "link": {
     "back": "Back",
@@ -53,6 +82,14 @@
     "forgot-password": "Enter your email to reset your password"
   },
   "message": {
+    "invalid-fields": "Please enter all required fields",
+    "data-was-saved": "The data was saved",
+    "image-was-saved": "The image was saved",
+    "image-was-not-saved": "the image was not saved",
+    "image-was-not-saved1": "The image was NOT saved.",
+    "image-was-not-saved2": "Please check your network connection.",
+    "image-was-not-saved3": "Then try again please.",
+    "upload-profile-image": "Please upload a profile image.",
     "required": "This field is required.",
     "min-5": "Enter at least 5 characters.",
     "max-50": "Enter at most 50 characters.",
@@ -76,5 +113,25 @@
     "text": "Are you sure you want to leave the app?",
     "cancel-button": "Cancel",
     "ok-button": "OK"
+  },
+  "leave-page-popup": {
+    "title": "Please confirm",
+    "text": "You will lose the changes you've made if you leave the page.<br/><br/>Please select:",
+    "cancel-button": "DO leave",
+    "ok-button": "Do NOT leave"
+  },
+  "leave-form-popup": {
+    "title": "Please confirm",
+    "text": "You will lose the changes you've made if you leave the form.<br/><br/>Please select:",
+    "cancel-button": "DO leave",
+    "ok-button": "Do NOT leave"
+  },
+  "media-dialog": {
+    "buttons": {
+      "camera": "Take a picture",
+      "library": "Select existing picture"
+    },
+    "title-text": "Upload picture",
+    "cancel-text": "Cancel"
   }
 }

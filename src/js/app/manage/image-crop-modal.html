@@ -1,0 +1,47 @@
+<div class="modal">
+
+  <ion-header-bar class="bar-primary">
+    <h1 class="title" translate>manage.image-crop-dialog.title</h1>
+
+    <div class="buttons">
+      <button class="button button-clear ion-android-close" ng-click="closeImageCropModal()"></button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content scroll="true">
+    <ion-list>
+      <ion-item class="item-text-wrap note" translate>manage.image-crop-dialog.subtitle1</ion-item>
+
+      <ion-item>
+        <div class="image-crop">
+          <img-crop image="image.originalImage"
+                    result-image="image.croppedImage"
+                    area-type="square"
+                    result-image-format="image/jpeg"
+                    result-image-quality="1.0"
+                    result-image-aspect="{{image.aspectRatio}}"
+                    change-on-fly="true">
+
+          </img-crop>
+        </div>
+      </ion-item>
+
+      <ion-item class="item-text-wrap note" translate>manage.image-crop-dialog.subtitle2</ion-item>
+
+      <ion-item class="row-no-padding">
+        <div class="image-crop-result">
+          <img height="120" width="{{120 * widthHeightRatio}}" ng-src="{{image.croppedImage}}"/>
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <div class="padding">
+          <button class="button button-block button-primary" ng-click="saveImageCropModal()" translate>button.save
+          </button>
+        </div>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+
+</div>

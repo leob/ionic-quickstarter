@@ -56,6 +56,8 @@ var paths = {
   css: ['./src/css/**/*.css'],
   scripts: [
     './src/js/**/*.js',
+    '!./src/js/lib/ng-img-crop-customized/ng-img-crop.js',   /* exclude ng-img-crop.js: handled separately */
+    '!./src/js/lib/ng-img-crop-customized/ng-img-crop.min.js',   /* exclude ng-img-crop.min.js: handled separately */
     '!./src/js/config/config.js'   /* exclude config.js: handled separately */
   ],
   injectedScripts: [
@@ -86,7 +88,8 @@ var paths = {
     './src/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js',
     './src/lib/fus-messages/dist/fus-messages.js',
     './src/lib/firebase/firebase.js',
-    './src/lib/angularfire/dist/angularfire.min.js'
+    './src/lib/angularfire/dist/angularfire.min.js',
+    './src/js/lib/ng-img-crop-customized/ng-img-crop.min.js'
     ],
   dist: ['./www']
 };
