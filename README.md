@@ -10,10 +10,11 @@ I intend to keep this starter app up to date with the newest versions of Ionic e
 See [Todo and Roadmap](https://github.com/leob/ionic-quickstarter/wiki/Todo-and-roadmap) on the Wiki, and feel free to
 [contribute](https://github.com/leob/ionic-quickstarter/wiki/Contributing).
 
-***NOTE:*** this starter app is based on Ionic 1.x and Angular 1.x. The upcooming new Ionic 2 release will, in all
-likelihood, address 80-90% of the issues which this starter app aims to address (e.g. build system, SASS/styling,
-common Ionic 'gotchas' and so on). So post-Ionic 2 this starter (and most other starters) will probably not be that
-relevant anymore.
+***NOTE:*** this starter app is based on Ionic 1.x and Angular 1.x.
+
+The upcoming new Ionic 2 release will, in all likelihood, address 80-90% of the issues which this starter app aims to
+address (e.g. build system, SASS/styling, common Ionic 'gotchas' and so on). So, "post-Ionic 2" this starter (and most
+other starters) will probably lose a lot of their relevance.
 
 ## Table of contents
 
