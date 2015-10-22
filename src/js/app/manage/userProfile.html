@@ -1,0 +1,111 @@
+<ion-view>
+  <ion-nav-title>{{vm.title}}</ion-nav-title>
+
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-ios-home-outline" ng-click="main.goHome()">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content has-header="false" has-tabs="false" padding="false" scroll="true">
+
+    <h3 class="padding" translate>manage.userProfile.title</h3>
+
+    <form name="vm.form" novalidate="">
+      <form-dirty-check dirty="vm.form.$dirty"></form-dirty-check>
+
+      <ion-list>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label" translate>manage.userProfile.fields.name</span>
+
+          <input type="text"
+                 name="name"
+                 ng-model="vm.user.name"
+                 form-field="vm.form.name"
+                 translate translate-attr-placeholder="manage.userProfile.fields.name-placeholder"
+                 ng-minlength="5"
+                 ng-maxlength="50"
+                 required>
+        </label>
+
+        <div fus-messages="vm.form.name">
+          <div ng-messages-include="js/app/util/templates/form-errors.html"></div>
+        </div>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label" translate>manage.userProfile.fields.sex</span>
+
+          <div class="input">
+            <ion-checkbox class="checkbox-primary" style="border:none; display:inline-block;" ng-model="vm.isMale">
+                          <span translate>manage.userProfile.fields.sex-male</span></ion-checkbox>
+            <ion-checkbox class="checkbox-primary" style="border:none; display:inline-block;" ng-model="vm.isFemale">
+                          <span translate>manage.userProfile.fields.sex-female</span></ion-checkbox>
+          </div>
+        </label>
+
+        <div class="form-errors" ng-show="!vm.user.sex && vm.form.$submitted">
+          <div class="form-error" translate>manage.userProfile.fields.sex-message</div>
+        </div>
+
+        <div ng-if="vm.canEditProfileImage">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label" translate>manage.userProfile.fields.images</span>
+            <br/>
+            <span class="link" translate>manage.userProfile.fields.images-hint1</span>
+          </label>
+
+          <div class="item item-borderless row-no-padding">
+            <div class="profile-header">
+              <div class="profile-header-logo-wrapper" ng-click="vm.uploadProfileImage()">
+                <div class="profile-header-logo">
+                  <img ng-src="{{vm.user.profileImage}}">
+
+                  <div class="profile-header-logo-text">
+                    <span class="bold" translate>manage.userProfile.fields.images-profile-photo1</span>
+                    <br/>
+                    <span class="bold" translate>manage.userProfile.fields.images-profile-photo2</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="link padding" translate>manage.userProfile.fields.images-hint2</div>
+          </div>
+        </div>
+
+        <div ng-if="!vm.canEditProfileImage">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label" translate>manage.userProfile.fields.images</span>
+            <br/>
+            <span class="link" translate>manage.userProfile.fields.images-hint3</span>
+          </label>
+        </div>
+
+        <ion-item class="item-divider">
+          <span class="h4" translate>manage.userProfile.fields.other</span>
+        </ion-item>
+
+        <!-- Read-only field -->
+        <label class="item item-input item-stacked-label">
+          <span class="input-label" translate>manage.userProfile.fields.email</span>
+
+          <input type="text"
+                 name="email"
+                 ng-model="vm.user.email"
+                 form-field="vm.form.email"
+                 placeholder="Email"
+                 ng-readonly="true">
+        </label>
+
+        <form-errors></form-errors>
+
+        <div class="padding">
+          <button class="button button-block button-primary" ng-click="vm.save(vm.form)"
+                  ng-disabled="!vm.form.$dirty" translate>button.save
+          </button>
+        </div>
+
+      </ion-list>
+    </form>
+
+  </ion-content>
+</ion-view>

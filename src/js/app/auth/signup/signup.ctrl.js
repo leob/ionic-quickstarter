@@ -28,7 +28,6 @@ var SignupCtrl = /*@ngInject*/function ($scope, $state, Application, UserService
 
     UserService.signup(user).then(function (signedupUser) {
         Application.hideLoading();
-        Application.setUserRegistered(true);
 
         log.info("User signed up successfully");
 

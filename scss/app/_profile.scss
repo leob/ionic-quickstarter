@@ -1,0 +1,90 @@
+/*
+    Profile header/images
+*/
+
+$profile-header-height: 120px !default;
+
+$profile-logo-size: 90px !default;
+
+$profile-logo-img-margin: 5px;
+$profile-logo-img-size: $profile-logo-size - (2 * $profile-logo-img-margin);
+
+.profile-header {
+    position: relative;
+    width: 100%;
+    height: $profile-header-height;
+    padding: 0;
+    background-color: lighten($brand-secondary, 20%);
+}
+
+.profile-header img {
+    width: 100%;
+    max-height: $profile-header-height;
+    opacity: 0.6;
+    background-color: lighten($brand-secondary, 20%);
+}
+
+.profile-header-logo-wrapper {
+    width: $profile-logo-size;
+    left: 6%;
+    background-color: lighten($brand-secondary, 25%);
+
+    //
+    // Vertically center the div through: "position: absolute; margin: auto; top: 0; bottom: 0; height: <some-height>;"
+    //
+    // http://www.smashingmagazine.com/2013/08/absolute-horizontal-vertical-centering-css/
+    //
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    height: $profile-logo-size;
+}
+
+.profile-header-logo {
+    height: $profile-logo-img-size;
+    width: $profile-logo-img-size;
+    margin: $profile-logo-img-margin;
+    opacity: 0.5;
+    background-color: lighten($brand-secondary, 20%);
+    overflow: hidden;
+}
+
+.profile-header-logo-text {
+    text-align: center;
+    width: 100%;
+    // Vertically align, see: http://www.smashingmagazine.com/2013/08/absolute-horizontal-vertical-centering-css/
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 40px;
+}
+
+.profile-header-info-wrapper {
+    width: 50%;
+    left: 40%;
+    background-color: lighten($brand-secondary, 14%);
+    opacity: 0.8;
+    text-align: center;
+    // Vertically align, see: http://www.smashingmagazine.com/2013/08/absolute-horizontal-vertical-centering-css/
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    height: $profile-logo-size;
+}
+
+.profile-header-info {
+    text-align: center;
+    width: 100%;
+    // Vertically align, see: http://www.smashingmagazine.com/2013/08/absolute-horizontal-vertical-centering-css/
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    height: 40px;
+}
+

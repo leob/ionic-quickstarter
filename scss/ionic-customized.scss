@@ -1,0 +1,60 @@
+//
+// NOTE:
+//
+// This is a copied and customized version of the master "ionic.scss" file. Purpose is to EXCLUDE the standard/default
+// version of _action-sheet.scss so that we can include a customized version (see _action-sheet-customized.scss).
+//
+
+@charset "src/lib/ionic/scss/UTF-8";
+
+@import
+  // Ionicons
+  "src/lib/ionic/scss/ionicons/ionicons.scss",
+
+  // Variables
+  "src/lib/ionic/scss/mixins",
+  "src/lib/ionic/scss/variables",
+
+  // Base
+  "src/lib/ionic/scss/reset",
+  "src/lib/ionic/scss/scaffolding",
+  "src/lib/ionic/scss/type",
+
+  // Components
+  //"src/lib/ionic/scss/action-sheet",    // COMMENTED OUT
+  "src/lib/ionic/scss/backdrop",
+  "src/lib/ionic/scss/bar",
+  "src/lib/ionic/scss/tabs",
+  "src/lib/ionic/scss/menu",
+  "src/lib/ionic/scss/modal",
+  "src/lib/ionic/scss/popover",
+  "src/lib/ionic/scss/popup",
+  "src/lib/ionic/scss/loading",
+  "src/lib/ionic/scss/items",
+  "src/lib/ionic/scss/list",
+  "src/lib/ionic/scss/badge",
+  "src/lib/ionic/scss/slide-box",
+  "src/lib/ionic/scss/refresher",
+  "src/lib/ionic/scss/spinner",
+
+  // Forms
+  "src/lib/ionic/scss/form",
+  "src/lib/ionic/scss/checkbox",
+  "src/lib/ionic/scss/toggle",
+  "src/lib/ionic/scss/radio",
+  "src/lib/ionic/scss/range",
+  "src/lib/ionic/scss/select",
+  "src/lib/ionic/scss/progress",
+
+  // Buttons
+  "src/lib/ionic/scss/button",
+  "src/lib/ionic/scss/button-bar",
+
+  // Util
+  "src/lib/ionic/scss/grid",
+  "src/lib/ionic/scss/util",
+  "src/lib/ionic/scss/platform",
+
+  // Animations
+  "src/lib/ionic/scss/animations",
+  "src/lib/ionic/scss/transitions";

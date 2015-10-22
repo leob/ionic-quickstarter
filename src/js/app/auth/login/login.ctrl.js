@@ -55,9 +55,6 @@
 
       UserService.login(('' + vm.user.username).toLowerCase(), vm.user.password).then(function (loggedinUser) {
         Application.hideLoading();
-
-        // user logged in implies the user is registered
-        Application.setUserRegistered(true);
         Application.gotoStartPage($state);
       })
         .catch(function (error) {

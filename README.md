@@ -10,6 +10,11 @@ I intend to keep this starter app up to date with the newest versions of Ionic e
 See [Todo and Roadmap](https://github.com/leob/ionic-quickstarter/wiki/Todo-and-roadmap) on the Wiki, and feel free to
 [contribute](https://github.com/leob/ionic-quickstarter/wiki/Contributing).
 
+***NOTE:*** this starter app is based on Ionic 1.x and Angular 1.x. The upcooming new Ionic 2 release will, in all
+likelihood, address 80-90% of the issues which this starter app aims to address (e.g. build system, SASS/styling,
+common Ionic 'gotchas' and so on). So post-Ionic 2 this starter (and most other starters) will probably not be that
+relevant anymore.
+
 ## Table of contents
 
 [Introduction](#introduction)<br>
@@ -32,12 +37,15 @@ Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has th
 * Basic integration with Ionic Analytics (this can be switched off easily if you don't use it)
 * Support for the two main Ionic UI patterns: side menus and tabs, and an Intro screen with a Slider
 * Includes some commonly used features, for instance form validation using ng-messages and improved logging
+* Basic image support: Cordova camera, image cropping, storing images in local storage, and displaying images
 * Supports internationalization (I18N) using the <a href="https://github.com/angular-translate/angular-translate"
 target="_blank">angular-translate</a> library (currently only an English language file is supplied, it's easy to add
 other languages)
 * Provides workarounds for a number of well-known issues in Ionic apps (swipe to close menu, hardware back button etc)
 * Incorporates a number of 'best practices' for AngularJS and Ionic (e.g. "Controller as" syntax)
-* Includes a SASS setup with best practices for easy customization of colors and styles
+* A modular SASS setup including some handy utility styles and best practices for customization of colors, fonts etc.
+* Reusable services and directives containing some commonly used utility functions that you can call in your app 
+* An 'appModule' utility function that makes managing your AngularJS modules slightly easier
 * Currently based on Ionic v.1.1.0 and AngularJS 1.4; tested on 3 devices: iPhone 4, Android smartphone, Android tablet
 
 The first two topics (Project structure and Gulp file) will be explained below.

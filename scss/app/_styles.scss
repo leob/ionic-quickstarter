@@ -5,12 +5,18 @@
 body {
 }
 
-//ion-content {
-//    //background: url(http://ioniconf.com/img/bg.jpg) no-repeat center center fixed;
-//    background: url(http://c1.staticflickr.com/1/552/19753857430_b83793100d_n.jpg) no-repeat center center fixed;
-//    background-size: cover;
-//    //background-color: lighten($secondary, 32%);
-//}
+/* Image cropping https://github.com/iblank/ngImgCrop */
+.image-crop {
+    display: block;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image-crop-result {
+    height: 120px;
+    text-align: center;
+}
 
 /* ==== IONIC FIXES ==== */
 

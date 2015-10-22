@@ -26,6 +26,14 @@ angular.module('app')
       return Application.isUserLoggedIn();
     };
 
+    this.goUserProfile = function() {
+      $state.go('app.auth.userProfile');
+    };
+
+    this.goHome = function() {
+      Application.gotoStartPage($state, false);
+    };
+
   })
 ;
 }());
