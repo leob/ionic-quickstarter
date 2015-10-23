@@ -148,7 +148,7 @@ If you click the menu item ```log out``` then you will be presented with the log
 development mode this is a 'fake' login page. To log in, simply type an arbitrary email address (can be fake too), and
 for the password type the text ```password```.
 
-***NOTE:*** If, after executing ```ionic serve``` you get a blank page in your browser with the message "Error: ENOENT:
+***NOTE:*** if, after executing ```ionic serve``` you get a blank page in your browser with the message "Error: ENOENT:
 no such file or directory ... index.html" then it indicates that the "gulp-inject" process wasn't able to create an
 index.html file from your index-template.html file.
 
