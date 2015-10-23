@@ -6,6 +6,13 @@ For background, read my
 <a href="http://codepen.io/leob6/blog/ionic-quickstarter-a-starter-app-to-kickstart-your-app-development" target="_blank">
 blog post</a>.
 
+***IMPORTANT NOTE:*** I've added two useful sections to the Wiki:
+
+* [Release notes](https://github.com/leob/ionic-quickstarter/wiki/Release-notes)
+* [Tips and troubleshooting](https://github.com/leob/ionic-quickstarter/wiki/Tips-and-troubleshooting)
+
+Please make a habit of consulting these Wiki pages because they contain important information. 
+
 I intend to keep this starter app up to date with the newest versions of Ionic etc, and to add features/improvements.
 See [Todo and Roadmap](https://github.com/leob/ionic-quickstarter/wiki/Todo-and-roadmap) on the Wiki, and feel free to
 [contribute](https://github.com/leob/ionic-quickstarter/wiki/Contributing).
@@ -34,6 +41,8 @@ Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has th
 * Per environment, you can define different values for constants (e.g. appKey and so on) which are then written into
   config.js by the appropriate gulp task
 * Unit test support using Karma and Jasmine
+* Typescript Definition Files ('tsd' files) which enable autocomplete/intelli-sense features when you use an IDE such
+as WebStorm or Visual Studio
 * Signup and login flow implemented with Parse or Firebase (with the flexibility to add other implementations)
 * Basic integration with Ionic Analytics (this can be switched off easily if you don't use it)
 * Support for the two main Ionic UI patterns: side menus and tabs, and an Intro screen with a Slider
@@ -63,7 +72,17 @@ already done).
 <a href="https://github.com/driftyco/ionic-box" target="_blank">Ionic Box</a>. This can be an attractive option,
 especially for Windows users.
 
-Next, open a terminal and cd into the directory where you want to install your app.
+***Note:*** there have been many complaints from people who are unable to get node/sass functionality working properly
+due to errors while compiling/building node-sass/lib-sass. The main culprit seems to be nodejs versions higher than
+0.12.x, for instance the new version 4 (these are the releases following the merger of the competing nodejs/io.js
+forks).
+
+Therefore, if you run into problems getting SASS to work and you are running a nodejs version higher than 0,12 then you
+may want to consider downgrading to nodejs 0.12.x (tip: you can use a tool such as ```nvm```  to install and run
+multiple nodejs versions on your system, selecting the desired nodejs version for each task).
+
+Assuming that you have all of the above installed successfully, open a terminal and "cd" into the directory where you
+want to install your app.
 
 Run the following commands (note: below the app is named ```myapp```, replace this by your app's name):
 
@@ -124,6 +143,22 @@ Click through the app: try the tabs, menus and so on.
 If you click the menu item ```log out``` then you will be presented with the login page. In
 development mode this is a 'fake' login page. To log in, simply type an arbitrary email address (can be fake too), and
 for the password type the text ```password```.
+
+***NOTE:*** If, after executing ```ionic serve``` you get a blank page in your browser with the message "Error: ENOENT:
+no such file or directory ... index.html" then it indicates that the "gulp-inject" process wasn't able to create an
+index.html file from your index-template.html file.
+
+In this happens, I would advise you to run "ionic serve" with the arguments '-l' and '-c', so:
+
+<pre>
+ionic serve -l -c
+</pre>
+
+In some cases, the addition of "-l" in itself is already enough to fix the problem.
+
+However if the problem remains, then look at the messages in your console (terminal) window, which were enabled through
+the "-c" argument. Normally you should see an error message/stacktrace in the terminal/console which should tell you
+what is going wrong.
 
 ### Some notes on usage
 
