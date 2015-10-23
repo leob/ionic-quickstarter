@@ -68,18 +68,22 @@ To keep this README short (it's already too long), I'm putting the rest of the i
 First, install ```nodejs```, ```npm```, ```gulp```, ```bower```, ```cordova```, ```ionic``` & ```sass``` (if not
 already done).
 
-***Note:*** instead of locally installing all of the above tools, an alternative may be to use the
+***Tip:*** instead of locally installing all of the above tools, an alternative may be to use the
 <a href="https://github.com/driftyco/ionic-box" target="_blank">Ionic Box</a>. This can be an attractive option,
 especially for Windows users.
 
-***Note:*** there have been many complaints from people who are unable to get node/sass functionality working properly
-due to errors while compiling/building node-sass/lib-sass. The main culprit seems to be nodejs versions higher than
-0.12.x, for instance the new version 4 (these are the releases following the merger of the competing nodejs/io.js
-forks).
+***Warning:*** there have been many complaints from people who are unable to get 'SASS' working on their system due to
+so-called "gyp" errors while nodejs is trying to compile and build "libsass". The main culprit seems to be nodejs
+versions higher than v.0.12.x, for instance the new version 4 (version 4 was released recently following the merger of
+the competing nodejs/io.js forks).
 
-Therefore, if you run into problems getting SASS to work and you are running a nodejs version higher than 0,12 then you
-may want to consider downgrading to nodejs 0.12.x (tip: you can use a tool such as ```nvm```  to install and run
-multiple nodejs versions on your system, selecting the desired nodejs version for each task).
+Therefore, if you run into problems getting SASS (libsass) working and you are running a nodejs version higher than
+v.0.12.x then you may want to consider downgrading to nodejs v.0.12.x. I've seen reports that currently this is the
+only way to get SASS working.
+
+Quick tip: if you wish you can use a tool such as ```nvm``` to install and run multiple nodejs versions on your system,
+selecting the desired nodejs version for each task. So you can keep the cutting edge "v.4" around for whatever purpose,
+while for Ionic development you fall back to v.0.12.x.
 
 Assuming that you have all of the above installed successfully, open a terminal and "cd" into the directory where you
 want to install your app.
