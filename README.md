@@ -78,8 +78,8 @@ versions higher than v.0.12.x, for instance the new version 4 (version 4 was rel
 the competing nodejs/io.js forks).
 
 Therefore, if you run into problems getting SASS (libsass) working and you are running a nodejs version higher than
-v.0.12.x then you may want to consider downgrading to nodejs v.0.12.x. I've seen reports that currently this is the
-only way to get SASS working.
+v.0.12.x, you may want to consider downgrading to nodejs v.0.12.x. I've seen reports that currently this is the only
+way to get SASS working.
 
 Quick tip: if you wish you can use a tool such as ```nvm``` to install and run multiple nodejs versions on your system,
 selecting the desired nodejs version for each task. So you can keep the cutting edge "v.4" around for whatever purpose,
