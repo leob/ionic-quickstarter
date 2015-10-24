@@ -106,14 +106,16 @@ If you want to put your app under source control and you use Git, type the comma
 git init
 </pre>
 
-Next, edit the following two files using a text editor:
+***NOTE:*** the next step (editing ionic.project and config.xml to change the app name) is OPTIONAL. You can skip this
+step and do it later (or not at all), if you want. If you want to do it, then edit the following two files using a text
+editor:
 
 <pre>
 ionic.project
 config.xml
 </pre>
 
-In these files, replace the name ```app``` with your app's name as follows:
+In these files, replace the name ```app``` with the name you want to give to your app as follows:
 
 * in ```ionic.project```: at line 2 ("name": "app"), replace ```app``` with your app name
 * in ```config.xml```: at line 2, replace ```com.ionicframework.app``` with your package name (e.g.
