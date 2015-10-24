@@ -262,9 +262,9 @@ For more details on configuring Parse or Firebase, see the
 
 #### A note about using the image functionality (Cordova Camera, image cropping)
 
-The image functionality (taking a picture, cropping a picture, and so on) only on a device, because it needs Cordova,
-and camera hardware obviously. So, you will need to use 'production mode' (```gulp build``` and ```ionic run``` or
-```ionic build```).
+The image functionality (taking a picture, cropping a picture, and so on) only works on a device, because it needs
+Cordova, and camera hardware obviously. So, you will need to use 'production mode' (that is, ```gulp build``` and
+```ionic run``` or ```ionic build```).
 
 As explained in the previous section, in production mode authentication will use the Parse.com implementation by
 default.
