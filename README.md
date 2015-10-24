@@ -129,7 +129,7 @@ bower install
 ionic state restore --plugins
 </pre>
 
-Finally, if you want to add Android and iOS as a runtime platform, type:
+Finally, if you want to add Android and/or iOS as a runtime platform, type one or both of the following commands:
 
 <pre>
 ionic platform add android
