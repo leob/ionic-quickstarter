@@ -134,10 +134,10 @@ ionic platform add android
 ionic platform add ios
 </pre>
 
-The project is now ready to run. To run it in a browser ("ionic serve"), type:
+The project is now ready to run. To run it in a browser ("ionic serve"), type (I advise to ALWAYS use "-c"):
 
 <pre>
-ionic serve
+ionic serve -c
 </pre>
 
 or any other variation, e.g. (using the "labs" feature, logging to the console, and defaulting to Chrome):
@@ -152,9 +152,9 @@ If you click the menu item ```log out``` then you will be presented with the log
 development mode this is a 'fake' login page. To log in, simply type an arbitrary email address (can be fake too), and
 for the password type the text ```password```.
 
-***NOTE:*** if, after executing ```ionic serve``` you get a blank page in your browser with the message "Error: ENOENT:
-no such file or directory ... index.html" then it indicates that the "gulp-inject" process wasn't able to create an
-index.html file from your index-template.html file.
+***NOTE:*** if, after executing ```ionic serve``` you get a blank page in your browser with the message ```Error: ENOENT:
+no such file or directory ... index.html``` then it indicates that the "gulp-inject" process wasn't able to create an
+index.html file from the index-template.html file.
 
 In this happens, I would advise you to run "ionic serve" with the arguments '-l' and '-c', so:
 
@@ -214,7 +214,7 @@ For more details on configuring and using development, test and production mode,
 #### A note about "ionic upload" and the Ionic View app
 
 Here is a warning for people who use the Ionic View app in conjunction with the ```ionic upload``` command to test
-their app.
+their app (by the way, I don't really recommend using Ionic View, see my comments about it on the Wiki).
 
 If you do an ```ionic upload```, then by default it will take your app from the ```src``` folder, not from ```www```.
 This is because ```ionic upload``` takes the setting from the ```ionic.project``` file.
