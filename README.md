@@ -170,7 +170,7 @@ However if the problem remains, then look at the messages in your console (termi
 the "-c" argument. Normally you should see an error message/stacktrace in the terminal/console which should tell you
 what is going wrong.
 
-Another cause for the above error seems to be the "libsass bindings not found" error which was discussed above, If that
+Another cause for the above error seems to be the ```libsass bindings not found``` error which was discussed above, If that
 is the case you will see it showing up in the console and you can try one of the solutions described above.
 
 ### Some notes on usage
