@@ -75,7 +75,7 @@ especially for Windows users.
 ***Warning:*** there have been many complaints on the Ionic forum from people who are unable to get 'SASS' working on
 their system. Typically they see this error:
  
-"libsass bindings not found. Try reinstalling node-sass?"
+```libsass bindings not found. Try reinstalling node-sass?```
  
 For background on the issue and possible solutions, see:
 
