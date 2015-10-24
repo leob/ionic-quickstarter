@@ -77,17 +77,13 @@ their system. Typically they see this error:
  
 ```libsass bindings not found. Try reinstalling node-sass?```
  
-For background on the issue and possible solutions, see:
+For background on the issue, see:
 
-http://forum.ionicframework.com/t/error-running-gulp-sass/32311/9
+http://forum.ionicframework.com/t/error-running-gulp-sass/32311
 http://forum.ionicframework.com/t/libsass-bindings-not-found/27881
 
-You may want to try the "npm update" solution from the second post (I didn't try this, don't know how reliable it is),
-or you may want to downgrade nodejs to a lower version, as per the first post (this is the one I am more confident in).
-
-Quick tip: if you wish you can use a tool such as ```nvm``` to install and run multiple nodejs versions on your system,
-selecting the desired nodejs version for each task. So you can keep the newest cutting edge nodejs versions installed
-for whatever purpose, while for Ionic development you fall back to for instance v.0.12.x.
+However, this problem **SHOULD** not occur when you install the quickstarter app, because I've upgraded ```gulp-sass```
+to a version that should be compatible with both the 'old' and the 'new' nodejs versions.
 
 Assuming that you have all of the above installed successfully, open a terminal and "cd" into the directory where you
 want to install your app.
@@ -154,9 +150,9 @@ If you click the menu item ```log out``` then you will be presented with the log
 development mode this is a 'fake' login page. To log in, simply type an arbitrary email address (can be fake too), and
 for the password type the text ```password```.
 
-***NOTE:*** if, after executing ```ionic serve``` you get a blank page in your browser with the message ```Error: ENOENT:
-no such file or directory ... index.html``` then it indicates that the "gulp-inject" process wasn't able to create an
-index.html file from the index-template.html file.
+***NOTE:*** if, after executing ```ionic serve``` you get a blank page in your browser with the message
+```Error: ENOENT: no such file or directory ... index.html``` then it indicates that the "gulp-inject" process wasn't
+able to create an index.html file from the index-template.html file.
 
 In this happens, I would advise you to run "ionic serve" with the arguments '-l' and '-c', so:
 
@@ -170,8 +166,8 @@ However if the problem remains, then look at the messages in your console (termi
 the "-c" argument. Normally you should see an error message/stacktrace in the terminal/console which should tell you
 what is going wrong.
 
-Another cause for the above error seems to be the ```libsass bindings not found``` error which was discussed above, If that
-is the case you will see it showing up in the console and you can try one of the solutions described above.
+One possible cause for the above error seems to be the ```libsass bindings not found``` error which was discussed
+above. However as said above this error **SHOULD** not occur anymore since I've upgraded the ```gulp-sass``` version.
 
 ### Some notes on usage
 
