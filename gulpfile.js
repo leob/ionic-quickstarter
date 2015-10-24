@@ -158,7 +158,7 @@ gulp.task('clean', function (cb) {
 
 var dosass = function(minify, sourcemaps, done) {
   gulp.src('./scss/ionic.app.scss')
-  .pipe(sass())
+  .pipe(sass({includePaths: [ 'src/lib/ionic/scss/' ]}))
   // this keeps the gulp build from crashing when there are errors in your SASS file
   .on("error", function(err) {
     console.log(err.toString());
