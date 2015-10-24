@@ -134,7 +134,7 @@ ionic platform add android
 ionic platform add ios
 </pre>
 
-The project is now ready to run. To run it in a browser ("ionic serve"), type (I advise to ALWAYS use "-c"):
+The project is now ready to run. To run it in a browser, type (I advise to ALWAYS use the ```-c``` option):
 
 <pre>
 ionic serve -c
