@@ -72,18 +72,22 @@ already done).
 <a href="https://github.com/driftyco/ionic-box" target="_blank">Ionic Box</a>. This can be an attractive option,
 especially for Windows users.
 
-***Warning:*** there have been many complaints from people who are unable to get 'SASS' working on their system due to
-so-called "gyp" errors while nodejs is trying to compile and build "libsass". The main culprit seems to be nodejs
-versions higher than v.0.12.x, for instance the new version 4 (version 4 was released recently following the merger of
-the competing nodejs/io.js forks).
+***Warning:*** there have been many complaints on the Ionic forum from people who are unable to get 'SASS' working on
+their system. Typically they see this error:
+ 
+"libsass bindings not found. Try reinstalling node-sass?"
+ 
+For background on the issue and possible solutions, see:
 
-Therefore, if you run into problems getting SASS (libsass) working and you are running a nodejs version higher than
-v.0.12.x, you may want to consider downgrading to nodejs v.0.12.x. I've seen reports that currently this is the only
-way to get SASS working.
+http://forum.ionicframework.com/t/error-running-gulp-sass/32311/9
+http://forum.ionicframework.com/t/libsass-bindings-not-found/27881
+
+You may want to try the "npm update" solution from the second post (I didn't try this, don't know how reliable it is),
+or you may want to downgrade nodejs to a lower version, as per the first post (this is the one I am more confident in).
 
 Quick tip: if you wish you can use a tool such as ```nvm``` to install and run multiple nodejs versions on your system,
-selecting the desired nodejs version for each task. So you can keep the cutting edge "v.4" around for whatever purpose,
-while for Ionic development you fall back to v.0.12.x.
+selecting the desired nodejs version for each task. So you can keep the newest cutting edge nodejs versions installed
+for whatever purpose, while for Ionic development you fall back to for instance v.0.12.x.
 
 Assuming that you have all of the above installed successfully, open a terminal and "cd" into the directory where you
 want to install your app.
@@ -158,11 +162,14 @@ In this happens, I would advise you to run "ionic serve" with the arguments '-l'
 ionic serve -l -c
 </pre>
 
-In some cases, the addition of "-l" in itself is already enough to fix the problem.
+In some cases, the addition of "-l" in itself seems to be already enough to fix the problem (not sure about this).
 
 However if the problem remains, then look at the messages in your console (terminal) window, which were enabled through
 the "-c" argument. Normally you should see an error message/stacktrace in the terminal/console which should tell you
 what is going wrong.
+
+Another cause for the above error seems to be the "libsass bindings not found" error which was discussed above, If that
+is the case you will see it showing up in the console and you can try one of the solutions described above.
 
 ### Some notes on usage
 
