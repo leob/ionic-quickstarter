@@ -239,6 +239,43 @@ So the workflow then becomes:
 * run the command: ```ionic serve --nogulp```
 * when you are done, change ```ionic.project``` back to ```src```
 
+#### A note about the usage of Parse.com or Firebase for authentication
+
+In production mode (if you run on a device with ```ionic build``` or ```ionic run```) then by default Parse.com will be
+used for login/authentication. This is because in "production mode" the settings in the ```config-prod.json``` file are
+used, which set ```devMode = false``` and ```testMode = false```.
+
+These flags, in turn, cause the user service to point to the Parse.com implementation (see 
+https://github.com/leob/ionic-quickstarter/blob/master/src/js/app/user/services/user.service.js to understand how this
+works).
+
+If you want to run in production mode but do NOT want to use Parse.com but another implementation (for instance the
+'mock' implementation or the Firebase implementation), then you can do this in two ways:
+
+* modify the values in  ```config-prod.json```: if you set ```devMode = true``` then the "mock" user service
+implementation will be used
+* modify the code of https://github.com/leob/ionic-quickstarter/blob/master/src/js/app/user/services/user.service.js to
+make it use the implementation that you want (for instance the Firebase or the 'mock' implementation)
+
+For more details on configuring Parse or Firebase, see the
+[wiki](https://github.com/leob/ionic-quickstarter/wiki/Common-recipes).
+
+#### A note about using the image functionality (Cordova Camera, image cropping)
+
+The image functionality (taking a picture, cropping a picture, and so on) only on a device, because it needs Cordova,
+and camera hardware obviously. So, you will need to use 'production mode' (```gulp build``` and ```ionic run``` or
+```ionic build```).
+
+As explained in the previous section, in production mode authentication will use the Parse.com implementation by
+default.
+
+If you do not want this, then you can change the values in the ```config-prod.json``` file, or you can change
+the code of https://github.com/leob/ionic-quickstarter/blob/master/src/js/app/user/services/user.service.js (see the
+explanation above).
+
+For more details on using the image functionality, see the
+[wiki](https://github.com/leob/ionic-quickstarter/wiki/Common-recipes).
+
 #### Adding libraries
 
 If you want to add a Javascript library (pre-made JS component) to the app, you will need to go through the following
