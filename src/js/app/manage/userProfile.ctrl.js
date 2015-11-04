@@ -3,10 +3,11 @@
 
   var UserProfileCtrl = /*@ngInject*/function ($scope, $rootScope, $state, $timeout, $ionicModal, $ionicActionSheet,
                                                $translate, $q, $stateParams, Application, ImageService, FileManager,
-                                               UserProfileService, user) {
+                                               UserProfileService, UserService) {
 
     var vm = this;
     var log = Application.getLogger('UserProfileCtrl');
+    var user;
 
     // editing the profile image is only possible when running on a device (Cordova available)
     vm.canEditProfileImage = true;  angular.isDefined(window.cordova);
@@ -42,8 +43,9 @@
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
       log.debug("beforeEnter start ...");
 
-      Application.resetForm(vm);
+      user = UserService.currentUser();
 
+      Application.resetForm(vm);
       Application.contentBannerInit(vm, $scope);
 
       load();

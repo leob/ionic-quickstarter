@@ -49,27 +49,10 @@
         templateUrl: "js/app/menu/menu.html"
       })
 
-      //
-      // All UI-router states that are children of 'app.auth' need a valid user - this is enforced through a Route
-      // Resolve, as you can see below ("UserService.checkUser()")
-      //
-      // When the resolve fails (meaning the user is not logged in), then "$rootScope.$on('$stateChangeError'..." (see
-      // below) is triggered, which then redirects the app to the login page.
-      //
-      // This technique was inspired by:
-      //
-      // http://www.clearlyinnovative.com/starter-ionic-application-template-wparse-integration
-      //
-
       .state('app.auth', {
         url: "/auth",
         abstract: true,
-        template: '<ion-view/>',
-        resolve: {
-          user: function (UserService) {
-            return UserService.checkUser();
-          }
-        }
+        template: '<ion-view/>'
       });
   })
 
@@ -132,24 +115,54 @@
   })
 
   .run(function ($ionicPlatform, $ionicPopup, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, $translate,
-                 $log, loggingDecorator, Application, APP, Tracking) {
+                 $log, loggingDecorator, Application, APP, Tracking, UserService) {
 
     loggingDecorator.decorate($log);
 
-    $rootScope.$on('$stateChangeError',
-      function (event, toState, toParams, fromState, fromParams, error) {
+    //$rootScope.$on('$stateChangeError',
+    //  function (event, toState, toParams, fromState, fromParams, error) {
+    //
+    //    $log.debug('$stateChangeError, to: ' + JSON.stringify(toState) + ' error: ' + JSON.stringify(error));
+    //
+    //    // If the error is "noUser" then go to login state. For explanation see comments above. Technique inspired by:
+    //    // http://www.clearlyinnovative.com/starter-ionic-application-template-wparse-integration
+    //    if (error && (error.error === "noUser" || error.error === "userEmailNotVerified")) {
+    //
+    //      // event.preventDefault(): this is necessary to keep Ionic from loading the login page TWICE. See:
+    //      // http://stackoverflow.com/questions/22936865/handling-error-in-ui-routers-resolve-function-aka-statechangeerror-passing-d
+    //      event.preventDefault();
+    //
+    //      $state.go('login', error.error === "userEmailNotVerified" ? {verifyEmail: 'notVerified'} : {});
+    //    }
+    //  });
 
-        $log.debug('$stateChangeError, to: ' + JSON.stringify(toState) + ' error: ' + JSON.stringify(error));
+      $rootScope.$on('$stateChangeError',
+        function (event, toState, toParams, fromState, fromParams, error) {
 
-        // If the error is "noUser" then go to login state. For explanation see comments above. Technique inspired by:
-        // http://www.clearlyinnovative.com/starter-ionic-application-template-wparse-integration
-        if (error && (error.error === "noUser" || error.error === "userEmailNotVerified")) {
+          $log.debug('$stateChangeError, to: ' + JSON.stringify(toState) + ' error: ' + JSON.stringify(error));
+        });
 
-          // event.preventDefault(): this is necessary to keep Ionic from loading the login page TWICE. See:
-          // http://stackoverflow.com/questions/22936865/handling-error-in-ui-routers-resolve-function-aka-statechangeerror-passing-d
-          event.preventDefault();
+      function isValidUser() {
+        if (!UserService.isUserLoggedIn()) {
+          return false;
+        }
 
-          $state.go('login', error.error === "userEmailNotVerified" ? {verifyEmail: 'notVerified'} : {});
+        return true;
+      }
+
+      // www.jvandemo.com/how-to-use-areas-and-border-states-to-control-access-in-an-angular-application-with-ui-router/
+      $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        // when state name matches 'app.auth.*' then login is required
+        if (toState.name && toState.name.match(/^app\.auth\./)) {
+
+          if (!isValidUser()) {
+
+            // cancel state change
+            event.preventDefault();
+
+            // redirect to login page
+            return $state.go('login', {});
+          }
         }
       });
 
