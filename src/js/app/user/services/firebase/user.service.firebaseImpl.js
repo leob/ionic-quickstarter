@@ -78,21 +78,12 @@
         return currentLoggedinUser;
       };
 
-      var currentUser = function () {
-        return currentLoggedinUser;
+      var isUserLoggedIn = function () {
+        return currentLoggedinUser !== null;
       };
 
-      // 'checked' version of 'currentLoggedinUser()' returning a promise
-      var checkUser = function () {
-        if (currentLoggedinUser) {
-          if (currentLoggedinUser.emailVerified) {
-            return $q.when(currentLoggedinUser);
-          } else {
-            return $q.reject({error: "userEmailNotVerified"});
-          }
-        } else {
-          return $q.reject({error: "noUser"});
-        }
+      var currentUser = function () {
+        return currentLoggedinUser;
       };
 
       var signup = function (user) {
@@ -183,8 +174,8 @@
 
       return {
         init: init,
+        isUserLoggedIn: isUserLoggedIn,
         currentUser: currentUser,
-        checkUser: checkUser,
         signup: signup,
         login: login,
         logout: logout,
