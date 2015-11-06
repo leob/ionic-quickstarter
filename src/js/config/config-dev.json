@@ -2,8 +2,7 @@
   "constants": {
     "APP": {
       "devMode": true,
-      "testMode": true,
-      "noTracking": true
+      "testMode": true
     },
     "ParseConfiguration": {
       "serverURL": "/parse-api"

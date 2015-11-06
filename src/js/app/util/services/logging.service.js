@@ -83,7 +83,7 @@ appModule('app.util')
   })
 
   // see: http://blog.pdsullivan.com/posts/2015/02/19/ionicframework-googleanalytics-log-errors.html
-  .factory('loggingService', function ($log, Tracking) {
+  .factory('loggingService', function ($log /*, Tracking*/) {
 
     // The idea of the logging service is that serious errors in your app can be sent to a remote server so that you
     // can track problems in your app. Remote application logging, so to speak.
@@ -120,7 +120,7 @@ appModule('app.util')
 
       logger.log(name + " " + event);
 
-      Tracking.trackEvent(name, event);
+      //Tracking.trackEvent(name, event);
     };
 
     return {

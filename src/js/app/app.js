@@ -18,7 +18,7 @@
 //
   angular.module('app', [
     // libraries
-    'ionic', 'ionic.service.core', 'ionic.service.analytics',  // IONIC.IO (Alpha software - disable for production?)
+    'ionic', //'ionic.service.core', 'ionic.service.analytics',  // IONIC.IO (Alpha software - disable for production?)
     "firebase",
     'ngCordova', 'ngMessages', 'fusionMessages',
     // angular-translate
@@ -32,7 +32,7 @@
     // generic services
     'app.util', 'app.firebase',
     // app services
-    'app.user', 'app.tracking', 'app.image',
+    'app.user', 'app.image',
     // controllers and routers
     'app.intro', 'app.auth.signup', 'app.auth.login', 'app.auth.forgotPassword', 'app.mainPage', 'app.manage',
     // ANGULAR-TEMPLATECACHE
@@ -83,12 +83,12 @@
     $compileProvider.debugInfoEnabled(APP.devMode);
   })
 
-  .config(function ($ionicAppProvider, ionicIO) {
-    $ionicAppProvider.identify({
-      app_id: ionicIO.appId,
-      api_key: ionicIO.apiKey
-    });
-  })
+  //.config(function ($ionicAppProvider, ionicIO) {
+  //  $ionicAppProvider.identify({
+  //    app_id: ionicIO.appId,
+  //    api_key: ionicIO.apiKey
+  //  });
+  //})
 
   .config(function ($translateProvider) {
     $translateProvider
@@ -115,7 +115,7 @@
   })
 
   .run(function ($ionicPlatform, $ionicPopup, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, $translate,
-                 $log, loggingDecorator, Application, APP, UserService, Tracking, FirebaseConfiguration) {
+                 $log, loggingDecorator, Application, APP, UserService, FirebaseConfiguration) {
 
     loggingDecorator.decorate($log);
 
@@ -158,11 +158,11 @@
 
     $ionicPlatform.ready(function () {
 
-      // tracking/analytics (Ionic.io)
-      Tracking.init({
-        // SET TO FALSE TO ENABLE IONIC.IO TRACKING, IF SET TO TRUE THEN THE IONIC ANALYTICS LIB DOES NOTHING
-        dryRun: APP.noTracking
-      });
+      //// tracking/analytics (Ionic.io)
+      //Tracking.init({
+      //  // SET TO FALSE TO ENABLE IONIC.IO TRACKING, IF SET TO TRUE THEN THE IONIC ANALYTICS LIB DOES NOTHING
+      //  dryRun: APP.noTracking
+      //});
 
       // hide or show the accessory bar by default (set the value to false to show the accessory bar above the keyboard
       // for form inputs - see: https://github.com/driftyco/ionic-plugin-keyboard/issues/97 and

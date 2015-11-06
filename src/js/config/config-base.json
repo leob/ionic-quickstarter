@@ -11,10 +11,6 @@
     "FirebaseConfiguration": {
       "url": "https://your-firebase-app.firebaseio.com",
       "debug": false
-    },
-    "ionicIO": {
-      "appId": "appId",
-      "apiKey": "apiKey"
     }
   }
 }
