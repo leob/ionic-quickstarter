@@ -44,7 +44,6 @@ Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has th
 * Typescript Definition Files ('tsd' files) which enable autocomplete/intelli-sense features when you use an IDE such
 as WebStorm or Visual Studio
 * Signup and login flow implemented with Parse or Firebase (with the flexibility to add other implementations)
-* Basic integration with Ionic Analytics (this can be switched off easily if you don't use it)
 * Support for the two main Ionic UI patterns: side menus and tabs, and an Intro screen with a Slider
 * Includes some commonly used features, for instance form validation using ng-messages and improved logging
 * Basic image support: Cordova camera, image cropping, storing images in local storage, and displaying images
