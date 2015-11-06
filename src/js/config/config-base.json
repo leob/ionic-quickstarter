@@ -9,7 +9,8 @@
       "javascriptKey": "javascriptKey"
     },
     "FirebaseConfiguration": {
-      "url": "https://your-firebase-app.firebaseio.com"
+      "url": "https://your-firebase-app.firebaseio.com",
+      "debug": false
     },
     "ionicIO": {
       "appId": "appId",
