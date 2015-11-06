@@ -43,14 +43,22 @@
   <script src="lib/ionic/js/ionic.bundle.js"></script>
   <!-- endbuild -->
 
-  <!-- Ionic.io services - Analytics -->
-  <script src="lib/ionic-service-core/ionic-core.js"></script>
-  <script src="lib/ionic-service-analytics/ionic-analytics.js"></script>
+  <!-- Took out the ionic.io libs because of Firebase issues as described here: -->
 
-  <!-- Parse.com integration -->
+  <!--    http://forum.ionicframework.com/t/firebase-timeouts-slow-responses/31657/10 -->
+  <!--    http://forum.ionicframework.com/t/ionic-firebase-stuck-loading-forever/31146/12- ->
+
+  <!-- **AND** also removed them because these libs are now obsolete - Ionic.io services should use the new "Ionic -->
+  <!-- Web Client" library - but I'm leaving this out of the starter app in order to keep it lean and not burden -->
+  <!-- with too many dependencies which maybe not everyone needs/wants -->
+
+  <!--<script src="lib/ionic-service-core/ionic-core.js"></script>-->
+  <!--<script src="lib/ionic-service-analytics/ionic-analytics.js"></script>-->
+
+  <!-- Parse.com integration, remove this if you only want Firebase ... -->
   <script src="lib/parse/parse.min.js"></script>
 
-  <!-- Firebase integration -->
+  <!-- Firebase integration, remove this if you only want Parse ... -->
   <script src="lib/firebase/firebase.js"></script>
   <script src="lib/angularfire/dist/angularfire.min.js"></script>
 

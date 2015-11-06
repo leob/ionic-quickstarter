@@ -6,7 +6,7 @@
     //
     // This service provides a set of convenience/utility methods that you can use throughout your app.
     //
-    .factory('Application', function (LocalStorage, UserService, Tracking, APP, Stopwatch, $log, loggingService,
+    .factory('Application', function (LocalStorage, UserService, APP, Stopwatch, $log, loggingService,
                                       $ionicHistory, $ionicLoading, $ionicContentBanner, $translate, $timeout,
                                       $ionicScrollDelegate) {
 
@@ -14,7 +14,6 @@
         loggingService.log("Application#init", "start");
 
         UserService.init();
-        Tracking.initUser(UserService.currentUser());
 
         loggingService.log("Application#init", "end");
       };
