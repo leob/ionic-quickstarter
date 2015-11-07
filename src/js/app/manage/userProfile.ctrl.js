@@ -271,6 +271,13 @@
       vm.imageCropModal.hide();
     };
 
+    $scope.$on('$destroy', function() {
+      if (vm.imageCropModal) {
+        vm.imageCropModal.remove();
+        vm.imageCropModal = null;
+      }
+    });
+
     // ---- SAVE DATA ----
 
     vm.save = function (form) {
