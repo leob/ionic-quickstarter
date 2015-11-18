@@ -12,7 +12,7 @@
     <ion-list>
       <ion-item class="item-text-wrap note" translate>manage.image-crop-dialog.subtitle1</ion-item>
 
-      <ion-item>
+      <ion-item class="image-crop-row">
         <div class="image-crop">
           <img-crop image="image.originalImage"
                     result-image="image.croppedImage"
@@ -24,24 +24,15 @@
 
           </img-crop>
         </div>
-      </ion-item>
-
-      <ion-item class="item-text-wrap note" translate>manage.image-crop-dialog.subtitle2</ion-item>
-
-      <ion-item class="row-no-padding">
+        <div class="ion-play centering-vertically"></div>
         <div class="image-crop-result">
           <img height="120" width="{{120 * widthHeightRatio}}" ng-src="{{image.croppedImage}}"/>
         </div>
       </ion-item>
-
-      <ion-item>
-        <div class="padding">
-          <button class="button button-block button-primary" ng-click="saveImageCropModal()" translate>button.save
-          </button>
-        </div>
-      </ion-item>
-
     </ion-list>
   </ion-content>
-
+  <ion-footer-bar>
+    <button class="button button-block dialog-footer bar-assertive" ng-click="saveImageCropModal()" translate><h4>button.save</h4>
+    </button>
+  </ion-footer-bar>
 </div>
