@@ -88,3 +88,13 @@ $profile-logo-img-size: $profile-logo-size - (2 * $profile-logo-img-margin);
     height: 40px;
 }
 
+/* centering vertically foroward icon */
+.centering-vertically {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.dialog-footer {
+    margin: 0 !important;
+}
