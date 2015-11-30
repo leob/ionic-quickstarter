@@ -31,7 +31,15 @@
   <!-- build:sass -->
   <link href="css/ionic.app.css" rel="stylesheet">
   <!-- endbuild -->
+</head>
 
+<!-- NOTE: "ng-strict-di" will be added to the body tag during a production build (see gulp.js) -->
+<body ng-app="app" ng-controller="ApplicationCtrl as main">    <!-- ApplicationCtrl: global/default controller -->
+  <!--
+    The views will be rendered in the <ion-nav-view> directive below
+  -->
+  <ion-nav-view></ion-nav-view>
+  
   <!--
       For DEV we can use ionic.bundle.js (non-minified) to debug moduleErr errors, see:
       http://www.chrisgmyr.com/2014/08/debugging-uncaught-error-injectormodulerr-in-angularjs/
@@ -98,13 +106,6 @@
 
   <!-- ANGULAR-TEMPLATECACHE -->
   <script src="js/templates.js"></script>
-</head>
-
-<!-- NOTE: "ng-strict-di" will be added to the body tag during a production build (see gulp.js) -->
-<body ng-app="app" ng-controller="ApplicationCtrl as main">    <!-- ApplicationCtrl: global/default controller -->
-  <!--
-    The views will be rendered in the <ion-nav-view> directive below
-  -->
-  <ion-nav-view></ion-nav-view>
+  
 </body>
 </html>
