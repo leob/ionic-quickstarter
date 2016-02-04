@@ -4,10 +4,6 @@
     "APP": {
       "routerDefaultState": "app.auth.main.dash"
     },
-    "ParseConfiguration": {
-      "applicationId": "applicationId",
-      "javascriptKey": "javascriptKey"
-    },
     "FirebaseConfiguration": {
       "url": "https://your-firebase-app.firebaseio.com",
       "debug": false

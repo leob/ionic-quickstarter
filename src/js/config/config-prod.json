@@ -3,9 +3,6 @@
     "APP": {
       "devMode": false,
       "testMode": false
-    },
-    "ParseConfiguration": {
-      "serverURL": "https://api.parse.com"
     }
   }
 }
