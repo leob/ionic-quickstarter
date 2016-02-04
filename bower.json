@@ -22,7 +22,7 @@
     "fus-messages": "~0.0.2"
   },
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.1.0",
+    "ionic": "driftyco/ionic-bower#1.2.4",
     "ionic-service-core": "~0.1.7",
     "ionic-service-analytics": "~0.1.2",
     "angular-mocks": "1.4.3"
