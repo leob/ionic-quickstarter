@@ -64,8 +64,17 @@ To keep this README short (it's already too long), I'm putting the rest of the i
 
 ## Installation and usage
 
-First, install ```nodejs```, ```npm```, ```gulp```, ```bower```, ```cordova```, ```ionic``` & ```sass``` (if not
+First, install ```nodejs```, ```cordova``` and the Ionic command line tools, as described on the <a
+href="http://ionicframework.com/getting-started/">Ionic Getting Started</a> page.
+
+```npm```, ```gulp```, ```bower```, ```cordova``` ```ionic``` & ```sass``` (if not
 already done).
+
+***Note:*** as described on Ionic's "Getting Started" page, the currently recommended version of ```nodejs``` is
+version 4. Lower versions (0.10.x or higher) are not recommended because they are becoming outdated as they do not
+support newer versions of ```nodejs``` based tools, and higher versions (5.x) do not work yet at the moment.
+
+The version I am currently using is v4.2.6, so that is what I would recommend (v4.2.6 or higher, but not v.5.x).
 
 ***Tip:*** instead of locally installing all of the above tools, an alternative may be to use the
 <a href="https://github.com/driftyco/ionic-box" target="_blank">Ionic Box</a>. This can be an attractive option,
