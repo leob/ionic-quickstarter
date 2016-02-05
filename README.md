@@ -43,7 +43,7 @@ Ionic Quickstarter is based on the "tabs starter" project from Ionic, but has th
 * Unit test support using Karma and Jasmine
 * Typescript Definition Files ('tsd' files) which enable autocomplete/intelli-sense features when you use an IDE such
 as WebStorm or Visual Studio
-* Signup and login flow implemented with Parse or Firebase (with the flexibility to add other implementations)
+* Signup and login flow implemented with Firebase (with the flexibility to add other implementations)
 * Support for the two main Ionic UI patterns: side menus and tabs, and an Intro screen with a Slider
 * Includes some commonly used features, for instance form validation using ng-messages and improved logging
 * Basic image support: Cordova camera, image cropping, storing images in local storage, and displaying images
@@ -206,7 +206,7 @@ The ```gulp``` build process will write these values to ```src/js/config/config.
 In production mode (used on a real device), the gulp build process does a complete build including minification,
 concatenation etc, and the app runs with 'real' services.
 
-(e.g. the Parse service for signup/login, but you can replace this with an implementation of your own)
+(e.g. the Firebase service for signup/login, but you can replace this with an implementation of your own)
 
 To define configuration parameters for development mode, add them to ```src/js/config/config-prod.json```.
 The ```gulp``` build process will write these values to ```src/js/config/config.js```.
@@ -249,25 +249,25 @@ So the workflow then becomes:
 * run the command: ```ionic serve --nogulp```
 * when you are done, change ```ionic.project``` back to ```src```
 
-#### A note about the usage of Parse.com or Firebase for authentication
+#### A note about the usage of Firebase for authentication
 
-In production mode (if you run on a device with ```ionic build``` or ```ionic run```) then by default Parse.com will be
-used for login/authentication. This is because in "production mode" the settings in the ```config-prod.json``` file are
-used, which set ```devMode = false``` and ```testMode = false```.
+In production mode (if you run on a device with ```ionic build``` or ```ionic run```) then by default Firebase.com will
+be used for login/authentication. This is because in "production mode" the settings in the ```config-prod.json``` file
+are used, which set ```devMode = false``` and ```testMode = false```.
 
-These flags, in turn, cause the user service to point to the Parse.com implementation (see 
+These flags, in turn, cause the user service to point to the Firebase.com implementation (see
 https://github.com/leob/ionic-quickstarter/blob/master/src/js/app/user/services/user.service.js to understand how this
 works).
 
-If you want to run in production mode but do NOT want to use Parse.com but another implementation (for instance the
-'mock' implementation or the Firebase implementation), then you can do this in two ways:
+If you want to run in production mode but do NOT want to use Firebase.com but another implementation (for instance the
+'mock' implementation), then you can do this in two ways:
 
 * modify the values in  ```config-prod.json```: if you set ```devMode = true``` then the "mock" user service
 implementation will be used
 * modify the code of https://github.com/leob/ionic-quickstarter/blob/master/src/js/app/user/services/user.service.js to
-make it use the implementation that you want (for instance the Firebase or the 'mock' implementation)
+make it use the implementation that you want (for instance the 'mock' implementation)
 
-For more details on configuring Parse or Firebase, see the
+For more details on configuring Firebase, see the
 [wiki](https://github.com/leob/ionic-quickstarter/wiki/Common-recipes).
 
 #### A note about using the image functionality (Cordova Camera, image cropping)
@@ -276,7 +276,7 @@ The image functionality (taking a picture, cropping a picture, and so on) only w
 Cordova, and camera hardware obviously. So, you will need to use 'production mode' (that is, ```gulp build``` and
 ```ionic run``` or ```ionic build```).
 
-As explained in the previous section, in production mode authentication will use the Parse.com implementation by
+As explained in the previous section, in production mode authentication will use the Firebase.com implementation by
 default.
 
 If you do not want this, then you can change the values in the ```config-prod.json``` file, or you can change
@@ -413,8 +413,8 @@ As an example, here is the default structure (slightly simplified) after install
 │   │   │   │        ├── user.service.js
 │   │   │   │        ├── mock
 │   │   │   │        │   └── user.service.mockImpl.js
-│   │   │   │        └── parse
-│   │   │   │            └── user.service.parseImpl.js
+│   │   │   │        └── firebase
+│   │   │   │            └── user.service.firebaseImpl.js
 │   │   │   │      
 │   │   │   app.js
 │   │   │   
@@ -432,7 +432,7 @@ As an example, here is the default structure (slightly simplified) after install
 │   │    ├── angular
 │   │    ├── ionic
 │   │    ├── ngCordova
-│   │    └── parse
+│   │    └── firebase
 │   │      
 │   ├ index-template.html
 │   └ index.html  [GENERATED]
@@ -498,7 +498,7 @@ Scripts defining in which controllers are defined are named 'feature.ctrl.js', w
 feature, e.g. "login".
 
 Scripts defining services are named 'feature.service.js', and their implementations (of any) are named
-'feature.service.mockImpl.js', 'feature.service.parseImpl.js'.
+'feature.service.mockImpl.js', 'feature.service.firebaseImpl.js'.
 
 The naming scheme is probably quite intuitive, but you can find a full explanation in the Wiki:
 [Naming conventions](https://github.com/leob/ionic-quickstarter/wiki/naming-conventions).
@@ -508,7 +508,7 @@ The naming scheme is probably quite intuitive, but you can find a full explanati
 Services which can be reused across modules are in a separate directory ```services```.
 
 A service (for instance the UserService) can have multiple implementations, for instance a "mock" implementation and a
-"Parse" implementation. To illustrate, here is the code for userService.js:
+"Firebase" implementation. To illustrate, here is the code for userService.js:
 
 ```
 angular.module('app.user')
@@ -516,13 +516,13 @@ angular.module('app.user')
     if (  APP.testMode) {
       return $injector.get('UserServiceMockImpl');
     } else {
-      return $injector.get('UserServiceParseImpl');
+      return $injector.get('UserServiceFirebaseImpl');
     }
   });
 ```
 
 Depending on "flags" set in the config.js (in this case, APP.testMode), the factory instantiates either a Mock
-implementation or a Parse implementation of the user service. These implementations are in subdirectories below the
+implementation or a Firebase implementation of the user service. These implementations are in subdirectories below the
 ```service``` directory.
 
 Using this approach, service implementations can easily be changed or swapped out without the client code (controllers
