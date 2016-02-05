@@ -65,14 +65,18 @@ To keep this README short (it's already too long), I'm putting the rest of the i
 ## Installation and usage
 
 First, install ```nodejs```, ```cordova``` and the Ionic command line tools, as described on the <a
-href="http://ionicframework.com/getting-started/">Ionic Getting Started</a> page.
+href="http://ionicframework.com/getting-started/" target="_blank">Ionic Getting Started</a> page.
 
-```npm```, ```gulp```, ```bower```, ```cordova``` ```ionic``` & ```sass``` (if not
-already done).
+It is also recommended to have the following command line tools installed:
+
+```gulp``` and ```bower```
+
+Check if these are installed, and if not install them 'globally' using ```npm``` with the "-g" (global) flag.
 
 ***Note:*** as described on Ionic's "Getting Started" page, the currently recommended version of ```nodejs``` is
-version 4. Lower versions (0.10.x or higher) are not recommended because they are becoming outdated as they do not
-support newer versions of ```nodejs``` based tools, and higher versions (5.x) do not work yet at the moment.
+version 4. Lower versions (0.x versions such as 0.10.x, 0.11.x or 0.12.x) are not recommended because they are quickly
+becoming outdated as they do not support newer versions of ```nodejs``` based tools, and higher versions (5.x) do not
+work yet at the moment.
 
 The version I am currently using is v4.2.6, so that is what I would recommend (v4.2.6 or higher, but not v.5.x).
 
