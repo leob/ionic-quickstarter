@@ -6,9 +6,16 @@
     //
     // This service provides a set of convenience/utility methods that you can use throughout your app.
     //
-    .factory('Application', function (LocalStorage, UserService, APP, Stopwatch, $log, loggingService,
+    .factory('Application', function (LocalStorage, UserService, APP, Stopwatch, $log, loggingService, $ionicPlatform,
                                       $ionicHistory, $ionicLoading, $ionicContentBanner, $translate, $timeout,
-                                      $ionicScrollDelegate) {
+                                      $ionicScrollDelegate, $cordovaToast) {
+
+
+      var deviceReady = false;
+      var ionicPlatformReady = false;
+
+      var appMessage = null;
+      var appState = {};
 
       var init = function () {
         loggingService.log("Application#init", "start");
@@ -61,6 +68,10 @@
         gotoPage($state, "app.intro", null, true);
       };
 
+      var gotoUserProfilePage = function ($state, onboarding) {
+        gotoPage($state, 'app.auth.userProfile', onboarding ? {mode: 'onboarding'} : {}, true, true);
+      };
+
       var gotoStartPage = function ($state, clearHistory) {
         var page = getStartPage();
 
@@ -102,6 +113,51 @@
 
       var getLogger = function (context) {
         return $log.getLogger(context);
+      };
+
+      var setMessage = function (message) {
+        appMessage = message;
+      };
+
+      var getMessage = function () {
+        var message = appMessage;
+        appMessage = null;
+
+        return message;
+      };
+
+      var setState = function (key, value) {
+        appState[key] = value;
+      };
+
+      var getState = function (key) {
+        var value = appState[key];
+
+        return value;
+      };
+
+      var getAndClearState = function (key) {
+        var value = appState[key];
+        delete appState[key];
+
+        return value;
+      };
+
+      var isObjectEmpty = function (object) {
+        if (!object) {
+          return true;
+        }
+
+        for (var key in object) {
+          if (object.hasOwnProperty(key)) {
+            return false;
+          }
+        }
+        return true;
+      };
+
+      var isObjectNotEmpty = function (object) {
+        return !isObjectEmpty(object);
       };
 
       var contentBannerInit = function (vm, controllerScope) {
@@ -205,25 +261,132 @@
         fn(msg + ' - DURATION: ' + stopwatch.fmtTime());
       }
 
+      var getEmail = function () {
+        return LocalStorage.get("email", null);
+      };
+
+      var setEmail = function (value) {
+        LocalStorage.set("email", value);
+      };
+
+      var isDeviceReady = function () {
+        return deviceReady;
+      };
+
+      var setDeviceReady = function (ready) {
+        deviceReady = ready;
+      };
+
+      var isIonicPlatformReady = function () {
+        return ionicPlatformReady;
+      };
+
+      var setIonicPlatformReady = function (ready) {
+        ionicPlatformReady = ready;
+      };
+
+      var deregisterBackbuttonHandler = null;
+
+      var registerBackbuttonHandler = function () {
+
+        unregisterBackbuttonHandler();
+
+        // Prevent the Android hardware back button from exiting the app 'unvoluntarily' - ask the user to confirm; see:
+        //
+        // http://www.gajotres.net/ionic-framework-handling-android-back-button-like-a-pro/
+        // http://forum.ionicframework.com/t/handling-the-hardware-back-buttons/1505/23
+        //
+        // If more flexibility is needed then one can implement something along these lines:
+        //
+        // https://gist.github.com/kyletns/93a510465e433c1981e1
+        //
+        deregisterBackbuttonHandler = $ionicPlatform.registerBackButtonAction(function (event) {
+
+          if ($ionicHistory.backView() === null) {  // no more previous screen in the history stack, so "back" would exit
+            var key = 'exit-popup.';
+
+            $translate(key + 'text', {you: $rootScope._y}).then(function (translation) {
+
+              $translate([key + 'title', key + 'ok-button', key + 'cancel-button']).then(function (translations) {
+
+                $ionicPopup.confirm({
+                  title: translations[key + 'title'],
+                  template: translation,
+                  cssClass: 'info-popup',
+                  cancelText: translations[key + 'cancel-button'],
+                  okText: translations[key + 'ok-button']
+                }).then(function (res) {
+                  if (res) {
+                    ionic.Platform.exitApp();
+                  }
+                });
+
+              });
+            });
+
+          } else {
+            $ionicHistory.goBack();
+          }
+        }, 100);  // 100 = previous view
+
+        return deregisterBackbuttonHandler;
+      };
+
+      var unregisterBackbuttonHandler = function () {
+        if (deregisterBackbuttonHandler) {
+          deregisterBackbuttonHandler();
+          deregisterBackbuttonHandler = null;
+        }
+      };
+
+      var showToast = function (message) {
+        if (window.cordova) {
+          $cordovaToast.showLongCenter(message).then(function (success) {
+            $log.debug("Success: showToast('" + message + "')");
+          }, function (error) {
+            $log.error("Error: showToast('" + message + "'), error: " + JSON.stringify(error));
+          });
+        } else {
+          $log.warn("NOTE - not running on device: showToast('" + message + "')");
+        }
+      }
+
       return {
         init: init,
         isInitialRun: isInitialRun,
         setInitialRun: setInitialRun,
         isUserLoggedIn: isUserLoggedIn,
+        isDeviceReady: isDeviceReady,
+        setDeviceReady: setDeviceReady,
+        isIonicPlatformReady: isIonicPlatformReady,
+        setIonicPlatformReady: setIonicPlatformReady,
+        registerBackbuttonHandler: registerBackbuttonHandler,
+        unregisterBackbuttonHandler: unregisterBackbuttonHandler,
         gotoPage: gotoPage,
         gotoStartPage: gotoStartPage,
         gotoIntroPage: gotoIntroPage,
+        gotoUserProfilePage: gotoUserProfilePage,
         showLoading: showLoading,
         hideLoading: hideLoading,
         resetForm: resetForm,
         getLogger: getLogger,
+        setMessage: setMessage,
+        getMessage: getMessage,
+        setState: setState,
+        getState: getState,
+        getAndClearState: getAndClearState,
+        isObjectEmpty: isObjectEmpty,
+        isObjectNotEmpty: isObjectNotEmpty,
         contentBannerInit: contentBannerInit,
         contentBannerShow: contentBannerShow,
         errorMessage: errorMessage,
         clearErrorMessage: clearErrorMessage,
         logStarted: logStarted,
         logFinished: logFinished,
-        logError: logError
+        logError: logError,
+        getEmail: getEmail,
+        setEmail: setEmail,
+        showToast: showToast
       };
     });
 }());

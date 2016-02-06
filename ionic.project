@@ -2,10 +2,6 @@
  "name": "app",
  "app_id": "",
  "proxies": [
-    {
-      "path": "/parse-api",
-      "proxyUrl": "https://api.parse.com"
-    }
  ],
  "gulpStartupTasks": [
     "default",

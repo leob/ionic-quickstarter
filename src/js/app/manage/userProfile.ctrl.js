@@ -3,10 +3,11 @@
 
   var UserProfileCtrl = /*@ngInject*/function ($scope, $rootScope, $state, $timeout, $ionicModal, $ionicActionSheet,
                                                $translate, $q, $stateParams, Application, ImageService, FileManager,
-                                               UserProfileService, UserService) {
+                                               UserService) {
 
     var vm = this;
     var log = Application.getLogger('UserProfileCtrl');
+    var onboarding = false;
     var user;
 
     // editing the profile image is only possible when running on a device (Cordova available)
@@ -35,7 +36,13 @@
     vm.user = {};
 
     function load() {
-      vm.user = angular.extend({email: user.userName}, UserProfileService.retrieveProfile());
+      // base is what is loaded from the user
+      vm.user = angular.extend({}, UserService.retrieveProfile());
+
+      // email not loaded (yet), this will occur especially right after signup
+      if (!vm.user.email) {
+        vm.user.email = UserService.currentUser().userName;
+      }
 
       profileImage.originalImage = vm.user.profileImage;
     }
@@ -48,6 +55,9 @@
       Application.resetForm(vm);
       Application.contentBannerInit(vm, $scope);
 
+      var mode = Application.getAndClearState('mode');
+      onboarding = (mode === 'onboarding');
+
       load();
 
       var key = 'manage.userProfile.title';
@@ -57,6 +67,14 @@
       });
 
       log.debug("beforeEnter end");
+    });
+
+    // 'user.loaded' event listener: user data is loaded asynchronously after logging in or after application startup
+    // (if the user was/remains logged in)
+    $rootScope.$on(UserService.loadUserDataSuccess(), function (event, userData) {
+      log.info("Received loadUserDataSuccess event");
+
+      load();
     });
 
     //
@@ -201,7 +219,7 @@
       // set the image URL to the new uploaded file's URL
       vm.user.profileImage = url;
 
-      UserProfileService.saveProfile(vm.user);
+      UserService.saveProfile(vm.user);
     }
 
     function cropProfileImage(fileUrl) {
@@ -280,6 +298,24 @@
 
     // ---- SAVE DATA ----
 
+    function gotoNextPage() {
+      var message= Application.getMessage();
+
+      // if we're not in the onboarding process, then stay on the same page, but show the message (if any)
+      if (!onboarding) {
+        if (message) {
+          Application.contentBannerShow(vm, message);
+        }
+        return;
+      }
+
+      if (message) {
+        Application.showToast(message);
+      }
+
+      Application.gotoStartPage($state);
+    }
+
     vm.save = function (form) {
 
       // ad-hoc form validation (maybe better solved with custom validators)
@@ -296,21 +332,33 @@
         return;
       }
 
-      UserProfileService.saveProfile(vm.user);
+      Application.showLoading(true);
 
-      // set the form to "pristine" (i.e. set 'dirty' to false) because the form has been saved now; otherwise the
-      // "form-dirty-check" directive would be triggering the "is dirty" check
-      form.$setPristine();
+      UserService.saveProfile(vm.user).then(function (signedupUser) {
+        Application.hideLoading();
 
-      Application.clearErrorMessage(vm);
+        // set the form to "pristine" (i.e. set 'dirty' to false) because the form has been saved now; otherwise the
+        // "form-dirty-check" directive would be triggering the "is dirty" check
+        form.$setPristine();
 
-      var message = 'message.data-was-saved';
+        Application.clearErrorMessage(vm);
 
-      // the '$timeout' is needed to let AngularJS process its digest loop after calling "form.$setPristine()",
-      // see: http://stackoverflow.com/questions/779379/why-is-settimeoutfn-0-sometimes-useful
-      $timeout(function () {
-        Application.contentBannerShow(vm, message);
-      }, 0);
+        var message = 'message.data-was-saved';
+
+        // signal 'saved-data' state for the next page
+        Application.setMessage(message);
+
+        // the '$timeout' is needed to let AngularJS process its digest loop after calling "form.$setPristine()",
+        // see: http://stackoverflow.com/questions/779379/why-is-settimeoutfn-0-sometimes-useful
+        $timeout(function() {
+          gotoNextPage();
+        }, 0);
+      })
+      .catch(function (error) {
+        Application.hideLoading();
+
+        Application.errorMessage(vm, true, 'message.unknown-error');
+      });
     };
 
   };

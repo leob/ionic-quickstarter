@@ -25,6 +25,15 @@
       "text1": "Then read the manual."
     }
   },
+  "auth": {
+    "login-title": "Log in",
+    "signup-title": "Step 1: Enter email",
+    "changePassword-onboarding-title": "Step 2: Choose password",
+    "changePassword-title": "Choose password",
+    "forgot-password-title": "Forgot password",
+    "changePassword-onboarding-success": "Signup successful, please complete your profile",
+    "changePassword-success": "Password changed successfully"
+  },
   "manage": {
     "userProfile": {
       "title": "User Profile",
@@ -56,9 +65,12 @@
     "email": "Email",
     "password": "Password",
     "login-email": "Email (any real or fake email address)",
-    "login-password": "Password (e.g. 'password')"
+    "login-password": "Password (e.g. 'password')",
+    "passwordOld": "Enter the temporary password",
+    "passwordNew": "Choose a new password, e.g. 'password'"
   },
   "button": {
+    "change-password": "Continue",
     "reset-password": "Reset password",
     "signup": "Create account",
     "login": "Log in",
@@ -77,9 +89,11 @@
   "prompt": {
     "no-account": "Don't have an account yet?",
     "have-an-account": "Already have an account?",
-    "signup": "Enter your email and a password to create your account",
+    "signup": "Enter your email address to create an account",
     "login": "Enter your email and password to log in",
-    "forgot-password": "Enter your email to reset your password"
+    "forgot-password": "Enter your email to reset your password",
+    "change-password": "Choose a new password here",
+    "not-entered-yet": "&nbsp;not entered yet"
   },
   "message": {
     "invalid-fields": "Please enter all required fields",
@@ -100,7 +114,9 @@
     "not-registered": "This email adress is not registered yet",
     "unknown-error": "Unknown error, please check your network",
     "loggedout": "You are logged out",
-    "check-your-email": "Check your email and follow the instructions"
+    "check-your-email": "Check your email and follow the instructions",
+    "check-your-email1": "Check your email",
+    "check-your-email2": "to obtain your temporary password"
   },
   "error-popup": {
     "title": "Unknown error",
