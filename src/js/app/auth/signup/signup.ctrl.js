@@ -17,35 +17,63 @@ var SignupCtrl = /*@ngInject*/function ($scope, $state, Application, UserService
       return;
     }
 
+    // log in with the user's email address and a generated (temporary) password
+    var email = ('' + vm.user.email).toLowerCase();
+    var password = generatePassword();
+
     Application.showLoading(true);
 
-    var user = {
-      username: vm.user.email,
-      password: vm.user.password,
-      email: vm.user.email,
-      fullName: vm.user.name
+    var userData = {
+      userName: email,
+      password: password,
+      email: email,
+      fullName: email,
+      userRole: 'admin'
     };
 
-    UserService.signup(user).then(function (signedupUser) {
-        Application.hideLoading();
+    UserService.signup(userData).then(function (signedupUser) {
+      log.info("User signed up successfully");
 
-        log.info("User signed up successfully");
+      // send a reset-password email with a (new) temporary password
+      return UserService.resetPassword(email);
+    })
+    .then(function (signedupUser) {
+      Application.hideLoading();
 
-        // go to the login page, optionally displaying a message asking the user to verify their email
-        $state.go('login', !signedupUser.emailVerified ? {verifyEmail: 'verify'} : {});
-      })
-      .catch(function (error) {
-        Application.hideLoading();
+      Application.setEmail(email);
 
-        if (error == "invalid_email") {
-          vm.errorMessage('message.valid-email');
-        } else if (error == "already_registered") {
-          vm.errorMessage('message.already-registered');
-        } else {
-          vm.errorMessage('message.unknown-error');
-        }
-      });
+      log.info("User signed up successfully");
+
+      // go to the change-password page, displaying a message asking the user to verify their email
+      Application.setState('mode', 'onboarding');
+      Application.gotoPage($state, 'changePassword', {mode: 'onboarding'}, true, true);
+    })
+    .catch(function (error) {
+      Application.hideLoading();
+
+      if (error === "invalid_email") {
+        Application.errorMessage(vm, 'message.valid-email');
+      } else if (error === "already_registered") {
+        Application.errorMessage(vm, 'message.already-registered');
+      } else {
+        Application.errorMessage(vm, 'message.unknown-error');
+      }
+    });
   };
+
+  //
+  // Generate a temporary password.
+  //
+  // Taken from: http://andreasmcdermott.com/web/2014/02/05/Email-verification-with-Firebase/#comment-1277405896
+  //
+  function generatePassword () {
+    var possibleChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?_-';
+    var password = '';
+    for(var i = 0; i < 16; i += 1) {
+      password += possibleChars[ Math.floor(Math.random()*possibleChars.length)];
+    }
+    return password;
+  }
 
   vm.intro = function () {
     Application.gotoIntroPage($state);
@@ -53,12 +81,6 @@ var SignupCtrl = /*@ngInject*/function ($scope, $state, Application, UserService
 
   vm.login = function() {
     $state.go('login');
-  };
-
-  vm.errorMessage = function (key, vars) {
-    $translate(key, vars || {}).then(function (translation) {
-      vm.error.message = translation;
-    });
   };
 
 };

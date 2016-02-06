@@ -3,18 +3,25 @@
 
 appModule('app.user')
 
-  .service('UserServiceMockImpl', function ($q, $log, loggingService, User) {
+  .service('UserServiceMockImpl', function ($q, $log, $rootScope, loggingService, User, AppHooks, LocalStorage) {
 
+    var service;
     var currentLoggedinUser = null;
+    var userDataLoaded = false;
 
     var userData = {
       userName: 'ad@min.com',
       emailVerified: true,
-      password: 'password'
+      password: 'password',
+      userRole: 'admin'   // hard-coded
     };
 
     function setCurrentUser(userData) {
       currentLoggedinUser = User.build(userData);
+
+      if (currentLoggedinUser) {   // we have a logged in user, load their data
+        loadUnloadData(currentLoggedinUser, true);
+      }
 
       return currentLoggedinUser;
     }
@@ -43,14 +50,14 @@ appModule('app.user')
 
       $log.debug("Signup start ...");
 
-      if (user.password == userData.password) {
+      //if (user.password == userData.password) {
         $log.debug("Signup done");
 
         // note: we don't set/change the current user because the new user isn't logged in yet
         deferred.resolve(User.build(userData));
-      } else {
-        deferred.reject("unknown_error");
-      }
+      //} else {
+      //  deferred.reject("unknown_error");
+      //}
 
       return deferred.promise;
     };
@@ -77,6 +84,20 @@ appModule('app.user')
       setCurrentUser(null);
     };
 
+    var changePassword = function (email, passwordOld, passwordNew) {
+      var deferred = $q.defer();
+
+      logout();
+
+
+      $log.debug("Password change start ...");
+      $log.debug("Password change done");
+
+      deferred.resolve();
+
+      return deferred.promise;
+    };
+
     var resetPassword = function (email) {
       var deferred = $q.defer();
 
@@ -90,15 +111,146 @@ appModule('app.user')
       return deferred.promise;
     };
 
-    return {
+    function loadUserData(user) {
+      // create "fake" user data
+      var defaultValues = {
+        email: user.userName,
+        userRole: user.userRole
+      };
+
+      var loadedValues = LocalStorage.getObject('userProfile');
+
+      return angular.extend(defaultValues, loadedValues);
+    }
+
+    var loadUnload = function (user, prop, load, onSuccess, data) {
+      var obj = user;
+
+      if (load) {
+        obj[prop] = data;
+
+        if (onSuccess) {
+          $rootScope.$broadcast(onSuccess, data);
+        }
+      } else {
+        delete obj[prop];
+      }
+    };
+
+    var loadUnloadData = function (user, load) {
+      if (!user) {
+        return;
+      }
+
+      var userService = service;
+      userDataLoaded = false;
+
+      userService.loadUnload(user, 'data', load, loadUserDataSuccess(), loadUserData(userData));
+
+      userDataLoaded = true;
+
+      // call hook functions, if any
+      AppHooks.loadUnloadUser(userService, user, load);
+    };
+
+    var loadUserDataSuccess = function () {
+      return 'on.loadUserDataSuccess';
+    };
+
+    var loadUserDataError = function () {
+      return 'on.loadUserDataError';
+    };
+
+    var getUserProp = function (prop, user) {
+      var theUser = user || currentLoggedinUser;
+
+      if (!theUser) {
+        return null;
+      }
+
+      return theUser[prop];
+    };
+
+    var setUserProp = function (prop, user, value) {
+      var theUser = user || currentLoggedinUser;
+
+      if (theUser) {
+        theUser[prop] = value;
+      }
+    };
+
+    var getUserData = function (user) {
+      return getUserProp('data', user);
+    };
+
+    var setUserData = function (user, value) {
+      setUserProp('data', user, value);
+    };
+
+    var getUserRole = function (user) {
+      var theUser = user || currentLoggedinUser;
+
+      return theUser.getUserRole();
+    };
+
+    var setUserRole = function (role) {
+      var theUser = currentLoggedinUser;
+
+      theUser.setUserRole(role);
+    };
+
+    var isUserDataLoaded = function () {
+      return userDataLoaded;
+    };
+
+    var retrieveProfile = function () {
+      var user = currentLoggedinUser;
+
+      var defaultValues = {
+        email: user.userName
+      };
+
+      var prof = angular.extend(defaultValues, getUserData());
+
+      return prof;
+    };
+
+    var saveProfile = function (data) {
+      var deferred = $q.defer();
+
+      setUserData(null, angular.extend(getUserData(), data));
+      LocalStorage.setObject('userProfile', data);
+
+      deferred.resolve();
+
+      return deferred.promise;
+    };
+
+    service = {
       init: init,
+      loadUnload: loadUnload,
+      loadUnloadData: loadUnloadData,
+      loadUserDataSuccess: loadUserDataSuccess,
+      loadUserDataError: loadUserDataError,
+      isUserDataLoaded: isUserDataLoaded,
       isUserLoggedIn: isUserLoggedIn,
+      getUserProp: getUserProp,
+      setUserProp: setUserProp,
+      getUserData: getUserData,
+      setUserData: setUserData,
+      getUserRole: getUserRole,
+      setUserRole: setUserRole,
       currentUser: currentUser,
       signup: signup,
       login: login,
       logout: logout,
-      resetPassword: resetPassword
+      changePassword: changePassword,
+      resetPassword: resetPassword,
+      retrieveProfile: retrieveProfile,
+      saveProfile: saveProfile
     };
+
+    return service;
   })
 ;
 }());

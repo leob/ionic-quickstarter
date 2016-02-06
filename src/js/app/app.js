@@ -18,7 +18,7 @@
 //
   angular.module('app', [
     // libraries
-    'ionic', //'ionic.service.core', 'ionic.service.analytics',  // IONIC.IO (Alpha software - disable for production?)
+    'ionic',
     "firebase",
     'ngCordova', 'ngMessages', 'fusionMessages',
     // angular-translate
@@ -32,9 +32,10 @@
     // generic services
     'app.util', 'app.firebase',
     // app services
-    'app.user', 'app.image',
+    'app.hooks', 'app.user', 'app.image',
     // controllers and routers
-    'app.intro', 'app.auth.signup', 'app.auth.login', 'app.auth.forgotPassword', 'app.mainPage', 'app.manage',
+    'app.intro', 'app.auth.signup', 'app.auth.login', 'app.auth.forgotPassword', 'app.auth.changePassword',
+    'app.mainPage', 'app.manage',
     // ANGULAR-TEMPLATECACHE
     'templates'
   ])
@@ -83,13 +84,6 @@
     $compileProvider.debugInfoEnabled(APP.devMode);
   })
 
-  //.config(function ($ionicAppProvider, ionicIO) {
-  //  $ionicAppProvider.identify({
-  //    app_id: ionicIO.appId,
-  //    api_key: ionicIO.apiKey
-  //  });
-  //})
-
   .config(function ($translateProvider) {
     $translateProvider
       .useStaticFilesLoader({
@@ -115,7 +109,8 @@
   })
 
   .run(function ($ionicPlatform, $ionicPopup, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, $translate,
-                 $log, loggingDecorator, Application, APP, UserService, FirebaseConfiguration) {
+                 $log, $timeout, $cordovaDevice, loggingDecorator, Application, APP, UserService,
+                 FirebaseConfiguration) {
 
     loggingDecorator.decorate($log);
 
@@ -134,6 +129,33 @@
 
     function isValidUser() {
       if (!UserService.isUserLoggedIn()) {
+        return false;
+      }
+
+      //
+      // TO DO: we might check for the user role here, e.g:
+      //
+      // var userRole = UserService.getUserRole();
+      //
+      // Then if the page we want to go to requires a specific role (e.g. "admin") then we might block access (by
+      // returning 'false' if the user does not have that role, see this page which explains the technique:
+      //
+      // www.jvandemo.com/how-to-use-areas-and-border-states-to-control-access-in-an-angular-application-with-ui-router
+      //
+
+      return true;
+    }
+
+    function checkValidUser() {
+
+      if (!isValidUser()) {
+        $log.debug('APP - no valid user, redirect to login');
+
+        // redirect to login page
+        $timeout(function () {
+          $state.go('login', {});
+        }, 0);
+
         return false;
       }
 
@@ -156,13 +178,27 @@
       }
     });
 
-    $ionicPlatform.ready(function () {
+    $rootScope.$on(UserService.loadUserDataSuccess(), function (event, userData) {
+      $log.info('APP - user data loaded, userRole: ' + userData.userRole);
 
-      //// tracking/analytics (Ionic.io)
-      //Tracking.init({
-      //  // SET TO FALSE TO ENABLE IONIC.IO TRACKING, IF SET TO TRUE THEN THE IONIC ANALYTICS LIB DOES NOTHING
-      //  dryRun: APP.noTracking
-      //});
+      // store the userRole back into the user object
+      UserService.setUserRole(userData.userRole);
+
+      // check valid user now that the user data has been loaded (so the user's role is know)
+      checkValidUser();
+    });
+
+    $rootScope.$on(UserService.loadUserDataError(), function (event, error) {
+      $log.error("APP - error loading user data");
+
+      // check valid user now that the user data has been loaded (so the user's role is know)
+      checkValidUser();
+    });
+
+    $ionicPlatform.ready(function () {
+      $log.info('IONIC PLATFORM READY');
+
+      Application.setIonicPlatformReady(true);
 
       // hide or show the accessory bar by default (set the value to false to show the accessory bar above the keyboard
       // for form inputs - see: https://github.com/driftyco/ionic-plugin-keyboard/issues/97 and
@@ -182,42 +218,31 @@
         }
       });
 
-      // Prevent the Android hardware back button from exiting the app 'unvoluntarily' - ask the user to confirm; see:
-      //
-      // http://www.gajotres.net/ionic-framework-handling-android-back-button-like-a-pro/
-      // http://forum.ionicframework.com/t/handling-the-hardware-back-buttons/1505/23
-      //
-      // If more flexibility is needed then one can implement something along these lines:
-      //
-      // https://gist.github.com/kyletns/93a510465e433c1981e1
-      //
-      $ionicPlatform.registerBackButtonAction(function (event) {
-
-        if ($ionicHistory.backView() === null) {  // no more previous screen in the history stack, so "back" would exit
-          var key = 'exit-popup.';
-
-          $translate([key + 'title', key + 'text', key + 'ok-button', key + 'cancel-button']).then(function (translations) {
-
-            $ionicPopup.confirm({
-              title: translations[key + 'title'],
-              template: translation,
-              cancelText: translations[key + 'cancel-button'],
-              okText: translations[key + 'ok-button']
-            }).then(function (res) {
-              if (res) {
-                ionic.Platform.exitApp();
-              }
-            });
-
-          });
-
-        } else {
-          $ionicHistory.goBack();
-        }
-      }, 100);  // 100 = previous view
-
+      Application.registerBackbuttonHandler();
       Application.init();
+
+      checkDeviceReady();
+
       Application.gotoStartPage($state);
     });
+
+    function checkDeviceReady() {
+
+      if (window.cordova) {
+        document.addEventListener("deviceready", function () {
+          $log.info("checkDeviceReady: device is ready");
+
+          Application.setDeviceReady(true);
+
+          var device = $cordovaDevice.getDevice();
+          $log.info("DEVICE: " + JSON.stringify(device));
+
+          //if (device && device.uuid) {
+          //  loggingService.setDeviceId(device.uuid);
+          //}
+        }, false);
+      }
+    }
+
   });
 }());

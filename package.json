@@ -44,12 +44,17 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-camera",
     "cordova-plugin-file",
-    "cordova-plugin-file-transfer"
+    "cordova-plugin-file-transfer",
+    {
+      "locator": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+      "id": "cordova-plugin-x-toast"
+    }
   ],
   "scripts": {
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver",
     "protractor": "protractor protractor.conf.js"
-  }
+  },
+  "cordovaPlatforms": []
 }

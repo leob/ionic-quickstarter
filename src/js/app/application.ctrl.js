@@ -27,7 +27,7 @@ angular.module('app')
     };
 
     this.goUserProfile = function() {
-      $state.go('app.auth.userProfile');
+      Application.gotoUserProfilePage($state, true);
     };
 
     this.goHome = function() {

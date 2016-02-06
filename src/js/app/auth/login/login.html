@@ -9,18 +9,22 @@
 
       <div class="list">
 
-        <span class="note item item-borderless" translate="prompt.login"></span>
+        <div class="text-center">
+          <span class="h3 brand-primary" translate>auth.login-title</span>
+        </div>
+
+        <span class="note item item-borderless" translate="prompt.login" translate-values="{your: '{{_yr}}'}"></span>
 
         <label class="item item-input first-field">
           <i class="icon ion-ios-person-outline placeholder-icon field-icon"></i>
-          <input type="email"
-                 placeholder="Email" translate translate-attr-placeholder="field.login-email"
+          <input name="email"
+                 type="email"
                  ng-model="vm.user.username"
                  form-field="vm.form.email"
-                 name="email"
+                 placeholder="Email" translate translate-attr-placeholder="field.email"
+                 required
                  ng-minlength="5"
-                 ng-maxlength="50"
-                 required>
+                 ng-maxlength="50">
         </label>
 
         <div fus-messages="vm.form.email">
@@ -29,13 +33,13 @@
 
         <label class="item item-input">
           <i class="icon ion-ios-locked-outline placeholder-icon field-icon"></i>
-          <input type="password"
-                 placeholder="Password" translate translate-attr-placeholder="field.login-password"
+          <input name="password"
+                 type="password"
                  ng-model="vm.user.password"
                  form-field="vm.form.password"
-                 name="password"
-                 ng-minlength="5"
-                 required>
+                 placeholder="Password" translate translate-attr-placeholder="field.password"
+                 required
+                 ng-minlength="5">
         </label>
 
         <div fus-messages="vm.form.password">
@@ -48,12 +52,12 @@
       </div>
 
       <div class="text-center padding-top">
-        <button name="login" class="button button-full button-primary" ng-click="vm.login(vm.form)" translate>
-          button.login
-        </button>
+        <button name="login" class="button button-full button-primary" ng-click="vm.login(vm.form)"
+                translate>button.login</button>
 
         <span class="note padding" translate>prompt.no-account</span><span
           class="link padding" ui-sref="signup" translate>link.signup</span>
+
       </div>
 
     </form>
