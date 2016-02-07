@@ -58,6 +58,7 @@ var paths = {
     './src/js/**/*.js',
     '!./src/js/lib/ng-img-crop-customized/ng-img-crop.js',   /* exclude ng-img-crop.js: handled separately */
     '!./src/js/lib/ng-img-crop-customized/ng-img-crop.min.js',   /* exclude ng-img-crop.min.js: handled separately */
+    '!./src/js/lib/logentries/le.min.js',
     '!./src/js/config/config.js'   /* exclude config.js: handled separately */
   ],
   injectedScripts: [
@@ -89,7 +90,8 @@ var paths = {
     './src/lib/fus-messages/dist/fus-messages.js',
     './src/lib/firebase/firebase.js',
     './src/lib/angularfire/dist/angularfire.min.js',
-    './src/js/lib/ng-img-crop-customized/ng-img-crop.min.js'
+    './src/js/lib/ng-img-crop-customized/ng-img-crop.min.js',
+    './src/js/lib/logentries/le.min.js'
     ],
   dist: ['./www']
 };

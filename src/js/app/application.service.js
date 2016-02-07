@@ -6,9 +6,9 @@
     //
     // This service provides a set of convenience/utility methods that you can use throughout your app.
     //
-    .factory('Application', function (LocalStorage, UserService, APP, Stopwatch, $log, loggingService, $ionicPlatform,
-                                      $ionicHistory, $ionicLoading, $ionicContentBanner, $translate, $timeout,
-                                      $ionicScrollDelegate, $cordovaToast) {
+    .factory('Application', function (StorageService, UserService, APP, Stopwatch, $log, $ionicPlatform, $ionicHistory,
+                                      $ionicLoading, $ionicContentBanner, $translate, $timeout, $ionicScrollDelegate,
+                                      $cordovaToast) {
 
 
       var deviceReady = false;
@@ -18,11 +18,11 @@
       var appState = {};
 
       var init = function () {
-        loggingService.log("Application#init", "start");
+        var w = logStarted('Application#init');
 
         UserService.init();
 
-        loggingService.log("Application#init", "end");
+        logFinished(w);
       };
 
       var getStartPage = function () {
@@ -42,8 +42,7 @@
           state = APP.routerDefaultState;
         }
 
-        loggingService.log(
-          "Application#getStartPage", "state = " + state);
+        $log.info("Application#getStartPage - state = " + state);
 
         return {state: state, stateParams: null};
       };
@@ -81,11 +80,11 @@
       };
 
       var isInitialRun = function () {
-        return LocalStorage.get("initialRun", "true") == "true";
+        return StorageService.get("initialRun", "true") == "true";
       };
 
       var setInitialRun = function (initial) {
-        LocalStorage.set("initialRun", initial ? "true" : "false");
+        StorageService.set("initialRun", initial ? "true" : "false");
       };
 
       var isUserLoggedIn = function () {
@@ -262,11 +261,11 @@
       }
 
       var getEmail = function () {
-        return LocalStorage.get("email", null);
+        return StorageService.get("email", null);
       };
 
       var setEmail = function (value) {
-        LocalStorage.set("email", value);
+        StorageService.set("email", value);
       };
 
       var isDeviceReady = function () {

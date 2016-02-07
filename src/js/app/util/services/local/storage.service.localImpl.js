@@ -2,8 +2,6 @@
 "use strict";
 
 //
-// localStorage.js
-//
 // Wrapper service for local storage.
 //
 // This could be overridden/reimplemented to use another storage mechanism e.g. SQLite or PouchDB.
@@ -11,7 +9,7 @@
 
 appModule('app.util')
 
-  .factory('LocalStorage', function ($window) {
+  .factory('StorageServiceLocalImpl', function ($window) {
     return {
       set: function (key, value) {
         $window.localStorage[key] = value;
@@ -26,5 +24,6 @@ appModule('app.util')
         return JSON.parse($window.localStorage[key] || '{}');
       }
     };
-  });
+  })
+;
 }());
