@@ -8,7 +8,7 @@
 
   appModule('app.util')
 
-    .factory('loggingDecorator', function (loggingService, dateFilter, TrackLogLevels, TrackingService) {
+    .factory('loggingDecorator', function (loggingService, dateFilter, TrackLogLevels) {
       var decorate = function(log, appName) {
 
         log.log = enhanceLogging(log.log, appName, 'LOG', TrackLogLevels.log);
@@ -94,7 +94,7 @@
     })
 
     // see: http://blog.pdsullivan.com/posts/2015/02/19/ionicframework-googleanalytics-log-errors.html
-    .factory('loggingService', function (APP) { //}, $cordovaGoogleAnalytics) {
+    .factory('loggingService', function (APP, TrackingService) {
 
       var deviceId = null;
 
