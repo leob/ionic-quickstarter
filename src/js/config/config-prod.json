@@ -2,7 +2,15 @@
   "constants": {
     "APP": {
       "devMode": false,
-      "testMode": false
+      "testMode": false,
+      "tracking": true
+    },
+    "TrackLogLevels": {
+      "debug": false,
+      "log": true,
+      "info": true,
+      "warn": true,
+      "error": true
     }
   }
 }

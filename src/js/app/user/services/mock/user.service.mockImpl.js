@@ -3,7 +3,7 @@
 
 appModule('app.user')
 
-  .service('UserServiceMockImpl', function ($q, $log, $rootScope, loggingService, User, AppHooks, LocalStorage) {
+  .service('UserServiceMockImpl', function ($q, $log, $rootScope, loggingService, User, AppHooks, StorageService) {
 
     var service;
     var currentLoggedinUser = null;
@@ -118,7 +118,7 @@ appModule('app.user')
         userRole: user.userRole
       };
 
-      var loadedValues = LocalStorage.getObject('userProfile');
+      var loadedValues = StorageService.getObject('userProfile');
 
       return angular.extend(defaultValues, loadedValues);
     }
@@ -219,7 +219,7 @@ appModule('app.user')
       var deferred = $q.defer();
 
       setUserData(null, angular.extend(getUserData(), data));
-      LocalStorage.setObject('userProfile', data);
+      StorageService.setObject('userProfile', data);
 
       deferred.resolve();
 
