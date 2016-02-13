@@ -1,14 +1,13 @@
 ;(function () {
   "use strict";
 
-  var LoginCtrl = /*@ngInject*/function ($scope, $state, $stateParams, Application, UserService, $translate,
-                                         $ionicContentBanner) {
+  var LoginCtrl = /*@ngInject*/function ($scope, $state, $stateParams, Application, UserService) {
     var vm = this;
     var log = Application.getLogger('LoginCtrl');
 
     $scope.$on('$ionicView.beforeEnter', function () {
       // enforce/ensure no logged in user at this point
-      UserService.logout();
+      UserService.logoutApp();
 
       Application.resetForm(vm);
 
@@ -16,35 +15,6 @@
         username: null,
         password: null
       };
-    });
-
-    var closeContentBanner = null;
-
-      // the ionic-content-banner needs to be displayed in the 'enter' event because it will only work if the view
-      // is displayed completely
-      $scope.$on('$ionicView.enter', function () {
-
-        if ($stateParams.verifyEmail) {
-          var messageKey;
-          var messageParams;
-
-          if ($stateParams.verifyEmail === 'verify') {
-            messageKey = 'message.check-your-email';
-          } else {    // $stateParams.verifyEmail === 'notVerified'
-            messageKey = 'message.email-not-verified';
-          }
-
-          $translate(messageKey).then(function (translation) {
-            closeContentBanner = $ionicContentBanner.show({text: [translation]});
-          });
-        }
-    });
-
-    // before we leave the view then close/destroy the ionic-content-banner, if any
-    $scope.$on('$ionicView.beforeLeave', function () {
-      if (closeContentBanner) {
-        closeContentBanner();
-      }
     });
 
     vm.login = function (form) {
@@ -68,6 +38,29 @@
           Application.errorMessage(vm, 'message.unknown-error');
         }
       });
+    };
+
+    vm.loginWithTwitter = function () {
+      Application.showLoading(true);
+
+      UserService.loginWithTwitter().then(function (loggedinUser) {
+        Application.hideLoading();
+        Application.gotoStartPage($state);
+      })
+      .catch(function (error) {
+        Application.hideLoading();
+
+        // login failed, check error to see why
+        if (error == "invalid_credentials") {
+          Application.errorMessage(vm, 'message.invalid-credentials');
+        } else {
+          Application.errorMessage(vm, 'message.unknown-error');
+        }
+      });
+    };
+
+    vm.canLoginWithTwitter = function () {
+      return UserService.canLoginWithTwitter();
     };
 
     vm.forgot = function () {

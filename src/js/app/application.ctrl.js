@@ -14,8 +14,9 @@ angular.module('app')
     // UTILITY FUNCTIONS
 
     this.logout = function() {
-      UserService.logout();
-      $state.go('loggedout');
+      UserService.logoutApp().then(function() {
+        $state.go('loggedout');
+      });
     };
 
     this.login = function() {

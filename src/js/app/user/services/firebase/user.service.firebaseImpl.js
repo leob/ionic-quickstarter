@@ -3,8 +3,12 @@
 
 appModule('app.user')
 
-  .factory('UserServiceFirebaseImpl', function ($q, $log, $rootScope, Stopwatch, AppHooks, User,
-                                                fbutil, $firebaseAuth, $firebaseObject, $firebaseArray) {
+  .factory('UserServiceFirebaseImpl', function ($q, $log, $rootScope, Stopwatch, AppHooks, User, fbutil, $firebaseAuth,
+                                                $firebaseObject, $firebaseArray, firebaseOauthHelper,
+                                                TwitterReauthentication) {
+
+    var FIREBASE_PASSWORD_PROVIDER = 'password';
+    var FIREBASE_TWITTER_PROVIDER = 'twitter';
 
     var service;
     var currentLoggedinUser = null;
@@ -12,19 +16,30 @@ appModule('app.user')
     var ref = fbutil.ref();
     var auth = $firebaseAuth(ref);
 
-    // make a canonical user from a Firebase user object
-    function createUser(fbUser) {
-      if (!fbUser) {
+    // make a canonical user from a Firebase auth object
+    function createUser(fbAuth) {
+      if (!fbAuth) {
         return null;
       }
 
       var user = User.build({
-        userName: fbUser.password.email,
-        id: fbUser.uid,
-        verified: true   // we've not implemented email verification with Firebase yet so just set this to true
+        provider: fbAuth.provider,
+        userName: getUserName(fbAuth),
+        id: fbAuth.uid
       });
 
       return user;
+    }
+
+    function getUserName(fbAuth) {
+      var provider = fbAuth.provider;
+      var userName = 'unknown';
+
+      if (provider === FIREBASE_TWITTER_PROVIDER) {
+        userName = fbAuth.twitter.username;
+      } else if (provider === FIREBASE_PASSWORD_PROVIDER) {
+        userName = fbAuth.password.email;
+      }
     }
 
     function setCurrentUser(userData) {
@@ -162,8 +177,8 @@ appModule('app.user')
 
         // pick up the uid
         userData = {
+          provider: FIREBASE_PASSWORD_PROVIDER,
           userName: email,
-          verified: true, // we've not implemented email verification with Firebase yet so just set this to true
           id: user.uid
         };
 
@@ -171,7 +186,8 @@ appModule('app.user')
         var ref = fbutil.ref('users', user.uid);
 
         return fbutil.handler(function(cb) {
-          ref.set({email: email, userRole: userRole, createdAt: Firebase.ServerValue.TIMESTAMP}, cb);
+          ref.set({provider: FIREBASE_PASSWORD_PROVIDER, userName: userName, userRole: userRole,
+                  createdAt: Firebase.ServerValue.TIMESTAMP}, cb);
         });
 
       }).then(function() {
@@ -217,9 +233,9 @@ appModule('app.user')
       var w = logStarted('UserServiceFirebaseImpl#login');
 
       var userData = {
+        provider: FIREBASE_PASSWORD_PROVIDER,
         userName: userName,
         password: password,
-        verified: true
       };
 
       auth.$authWithPassword({
@@ -240,9 +256,95 @@ appModule('app.user')
       return deferred.promise;
     };
 
+    var loginWithTwitter = function() {
+      var deferred = $q.defer();
+
+      logout();
+
+      var w = logStarted('UserServiceFirebaseImpl#loginWithTwitter');
+
+      var authMethod = 'twitter';
+
+      auth.$authWithOAuthPopup(authMethod).then(function(authData) {
+        $log.debug("Authenticated successfully: " + JSON.stringify(authData));
+
+        logFinished(w);
+
+        deferred.resolve(setCurrentUser(authData));
+      }).catch(function(error) {
+        logError(w, JSON.stringify(error));
+        deferred.reject(mapError(w, error, "login"));
+      });
+
+      return deferred.promise;
+    };
+
+    var logoutApp = function () {
+      var provider = currentLoggedinUser ? currentLoggedinUser.provider : '';
+
+      logout();
+
+      if (provider === FIREBASE_TWITTER_PROVIDER) {
+        return logoutTwitter();
+      }
+
+      // everything else, just return a resolved promise
+      var deferred = $q.defer();
+      deferred.resolve();
+
+      return deferred.promise;
+    };
+
     var logout = function () {
       auth.$unauth();
       setCurrentUser(null);
+    };
+
+    var logoutTwitter = function() {
+      var deferred = $q.defer();
+
+      var w = logStarted('UserServiceFirebaseImpl#logoutTwitter');
+
+      //
+      // Reauthentication hack: the Twitter API does not really offer a "logout" function, so what we do is we simply
+      // start an auth attempt with "force_login=true" (see code of the "firebaseOauthHelper" service)
+      //
+      // NOTE: reauthentication can be switched on or off through the 'TwitterReauthentication.useReauthenticationHack'
+      // flag. A reason not to use reauthentication could be that, for secirity reasons, you do not want to have the
+      // Twitter API keys (the consumer key and the consumer secret) in the app's source code (which is a necessity for
+      // this method to work).
+      //
+      // NOTE: if TwitterReauthentication.useReauthenticationHack === 'false' then you can leave the 'consumerKey' and
+      // the 'consumerSecretKey' properties of the "TwitterReauthentication" config section empty/blank.
+      //
+      // If TwitterReauthentication.useReauthenticationHack === 'true' then you will need to configure values for the
+      // 'consumerKey' and 'consumerSecretKey' properties, and these values have to be IDENTICAL to the Twitter API
+      // keys which you configured in the Firebase dashboard for your Firebase application.
+      //
+
+      if (TwitterReauthentication.useReauthenticationHack === 'true') {
+
+        var consumerKey = TwitterReauthentication.consumerKey;
+        var consumerSecretKey = TwitterReauthentication.consumerSecretKey;
+
+        firebaseOauthHelper.twitter(consumerKey, consumerSecretKey).then(function (result) {
+          $log.warn("Authenticated successfully");
+
+          logFinished(w);
+
+          deferred.resolve();
+        }, function (error) {
+          logError(w, "THERE WAS AN ERROR: " +
+            JSON.stringify(error));
+          deferred.reject();
+        });
+
+      } else {  // don't apply the hack
+        // nothing to do, just return a resolved promise
+        deferred.resolve();
+      }
+
+      return deferred.promise;
     };
 
     var resetPassword = function (email) {
@@ -262,36 +364,6 @@ appModule('app.user')
         logError(w, JSON.stringify(error));
         deferred.reject(mapError(w, error, "reset-password"));
       });
-
-      return deferred.promise;
-    };
-
-    var saveUserProfile = function (user, data) {
-      var deferred = $q.defer();
-
-      $log.debug("Creating firebase object for user '" + user.id + "'");
-
-      var fbObj = getUserData(user);
-      fbObj = angular.extend(fbObj, data);
-
-      // prevent the user data from being saved when the userRole property is not there (incomplete user data)
-      if (!fbObj.userRole) {
-        $log.warn("Error saving user object for '" + user.id + "': userRole missing or not loaded");
-
-        deferred.reject('userRole_missing_or_not_loaded');
-
-      } else {
-        fbObj.$save().then(function (ref) {
-          $log.debug("Saved firebase object for user '" + user.id + "' with key '" + ref.key() + "'");
-
-          deferred.resolve(ref);
-        })
-        .catch(function (error) {
-          $log.error("Error saving user object for '" + user.id + "': " + JSON.stringify(error));
-
-          deferred.reject(error);
-        });
-      }
 
       return deferred.promise;
     };
@@ -424,28 +496,6 @@ appModule('app.user')
       theUser.setUserRole(role);
     };
 
-    var disableUser = function (setToUserRole) {
-      var deferred = $q.defer();
-
-      $log.debug('UserServiceFirebaseImpl#disableUser START, setToUserRole: ' + setToUserRole);
-
-      var ref = fbutil.ref('users', currentLoggedinUser.id);
-
-      fbutil.handler(function(cb) {
-        ref.update({userRole: setToUserRole}, cb);
-      }).then(function() {
-        $log.debug('UserServiceFirebaseImpl#disableUser FINISHED');
-
-        deferred.resolve(null);
-      }, function(error) {
-        $log.error('UserServiceFirebaseImpl#disableUser ERROR ' + JSON.stringify(error));
-
-        deferred.reject(error);
-      });
-
-      return deferred.promise;
-    };
-
     var isUserDataLoaded = function () {
       return userDataLoaded;
     };
@@ -454,7 +504,7 @@ appModule('app.user')
       var user = currentLoggedinUser;
 
       var defaultValues = {
-        email: user.userName
+        userName: user.userName
       };
 
       var prof = angular.extend(defaultValues, getUserData());
@@ -493,12 +543,17 @@ appModule('app.user')
       return deferred.promise;
     };
 
+    var canLoginWithTwitter = function () {
+      return true;
+    };
+
     service = {
       init: init,
       loadUnload: loadUnload,
       loadUnloadData: loadUnloadData,
       loadUserDataSuccess: loadUserDataSuccess,
       loadUserDataError: loadUserDataError,
+      isUserDataLoaded: isUserDataLoaded,
       isUserLoggedIn: isUserLoggedIn,
       currentUser: currentUser,
       getUserProp: getUserProp,
@@ -507,14 +562,14 @@ appModule('app.user')
       setUserRole: setUserRole,
       signup: signup,
       login: login,
+      loginWithTwitter: loginWithTwitter,
       logout: logout,
+      logoutApp: logoutApp,
       changePassword: changePassword,
       resetPassword: resetPassword,
-      saveUserProfile: saveUserProfile,
-      disableUser: disableUser,
-      isUserDataLoaded: isUserDataLoaded,
       retrieveProfile: retrieveProfile,
-      saveProfile: saveProfile
+      saveProfile: saveProfile,
+      canLoginWithTwitter: canLoginWithTwitter
     };
 
     return service;

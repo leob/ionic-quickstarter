@@ -30,9 +30,7 @@
     // config
     'app.config',
     // generic services
-    'app.util', 'app.firebase',
-    // app services
-    'app.hooks', 'app.user', 'app.image',
+    'app.util', 'app.firebase', 'app.hooks', 'app.user', 'app.firebaseOauth', 'app.image',
     // controllers and routers
     'app.intro', 'app.auth.signup', 'app.auth.login', 'app.auth.forgotPassword', 'app.auth.changePassword',
     'app.mainPage', 'app.manage',

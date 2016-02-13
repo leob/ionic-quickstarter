@@ -51,7 +51,7 @@
         "images-profile-photo1": "Profile",
         "images-profile-photo2": "picture",
         "other": "Other data",
-        "email": "Email adress"
+        "userName": "User name"
       },
       "upload-profile-photo": "Upload profile picture"
     },
@@ -74,6 +74,7 @@
     "reset-password": "Reset password",
     "signup": "Create account",
     "login": "Log in",
+    "login-with-twitter": "Login with Twitter",
     "previous": "Previous",
     "next": "Next",
     "close-intro": "Close intro",
@@ -91,6 +92,7 @@
     "have-an-account": "Already have an account?",
     "signup": "Enter your email address to create an account",
     "login": "Enter your email and password to log in",
+    "login-with-twitter": "or",
     "forgot-password": "Enter your email to reset your password",
     "change-password": "Choose a new password here",
     "not-entered-yet": "&nbsp;not entered yet"

@@ -10,8 +10,8 @@ appModule('app.user')
     var userDataLoaded = false;
 
     var userData = {
+      provider: 'password',
       userName: 'ad@min.com',
-      emailVerified: true,
       password: 'password',
       userRole: 'admin'   // hard-coded
     };
@@ -82,6 +82,15 @@ appModule('app.user')
 
     var logout = function () {
       setCurrentUser(null);
+    };
+
+    var logoutApp = function () {
+      var deferred = $q.defer();
+
+      logout();
+      deferred.resolve();
+
+      return deferred.promise;
     };
 
     var changePassword = function (email, passwordOld, passwordNew) {
@@ -226,6 +235,10 @@ appModule('app.user')
       return deferred.promise;
     };
 
+    var canLoginWithTwitter = function () {
+      return false;
+    };
+
     service = {
       init: init,
       loadUnload: loadUnload,
@@ -234,20 +247,22 @@ appModule('app.user')
       loadUserDataError: loadUserDataError,
       isUserDataLoaded: isUserDataLoaded,
       isUserLoggedIn: isUserLoggedIn,
+      currentUser: currentUser,
       getUserProp: getUserProp,
       setUserProp: setUserProp,
       getUserData: getUserData,
       setUserData: setUserData,
       getUserRole: getUserRole,
       setUserRole: setUserRole,
-      currentUser: currentUser,
       signup: signup,
       login: login,
       logout: logout,
+      logoutApp: logoutApp,
       changePassword: changePassword,
       resetPassword: resetPassword,
       retrieveProfile: retrieveProfile,
-      saveProfile: saveProfile
+      saveProfile: saveProfile,
+      canLoginWithTwitter: canLoginWithTwitter
     };
 
     return service;
