@@ -80,9 +80,9 @@ appModule('app.user')
       return deferred.promise;
     };
 
-    var logout = function () {
+    function logout() {
       setCurrentUser(null);
-    };
+    }
 
     var logoutApp = function () {
       var deferred = $q.defer();
@@ -239,6 +239,10 @@ appModule('app.user')
       return false;
     };
 
+    var canEditProfileImage = function () {
+      return true;
+    };
+
     service = {
       init: init,
       loadUnload: loadUnload,
@@ -256,13 +260,13 @@ appModule('app.user')
       setUserRole: setUserRole,
       signup: signup,
       login: login,
-      logout: logout,
       logoutApp: logoutApp,
       changePassword: changePassword,
       resetPassword: resetPassword,
       retrieveProfile: retrieveProfile,
       saveProfile: saveProfile,
-      canLoginWithTwitter: canLoginWithTwitter
+      canLoginWithTwitter: canLoginWithTwitter,
+      canEditProfileImage: canEditProfileImage
     };
 
     return service;

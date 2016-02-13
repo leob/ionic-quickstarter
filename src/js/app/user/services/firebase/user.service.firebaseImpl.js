@@ -4,11 +4,13 @@
 appModule('app.user')
 
   .factory('UserServiceFirebaseImpl', function ($q, $log, $rootScope, Stopwatch, AppHooks, User, fbutil, $firebaseAuth,
-                                                $firebaseObject, $firebaseArray, firebaseOauthHelper,
+                                                $firebaseObject, $firebaseArray, oauthHelper,
                                                 TwitterReauthentication) {
 
     var FIREBASE_PASSWORD_PROVIDER = 'password';
     var FIREBASE_TWITTER_PROVIDER = 'twitter';
+
+    var ADMIN_ROLE = 'admin';
 
     var service;
     var currentLoggedinUser = null;
@@ -31,15 +33,14 @@ appModule('app.user')
       return user;
     }
 
-    function getUserName(fbAuth) {
-      var provider = fbAuth.provider;
-      var userName = 'unknown';
+    function getAuthProvider(provider) {
+      return authProviders[provider];
+    }
 
-      if (provider === FIREBASE_TWITTER_PROVIDER) {
-        userName = fbAuth.twitter.username;
-      } else if (provider === FIREBASE_PASSWORD_PROVIDER) {
-        userName = fbAuth.password.email;
-      }
+    function getUserName(fbAuth) {
+      var provider = getAuthProvider(fbAuth.provider);
+
+      return provider ? provider.getUserName(fbAuth) : 'unknown';
     }
 
     function setCurrentUser(userData) {
@@ -156,7 +157,7 @@ appModule('app.user')
 
       var email = userObj.userName;
       var password = userObj.password;
-      var userRole = userObj.userRole;
+      var userRole = ADMIN_ROLE;
 
       var userData;
 
@@ -186,7 +187,7 @@ appModule('app.user')
         var ref = fbutil.ref('users', user.uid);
 
         return fbutil.handler(function(cb) {
-          ref.set({provider: FIREBASE_PASSWORD_PROVIDER, userName: userName, userRole: userRole,
+          ref.set({provider: userData.provider, userName: userData.userName, userRole: userRole,
                   createdAt: Firebase.ServerValue.TIMESTAMP}, cb);
         });
 
@@ -264,13 +265,39 @@ appModule('app.user')
       var w = logStarted('UserServiceFirebaseImpl#loginWithTwitter');
 
       var authMethod = 'twitter';
+      var authUser = null;
+      var userRole = ADMIN_ROLE;
 
       auth.$authWithOAuthPopup(authMethod).then(function(authData) {
         $log.debug("Authenticated successfully: " + JSON.stringify(authData));
 
+        authUser = authData;
+
+        // pick up the uid etc.
+        var userData = {
+          provider: FIREBASE_TWITTER_PROVIDER,
+          userName: authUser.twitter.username,
+          id: authUser.uid
+        };
+
+        var profileImage = authUser.twitter.profileImageURL;
+
+        // create/update user profile in our data store; for simplicity we perform an update every time the user signs
+        // in via Twitter; this way, for Twitter login, we don't have to distinguish between "signup" (initial, first
+        // time) and "login" (recurring) - login and signup are (for Twitter) one and the same thing - on every login
+        // the user's profile is updated
+        var ref = fbutil.ref('users', authUser.uid);
+
+        return fbutil.handler(function(cb) {
+          ref.update({provider: userData.provider, userName: userData.userName, userRole: userRole,
+            profileImage: profileImage, updatedAt: Firebase.ServerValue.TIMESTAMP}, cb);
+        });
+
+      }).then(function () {
+
         logFinished(w);
 
-        deferred.resolve(setCurrentUser(authData));
+        deferred.resolve(setCurrentUser(authUser));
       }).catch(function(error) {
         logError(w, JSON.stringify(error));
         deferred.reject(mapError(w, error, "login"));
@@ -279,40 +306,55 @@ appModule('app.user')
       return deferred.promise;
     };
 
-    var logoutApp = function () {
-      var provider = currentLoggedinUser ? currentLoggedinUser.provider : '';
+    function logout() {
+      auth.$unauth();
+      setCurrentUser(null);
+    }
+
+    function logoutDefault() {
+      var deferred = $q.defer();
 
       logout();
-
-      if (provider === FIREBASE_TWITTER_PROVIDER) {
-        return logoutTwitter();
-      }
-
-      // everything else, just return a resolved promise
-      var deferred = $q.defer();
+      // nothing more to do, just return a resolved promise
       deferred.resolve();
 
       return deferred.promise;
+    }
+
+    var logoutApp = function () {
+      var provider = currentLoggedinUser ? getAuthProvider(currentLoggedinUser.provider) : null;
+
+      if (provider) {
+        return provider.logout();
+      }
+
+      // everything else, just do a "default logout"
+      return logoutDefault();
     };
 
-    var logout = function () {
-      auth.$unauth();
-      setCurrentUser(null);
+    var logoutEmail = function() {
+      // currently the same as a "default logout"
+      return logoutDefault();
     };
 
     var logoutTwitter = function() {
-      var deferred = $q.defer();
-
-      var w = logStarted('UserServiceFirebaseImpl#logoutTwitter');
 
       //
       // Reauthentication hack: the Twitter API does not really offer a "logout" function, so what we do is we simply
-      // start an auth attempt with "force_login=true" (see code of the "firebaseOauthHelper" service)
+      // start an auth attempt with "force_login=true" (see code of the "oauthHelper" service)
       //
       // NOTE: reauthentication can be switched on or off through the 'TwitterReauthentication.useReauthenticationHack'
       // flag. A reason not to use reauthentication could be that, for secirity reasons, you do not want to have the
       // Twitter API keys (the consumer key and the consumer secret) in the app's source code (which is a necessity for
       // this method to work).
+
+      if (TwitterReauthentication.useReauthenticationHack !== 'true') {
+        // not using the hack, just do a "default logout"
+        return logoutDefault();
+      }
+
+      //
+      // Apply the reauthentication hack.
       //
       // NOTE: if TwitterReauthentication.useReauthenticationHack === 'false' then you can leave the 'consumerKey' and
       // the 'consumerSecretKey' properties of the "TwitterReauthentication" config section empty/blank.
@@ -322,27 +364,26 @@ appModule('app.user')
       // keys which you configured in the Firebase dashboard for your Firebase application.
       //
 
-      if (TwitterReauthentication.useReauthenticationHack === 'true') {
+      var deferred = $q.defer();
 
-        var consumerKey = TwitterReauthentication.consumerKey;
-        var consumerSecretKey = TwitterReauthentication.consumerSecretKey;
+      var w = logStarted('UserServiceFirebaseImpl#logoutTwitter');
 
-        firebaseOauthHelper.twitter(consumerKey, consumerSecretKey).then(function (result) {
-          $log.warn("Authenticated successfully");
+      logout();
 
-          logFinished(w);
+      var consumerKey = TwitterReauthentication.consumerKey;
+      var consumerSecretKey = TwitterReauthentication.consumerSecretKey;
 
-          deferred.resolve();
-        }, function (error) {
-          logError(w, "THERE WAS AN ERROR: " +
-            JSON.stringify(error));
-          deferred.reject();
-        });
+      oauthHelper.twitter(consumerKey, consumerSecretKey).then(function (result) {
+        $log.warn("Authenticated successfully");
 
-      } else {  // don't apply the hack
-        // nothing to do, just return a resolved promise
+        logFinished(w);
+
         deferred.resolve();
-      }
+      }, function (error) {
+        logError(w, "THERE WAS AN ERROR: " +
+          JSON.stringify(error));
+        deferred.reject();
+      });
 
       return deferred.promise;
     };
@@ -547,6 +588,31 @@ appModule('app.user')
       return true;
     };
 
+    var canEditProfileImage = function () {
+      var provider = currentLoggedinUser ? getAuthProvider(currentLoggedinUser.provider) : null;
+
+      return provider ? provider.canEditProfileImage : true;
+    };
+
+    // Configure the Firebase authentication providers
+    var authProviders = {
+      password: {
+        getUserName: function (fbAuth) {
+          return fbAuth.password.email;
+        },
+        logout: logoutEmail,
+        canEditProfileImage: true
+      },
+      twitter: {
+        getUserName: function (fbAuth) {
+          return fbAuth.twitter.username;
+        },
+        logout: logoutTwitter,
+        canEditProfileImage: false    // The profile image is loaded automatically from the user's Twitter profile,
+                                      // hence it can not be edited via the user's profile page
+      }
+    };
+
     service = {
       init: init,
       loadUnload: loadUnload,
@@ -563,13 +629,13 @@ appModule('app.user')
       signup: signup,
       login: login,
       loginWithTwitter: loginWithTwitter,
-      logout: logout,
       logoutApp: logoutApp,
       changePassword: changePassword,
       resetPassword: resetPassword,
       retrieveProfile: retrieveProfile,
       saveProfile: saveProfile,
-      canLoginWithTwitter: canLoginWithTwitter
+      canLoginWithTwitter: canLoginWithTwitter,
+      canEditProfileImage: canEditProfileImage
     };
 
     return service;

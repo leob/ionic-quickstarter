@@ -47,37 +47,46 @@
           <div class="form-error" translate>manage.userProfile.fields.sex-message</div>
         </div>
 
-        <div ng-if="vm.canEditProfileImage">
-          <label class="item item-input item-stacked-label">
+        <div>
+
+          <label
+              class="item item-input item-stacked-label"
+              ng-show="vm.canEditProfileImage">
+
             <span class="input-label" translate>manage.userProfile.fields.images</span>
             <br/>
             <span class="link" translate>manage.userProfile.fields.images-hint1</span>
           </label>
 
           <div class="item item-borderless row-no-padding">
+
             <div class="profile-header">
+
               <div class="profile-header-logo-wrapper" ng-click="vm.uploadProfileImage()">
+
                 <div class="profile-header-logo">
                   <img ng-src="{{vm.user.profileImage}}">
 
                   <div class="profile-header-logo-text">
-                    <span class="bold" translate>manage.userProfile.fields.images-profile-photo1</span>
-                    <br/>
-                    <span class="bold" translate>manage.userProfile.fields.images-profile-photo2</span>
+
+                    <div ng-show="vm.canEditProfileImage">
+                      <span class="bold" translate>manage.userProfile.fields.images-profile-photo1</span>
+                      <br/>
+                      <span class="bold" translate>manage.userProfile.fields.images-profile-photo2</span>
+                    </div>
+
                   </div>
+
                 </div>
+
               </div>
             </div>
-            <div class="link padding" translate>manage.userProfile.fields.images-hint2</div>
-          </div>
-        </div>
 
-        <div ng-if="!vm.canEditProfileImage">
-          <label class="item item-input item-stacked-label">
-            <span class="input-label" translate>manage.userProfile.fields.images</span>
-            <br/>
-            <span class="link" translate>manage.userProfile.fields.images-hint3</span>
-          </label>
+            <div class="link padding"
+                 ng-show="vm.canEditProfileImage"
+                 translate>manage.userProfile.fields.images-hint2</div>
+
+          </div>
         </div>
 
         <ion-item class="item-divider">

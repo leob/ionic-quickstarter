@@ -10,8 +10,7 @@
     var onboarding = false;
     var user;
 
-    // editing the profile image is only possible when running on a device (Cordova available)
-    vm.canEditProfileImage = true;  angular.isDefined(window.cordova);
+    vm.canEditProfileImage = false;
 
     // Keep track of whether a new profile image was uploaded and whether there was an old one
     var ImageUpload = function () {
@@ -45,6 +44,13 @@
       }
 
       profileImage.originalImage = vm.user.profileImage;
+
+      // editing the profile image is only possible when running on a device (Cordova available)
+      vm.canEditProfileImage = false;
+
+      if (UserService.canEditProfileImage()) {
+        vm.canEditProfileImage = angular.isDefined(window.cordova);
+      }
     }
 
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
