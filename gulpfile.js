@@ -80,8 +80,7 @@ var paths = {
     './src/lib/angular-resource/angular-resource.min.js',
     './src/lib/angular-messages/angular-messages.min.js',
     './src/lib/angular-elastic/elastic.js',
-//'./src/lib/ngCordova/dist/ng-cordova.min.js',
-'./src/lib/ngCordova/dist/ng-cordova.js',
+    './src/lib/ngCordova/dist/ng-cordova.min.js',
     //'./src/lib/ionic-service-core/ionic-core.js',             /* Ionic.io libraries, to do: minify */
     //'./src/lib/ionic-service-analytics/ionic-analytics.js',   /* Ionic.io libraries, to do: minify */
     './src/lib/ionic-content-banner/dist/ionic.content.banner.min.js',
