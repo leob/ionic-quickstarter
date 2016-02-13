@@ -1,9 +1,16 @@
 ;(function() {
 "use strict";
 
-angular.module('app.firebaseOauth', ["oauth.utils"])
+//
+// A utility service with Cordova Oauth helper funtions (currently only used for Twitter Oauth flows).
+//
+// This code was copied and amended from src/lib/ngCordova/dist/ng-cordovajs ("oauth.providers" module, "$cordovaOauth"
+// service).
+//
 
-  .factory("firebaseOauthHelper", ["$q", '$http', "$cordovaOauthUtility", function($q, $http, $cordovaOauthUtility) {
+angular.module('app.oauthUtil', ["oauth.utils"])
+
+  .factory("oauthHelper", ["$q", '$http', "$cordovaOauthUtility", function($q, $http, $cordovaOauthUtility) {
 
     return {
 

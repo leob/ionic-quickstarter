@@ -27,8 +27,7 @@ var SignupCtrl = /*@ngInject*/function ($scope, $state, Application, UserService
       userName: email,
       password: password,
       email: email,
-      fullName: email,
-      userRole: 'admin'
+      fullName: email
     };
 
     UserService.signup(userData).then(function (signedupUser) {
