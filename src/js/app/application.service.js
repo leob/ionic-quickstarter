@@ -8,7 +8,7 @@
     //
     .factory('Application', function (StorageService, UserService, APP, Stopwatch, $log, $ionicPlatform, $ionicHistory,
                                       $ionicLoading, $ionicContentBanner, $translate, $timeout, $ionicScrollDelegate,
-                                      $cordovaToast) {
+                                      $rootScope, $ionicPopup, $cordovaToast) {
 
 
       var deviceReady = false;

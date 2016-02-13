@@ -1,7 +1,7 @@
 ;(function() {
 "use strict";
 
-var SignupCtrl = /*@ngInject*/function ($scope, $state, Application, UserService, $translate) {
+var SignupCtrl = /*@ngInject*/function ($scope, $state, Application, UserService) {
   // vm: the "Controller as vm" convention from: http://www.johnpapa.net/angularjss-controller-as-and-the-vm-variable/
   var vm = this;
   var log = Application.getLogger('SignupCtrl');
@@ -81,6 +81,29 @@ var SignupCtrl = /*@ngInject*/function ($scope, $state, Application, UserService
 
   vm.login = function() {
     $state.go('login');
+  };
+
+  vm.loginWithTwitter = function () {
+    Application.showLoading(true);
+
+    UserService.loginWithTwitter().then(function (loggedinUser) {
+      Application.hideLoading();
+      Application.gotoStartPage($state);
+    })
+    .catch(function (error) {
+      Application.hideLoading();
+
+      // login failed, check error to see why
+      if (error == "invalid_credentials") {
+        Application.errorMessage(vm, 'message.invalid-credentials');
+      } else {
+        Application.errorMessage(vm, 'message.unknown-error');
+      }
+    });
+  };
+
+  vm.canLoginWithTwitter = function () {
+    return UserService.canLoginWithTwitter();
   };
 
 };

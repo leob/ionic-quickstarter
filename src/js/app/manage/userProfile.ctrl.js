@@ -39,9 +39,9 @@
       // base is what is loaded from the user
       vm.user = angular.extend({}, UserService.retrieveProfile());
 
-      // email not loaded (yet), this will occur especially right after signup
-      if (!vm.user.email) {
-        vm.user.email = UserService.currentUser().userName;
+      // username not loaded (yet), this will occur especially right after signup
+      if (!vm.user.userName) {
+        vm.user.userName = UserService.currentUser().userName;
       }
 
       profileImage.originalImage = vm.user.profileImage;

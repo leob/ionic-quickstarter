@@ -5,7 +5,7 @@ appModule('app.auth.login')
   .config(function ($stateProvider) {
     $stateProvider
       .state('login', {
-        url: '/login?verifyEmail',
+        url: '/login',
         templateUrl: 'js/app/auth/login/login.html',
         controller: 'LoginCtrl as vm'
       })

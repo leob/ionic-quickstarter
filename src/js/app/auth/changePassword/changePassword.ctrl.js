@@ -15,7 +15,7 @@ var ChangePasswordCtrl = /*@ngInject*/function ($scope, $rootScope, $state, $sta
     Application.contentBannerInit(vm, $scope);
 
     // enforce/ensure no logged in user at this point
-    UserService.logout();
+    UserService.logoutApp();
 
     Application.resetForm(vm);
 

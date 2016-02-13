@@ -12,11 +12,11 @@
     .factory('User', function () {
 
       // Constructor, with class name
-      function User(userName, createdAt, verified, id) {
+      function User(provider, userName, createdAt, id) {
         // Public properties, assigned to the instance ('this')
+        this.provider = provider;
         this.userName = userName;
         this.createdAt = createdAt;
-        this.verified = verified;
         this.id = id;
         // user type is initially null (not determined)
         this.userRole = null;
@@ -48,9 +48,9 @@
         }
 
         return new User(
+          data.provider,
           data.userName,
           new Date(),
-          data.verified,
           data.id
         );
       };

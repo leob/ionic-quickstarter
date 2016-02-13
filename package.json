@@ -48,7 +48,8 @@
     {
       "locator": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
       "id": "cordova-plugin-x-toast"
-    }
+    },
+    "cordova-plugin-inappbrowser@1.1.0"
   ],
   "scripts": {
     "preupdate-webdriver": "npm install",
