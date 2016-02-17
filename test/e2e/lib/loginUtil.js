@@ -17,7 +17,10 @@ module.exports = (function () {
 
     // http://stackoverflow.com/questions/23135649/how-can-i-use-command-line-arguments-in-angularjs-protractor
     var username = opts.username || browser.params.login.user;
+    username = username || 'tester@test.com';
+
     var password = opts.password || browser.params.login.password;
+    password = password || 'password';
 
     loginPage.setUsername(username);
     loginPage.setPassword(password);
