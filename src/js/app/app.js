@@ -141,6 +141,25 @@
       // www.jvandemo.com/how-to-use-areas-and-border-states-to-control-access-in-an-angular-application-with-ui-router
       //
 
+      //
+      // Sample code to illustrate this (commented out for now):
+      //
+
+      //var userType = UserService.getUserType();
+      //
+      //// if the userType is not known (not specified, or user data not loaded yet), then say that the user is 'valid'
+      //if (!userType) {
+      //  $log.log('User type not yet known');
+      //  return true;
+      //}
+      //
+      //// userType should start with "admin"
+      //var userTypeValid = userType.match(/admin/);
+      //
+      //$log.log("userType = '" + userType + "' userTypeValid = " + userTypeValid);
+      //
+      //return userTypeValid;
+
       return true;
     }
 
