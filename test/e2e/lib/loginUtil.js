@@ -1,6 +1,8 @@
 module.exports = (function () {
   'use strict';
 
+  var EC = protractor.ExpectedConditions;
+
   var LoginPage = require('../pages/login.page.js');
   var loginPage = new LoginPage();
 
@@ -25,14 +27,8 @@ module.exports = (function () {
     // function cannot pick it up (especially when running with a mock auth implementation), in that case browser.wait
     // invokes the error callback but we do not want to treat this as a failure, in both cases we want to continue.
 
-    browser.wait(function () {
-      var deferred = protractor.promise.defer();
-      var q = element(by.css('.loading-container.visible.active')).isPresent();
-      q.then(function (isPresent) {
-        deferred.fulfill(isPresent);
-      });
-      return deferred.promise;
-    }, 1000).then(
+    browser.wait(EC.presenceOf(element(by.css('.loading-container.visible.active'))), 1000).then(
+
     // Handle both the success and error conditions with the same call to "loginDone()", see explanation here:
     // http://stackoverflow.com/questions/34740129/protractor-wait-on-condition-should-not-fail-after-timeout
     function () {   // SUCCESS CALLBACK
@@ -48,15 +44,7 @@ module.exports = (function () {
   function loginDone() {
 
     // wait for the loader to disappear
-    browser.wait(function () {
-      var deferred = protractor.promise.defer();
-      var q = element(by.css('.loading-container.visible.active')).isPresent();
-      q.then(function (isPresent) {
-        deferred.fulfill(!isPresent);
-      });
-      return deferred.promise;
-    }, 10000).then(function () {
-
+    browser.wait(EC.not(EC.presenceOf(element(by.css('.loading-container.visible.active')))), 10000).then(function () {
       expect(element(by.css('.loading-container.visible.active')).isPresent()).toBeFalsy('Loader hidden');
     });
   }
