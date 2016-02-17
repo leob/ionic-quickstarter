@@ -7,13 +7,6 @@ describe('Log in and load pages', function () {
 
   var loginUtil = require('../lib/loginUtil.js');
 
-  //it('when logged in it should load the requested URL (profile)', function () {
-  //  var url = '/app/auth/userProfile';
-  //  loginUtil.ensureLoggedIn(url);
-  //
-  //  expect(browser.getLocationAbsUrl()).toContain(url, 'Profile page loaded');
-  //});
-
   it('when logged in it should be able to log out and then to login again', function () {
     loginUtil.ensureLoggedIn();
 
