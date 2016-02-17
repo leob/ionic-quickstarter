@@ -14,12 +14,13 @@ module.exports = (function () {
 
   var login = function(options) {
     var opts = options || {};
+    var loginOpts = browser.params.login || {};
 
     // http://stackoverflow.com/questions/23135649/how-can-i-use-command-line-arguments-in-angularjs-protractor
-    var username = opts.username || browser.params.login.user;
+    var username = opts.username || loginOpts.user;
     username = username || 'tester@test.com';
 
-    var password = opts.password || browser.params.login.password;
+    var password = opts.password || loginOpts.password;
     password = password || 'password';
 
     loginPage.setUsername(username);
