@@ -13,11 +13,18 @@ exports.config = {
     'browserName': 'chrome'
   },
   baseUrl: 'http://localhost:8100',
+  // Configuration needed if you use a "permanently running" Selenium server (instead of starting a server each time):
   //seleniumAddress: 'http://localhost:4444/wd/hub',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 30000,
+    //
+    // Increased "defaultTimeoutInterval" from 30000 to 60000 to prevent "Async callback was not invoked within timeout
+    // specified by jasmine.DEFAULT_TIMEOUT_INTERVAL", see Stackoverflow post:
+    //
+    // stackoverflow.com/questions/29218981/jasmine-2-async-callback-was-not-invoked-within-timeout-specified-by-jasmine-d
+    //
+    defaultTimeoutInterval: 60000,
     isVerbose: true,
     //isVerbose: false,
     //stackoverflow.com/questions/28893436/how-to-stop-protractor-from-running-further-testcases-on-failure
