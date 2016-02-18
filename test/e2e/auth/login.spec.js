@@ -5,31 +5,31 @@
 
 describe('Log in and load pages', function () {
 
-  var loginUtil = require('../lib/loginUtil.js');
+  var loginHelper = require('../lib/login.helper.js');
 
   it('when logged in it should be able to log out and then to login again', function () {
-    loginUtil.ensureLoggedIn();
+    loginHelper.ensureLoggedIn();
 
-    loginUtil.logoutAndGotoLoginPage();
+    loginHelper.logoutAndGotoLoginPage();
 
     // perform a successful login
-    loginUtil.login();
-    loginUtil.checkSuccessfulLogin();
+    loginHelper.login();
+    loginHelper.checkSuccessfulLogin();
   });
 
   it('try login with incorrect credentials', function () {
-    loginUtil.ensureLoggedIn();
+    loginHelper.ensureLoggedIn();
 
-    loginUtil.logoutAndGotoLoginPage();
+    loginHelper.logoutAndGotoLoginPage();
 
     // check that login with incorrect credentials fails
 
-    loginUtil.login({
+    loginHelper.login({
       username: 'wronguser@gmail.com',
       password: 'wrongpassword'
     });
 
-    loginUtil.checkFailedLogin();
+    loginHelper.checkFailedLogin();
   });
 
 });
