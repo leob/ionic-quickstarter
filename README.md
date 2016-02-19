@@ -114,6 +114,22 @@ If you want to put your app under source control and you use Git, type the comma
 git init
 </pre>
 
+***NOTE:*** after ```git init``` the Git repo will still point to ```https://github.com/leob/ionic-quickstarter``` as
+the remote/upstream repo, as you can see by running the ```git remote -v``` command.
+
+As a result, "git push" will not work (unless you would have commit rights to my git repo).
+
+To fix this, change the remote repo, either using the proper ```git``` commands, or by editing the file
+```.git/config``` in a text editor. If you open ```.git/config``` in a text editor, you will see these lines:
+
+<pre>
+[remote "origin"]
+	url = https://github.com/leob/ionic-quickstarter
+	fetch = +refs/heads/*:refs/remotes/origin/*
+</pre>
+
+You can either remove these 3 lines completely, or change the ```url``` property to the desired remote repository URL.
+
 ***NOTE:*** the next step (editing ionic.project and config.xml to change the app name) is OPTIONAL. You can skip this
 step and do it later (or not at all), if you want. If you want to do it, then edit the following two files using a text
 editor:
