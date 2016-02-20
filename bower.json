@@ -17,7 +17,7 @@
     "angularfire": "~1.1.2",
     "firebase": "~2.2.9",
     "ionic-content-banner": "~1.0.1",
-    "ngCordova": "~0.1.20-alpha",
+    "ngCordova": "0.1.20-alpha",
     "fus-messages": "~0.0.2",
     "jsSHA": "1.6.0"
   },
