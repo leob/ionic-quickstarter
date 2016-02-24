@@ -2,19 +2,8 @@ module.exports = (function () {
   'use strict';
 
   var loginPath = 'login';
-  var loggedInPath = 'app/';
 
   var LoginPage = function () {
-
-    this.isLoggedIn = function () {
-      var defer = protractor.promise.defer();
-
-      browser.getLocationAbsUrl().then(function (url) {
-        defer.fulfill({loggedIn: url.match('\/' + loggedInPath), url: url});
-      });
-
-      return defer.promise;
-    };
 
     this.load = function () {
 
@@ -31,11 +20,6 @@ module.exports = (function () {
     url: {
       get: function () {
         return '/' + loginPath;
-      }
-    },
-    loggedinUrl: {
-      get: function () {
-        return '/' + loggedInPath;
       }
     },
     username: {
