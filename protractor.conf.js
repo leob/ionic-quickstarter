@@ -15,6 +15,15 @@ exports.config = {
   baseUrl: 'http://localhost:8100',
   // Configuration needed if you use a "permanently running" Selenium server (instead of starting a server each time):
   //seleniumAddress: 'http://localhost:4444/wd/hub',
+  // http://stackoverflow.com/questions/31662828/how-to-access-chromedriver-logs-for-protractor-test/31662935
+  //seleniumArgs: [
+  //  '-Dwebdriver.chrome.logfile=_chromedriver.log',
+  //],
+  // http://stackoverflow.com/questions/30600738/difference-running-protractor-with-without-selenium
+  //directConnect: false,
+  directConnect: true,
+  // http://stackoverflow.com/questions/31662828/how-to-access-chromedriver-logs-for-protractor-test/31840996#31840996
+  chromeDriver: 'bin/protractor-chromedriver.sh',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
@@ -25,10 +34,11 @@ exports.config = {
     // stackoverflow.com/questions/29218981/jasmine-2-async-callback-was-not-invoked-within-timeout-specified-by-jasmine-d
     //
     defaultTimeoutInterval: 60000,
-    isVerbose: true,
-    //isVerbose: false,
+    //isVerbose: true,
+    isVerbose: false,
     //stackoverflow.com/questions/28893436/how-to-stop-protractor-from-running-further-testcases-on-failure
-    realtimeFailure: true,
+    //realtimeFailure: true,
+    realtimeFailure: false,
     // https://github.com/bcaudan/jasmine-spec-reporter/blob/master/docs/protractor-configuration.md
     print: function () {}
   },
@@ -66,10 +76,13 @@ exports.config = {
     };
 
     jasmine.getEnv().addReporter(new SpecReporter(opts));
+
+    browser.driver.manage().window().setSize(900, 750);
+    browser.driver.manage().window().setPosition(400, 0);
   },
 
   afterLaunch: function () {
-    failFast.clean(); // Cleans up the "fail file"
+    failFast.clean();   // cleans up the "fail file"
   }
 
 };
