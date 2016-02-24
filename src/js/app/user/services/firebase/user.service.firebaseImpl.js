@@ -492,7 +492,9 @@ appModule('app.user')
     $rootScope.$on(loadUserDataError(), function (event, error) {
       $log.error("Error loading user data: " + JSON.stringify(error));
 
-      currentLoggedinUser.setUserRole('unknown');
+      if (currentLoggedinUser) {
+        currentLoggedinUser.setUserRole('unknown');
+      }
     });
 
     var loadUnloadData = function (user, load) {
