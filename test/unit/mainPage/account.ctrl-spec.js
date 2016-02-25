@@ -1,12 +1,32 @@
 describe('AccountCtrl', function() {
+  var $controller;
+
   beforeEach(module('ui.router'));
   beforeEach(module('app.mainPage'));
 
-  beforeEach(inject(function($controller) {
-    ctrl = $controller('AccountCtrl', {user: null});
+  beforeEach(inject(function($rootScope, $log, _$controller_) {
+    var $scope = $rootScope.$new();
+
+    var ApplicationServiceMock = {
+      getLogger: function() {
+        return $log;
+      }
+    };
+
+    var UserServiceMock = {
+      currentUser: function() {
+        return null;
+      }
+    };
+
+    $controller = _$controller_('AccountCtrl', {
+      '$scope': $scope,
+      'Application': ApplicationServiceMock,
+      'UserService': UserServiceMock
+    });
   }));
 
   it('should have enabled friends to be true', function(){
-    expect(ctrl.settings.enableFriends).toEqual(true);
+    expect($controller.settings.enableFriends).toEqual(true);
   });
 });
