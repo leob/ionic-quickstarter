@@ -5,7 +5,7 @@
 
 describe('Log in and log out', function () {
 
-  var loginHelper = require('../common/login.helper.js');
+  var loginHelper = require('../../common/login.helper.js');
 
   it('when logged in it should be able to log out and then to login again', function () {
     loginHelper.ensureLoggedIn();
