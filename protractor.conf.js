@@ -21,7 +21,7 @@ exports.config = {
   //],
   // http://stackoverflow.com/questions/30600738/difference-running-protractor-with-without-selenium
   //directConnect: false,
-  directConnect: true,
+  directConnect: false,
   // http://stackoverflow.com/questions/31662828/how-to-access-chromedriver-logs-for-protractor-test/31840996#31840996
   chromeDriver: 'bin/protractor-chromedriver.sh',
   framework: 'jasmine',
