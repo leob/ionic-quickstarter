@@ -13,6 +13,11 @@ blog post</a>.
 
 Please make a habit of consulting these Wiki pages because they contain important information. 
 
+Also I've updated the following sections (on Februari 26, 2016):
+
+* [Common recipes](https://github.com/leob/ionic-quickstarter/wiki/Common-recipes)
+* [Unit testing and E2E Testing](https://github.com/leob/ionic-quickstarter/wiki/Unit-testing-and-E2E-Testing)
+
 I intend to keep this starter app up to date with the newest versions of Ionic etc, and to add features/improvements.
 See [Todo and Roadmap](https://github.com/leob/ionic-quickstarter/wiki/Todo-and-roadmap) on the Wiki, and feel free to
 [contribute](https://github.com/leob/ionic-quickstarter/wiki/Contributing).
