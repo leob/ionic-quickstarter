@@ -1,8 +1,7 @@
 ;(function () {
 "use strict";
 
-var ChangePasswordCtrl = /*@ngInject*/function ($scope, $rootScope, $state, $stateParams, $translate, Application,
-                                                UserService) {
+var ChangePasswordCtrl = /*@ngInject*/function ($scope, $state, $stateParams, $translate, Application, UserService) {
 
   var vm = this;
   var onboarding = false;
@@ -37,9 +36,8 @@ var ChangePasswordCtrl = /*@ngInject*/function ($scope, $rootScope, $state, $sta
   // is displayed completely
   $scope.$on('$ionicView.enter', function () {
     var keys = ['message.check-your-email1', 'message.check-your-email2'];
-    var params = {your: $rootScope._yr};
 
-    Application.contentBannerShow(vm, keys, null, null, 'error', params);
+    Application.contentBannerShow(vm, keys, null, null, 'error');
   });
 
   vm.changePassword = function (form) {
