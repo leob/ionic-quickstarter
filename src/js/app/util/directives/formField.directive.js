@@ -25,15 +25,27 @@
           parent.addClass('has-focus');
         }).bind('blur', function () {
           parent.removeClass('has-focus');
+          // clear form errors when a form field gets the focus
+        }).bind('focus', function () {
+          var form = getForm();
+
+          if (form.parent && form.parent.error && Object.keys(form.parent.error).length > 0) {
+            form.parent.error = {};
+            scope.$apply();
+          }
         });
 
         scope.$on('$destroy', function () {
           unwatch();
         });
 
+        function getForm() {
+          return ctrls[0];
+        }
+
         // get the field status depending on whether the input is dirty or when the form has been submitted, etc.
         function getFieldStatus () {
-          var formController = ctrls[0];
+          var formController = getForm();
           if (formController.$submitted || scope.inputModel.$dirty) {
             if (scope.inputModel.$invalid) {
               return 'I';

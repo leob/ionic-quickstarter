@@ -107,6 +107,7 @@
 
       var resetForm = function (vm) {
         vm.form.$setPristine();
+        vm.form.parent = vm;
         vm.error = {};
       };
 
