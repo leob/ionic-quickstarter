@@ -60,7 +60,7 @@ other languages)
 * A modular SASS setup including some handy utility styles and best practices for customization of colors, fonts etc.
 * Reusable services and directives containing some commonly used utility functions that you can call in your app 
 * An 'appModule' utility function that makes managing your AngularJS modules slightly easier
-* Currently based on Ionic v.1.1.0 and AngularJS 1.4; tested on 3 devices: iPhone 4, Android smartphone, Android tablet
+* Currently based on Ionic v.1.2 and AngularJS 1.4; tested on 3 devices: iPhone 4, Android smartphone, Android tablet
 
 The first two topics (Project structure and Gulp file) will be explained below.
 
