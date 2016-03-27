@@ -42,7 +42,6 @@
     "org.apache.cordova.device",
     "org.apache.cordova.console",
     "org.apache.cordova.splashscreen",
-    "com.ionic.keyboard",
     "cordova-plugin-whitelist",
     "cordova-plugin-camera",
     "cordova-plugin-file",
@@ -51,7 +50,8 @@
       "locator": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
       "id": "cordova-plugin-x-toast"
     },
-    "cordova-plugin-inappbrowser@1.1.0"
+    "cordova-plugin-inappbrowser@1.1.0",
+    "ionic-plugin-keyboard"
   ],
   "scripts": {
     "preupdate-webdriver": "npm install",
