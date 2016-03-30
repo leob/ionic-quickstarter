@@ -101,8 +101,7 @@
     // global AngularJS exception handler, see:
     // http://blog.pdsullivan.com/posts/2015/02/19/ionicframework-googleanalytics-log-errors.html
     return function (exception, cause) {
-      exception.message += ' (caused by "' + cause + ')", stack: ' + exception.stack;
-      $log.error("error: " + exception);
+      $log.error("error: " + exception + ', caused by "' + cause + '", stack: ' + exception.stack);
     };
   })
 
