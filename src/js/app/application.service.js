@@ -339,17 +339,38 @@
         }
       };
 
-      var showToast = function (message) {
+      function doShowToast(message, displayLongOrShort) {
         if (window.cordova) {
-          $cordovaToast.showLongCenter(message).then(function (success) {
-            $log.debug("Success: showToast('" + message + "')");
-          }, function (error) {
-            $log.error("Error: showToast('" + message + "'), error: " + JSON.stringify(error));
-          });
+          if (displayLongOrShort === 'short') {
+            $cordovaToast.showShortCenter(message).then(function (success) {
+              $log.debug("Success: showToastShort('" + message + "')");
+            }, function (error) {
+              $log.error("Error: showToastShort('" + message + "'), error: " + JSON.stringify(error));
+            });
+          } else {
+            $cordovaToast.showLongCenter(message).then(function (success) {
+              $log.debug("Success: showToastLong('" + message + "')");
+            }, function (error) {
+              $log.error("Error: showToastLong('" + message + "'), error: " + JSON.stringify(error));
+            });
+          }
         } else {
           $log.warn("NOTE - not running on device: showToast('" + message + "')");
         }
       }
+
+      var showToast = function (messageOrKey, translateMessage, displayLongOrShort) {
+
+        if (translateMessage) {
+
+          $translate(messageOrKey).then(function (translation) {
+            doShowToast(translation, displayLongOrShort);
+          });
+
+        } else {
+          doShowToast(messageOrKey, displayLongOrShort);
+        }
+      };
 
       return {
         init: init,
