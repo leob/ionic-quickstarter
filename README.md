@@ -52,7 +52,8 @@ as WebStorm or Visual Studio
 * Support for the two main Ionic UI patterns: side menus and tabs, and an Intro screen with a Slider
 * Includes some commonly used features, for instance form validation using ng-messages and improved logging
 * For easier diagnostics and troubleshooting once your app is "out in the wild" (running on users' devices), you can
-use remote logging with Logentries (see description on the Wiki)
+use remote logging with Logentries (see description on the
+[Wiki](https://github.com/leob/ionic-quickstarter/wiki/Setting-up-remote-logging-with-Logentries))
 * Basic image support: Cordova camera, image cropping, storing images in local storage, and displaying images
 * Supports internationalization (I18N) using the <a href="https://github.com/angular-translate/angular-translate"
 target="_blank">angular-translate</a> library (currently only an English language file is supplied, it's easy to add
