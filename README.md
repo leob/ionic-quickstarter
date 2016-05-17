@@ -8,7 +8,7 @@ blog post</a>.
 
 ## Chat
 
-[![Join the chat at https://gitter.im/leob/ionic-quickstarter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/leob/ionic-quickstarter)
+[![Join the chat at https://gitter.im/leob/ionic-quickstarter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/leob/ionic-quickstarter){:target="_blank"}
 
 ***IMPORTANT NOTE:*** I've added two useful sections to the Wiki:
 
