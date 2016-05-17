@@ -6,6 +6,10 @@ For background, read my
 <a href="http://codepen.io/leob6/blog/ionic-quickstarter-a-starter-app-to-kickstart-your-app-development" target="_blank">
 blog post</a>.
 
+## Chat
+
+[![Join the chat at https://gitter.im/leob/ionic-quickstarter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/leob/ionic-quickstarter)
+
 ***IMPORTANT NOTE:*** I've added two useful sections to the Wiki:
 
 * [Release notes](https://github.com/leob/ionic-quickstarter/wiki/Release-notes)
