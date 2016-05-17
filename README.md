@@ -1,5 +1,7 @@
 # Ionic Quickstarter
 
+[![Join the chat at https://gitter.im/leob/ionic-quickstarter](https://badges.gitter.im/leob/ionic-quickstarter.svg)](https://gitter.im/leob/ionic-quickstarter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ### A boilerplate and Reference app providing tools and best practices to kickstart your app development
 
 For background, read my
