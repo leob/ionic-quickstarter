@@ -142,7 +142,7 @@
     }
 
     function getImageOpts() {
-      // JPEG quality 50%, good enough - difference with 100% is invisbible to the naked eye
+      // JPEG quality 50%, good enough - difference with 100% is invisible to the naked eye
       // (50 is actually the default value of the cordova-plugin-camera plugin. for camera images)
       return {
         pictureQuality: 50,
@@ -160,6 +160,8 @@
       //
       // Now execute all the steps of the "pipeline" via Promise chaining:
       //
+
+      Application.showLoading(true);
 
       ImageService.getPicture(type, imageOpts.pictureQuality, imageOpts.targetSize).then(function(imageUrl) {
         log.debug("ImageService#getPicture imageUrl = '" + imageUrl + "'");
@@ -197,6 +199,8 @@
       }).then(function (result) {
         log.debug("FileManager#removeFile uncropped result = " + JSON.stringify(result));
 
+        Application.hideLoading();
+
         saveImageFn(fileUrl);
 
         profileImage.setUploaded(vm.user.profileImage);
@@ -204,6 +208,7 @@
         Application.contentBannerShow(vm, 'message.image-was-saved');
 
       }).catch(function (error) {
+        Application.hideLoading();
 
         if (typeof error === 'string' && error.match(/cancelled/i)) {
           log.debug("Operation was cancelled, error: " + error);
@@ -260,31 +265,39 @@
 
     vm.showImageCropModal = function(image, widthHeightRatio) {
 
+      //
+      // NOTE: for cropping to work, the source (original) and target (cropped) image variables should be put in a
+      // container object (see below, $scope.image), NOT directly in the $scope variable itself; for background see:
+      //
+      // https://github.com/alexk111/ngImgCrop/issues/18#issuecomment-78911464
+      //
+
+      // add an object to $scope which wraps the to-be-cropped image and the cropped (result) image; otherwise it
+      // will not work (see https://github.com/alexk111/ngImgCrop/issues/18). We also add config properties to it.
+      $scope.image = {
+        originalImage: image,
+        croppedImage: '',
+        aspectRatio: widthHeightRatio + "x" + 1
+      };
+
       vm.imageCropModal.show().then(function () {
-
-        //
-        // NOTE: for cropping to work, the source (original) and target (cropped) image variables should be put in a
-        // container object (see below, $scope.image), NOT directly in the $scope variable itself; for background see:
-        //
-        // https://github.com/alexk111/ngImgCrop/issues/18#issuecomment-78911464
-        //
-
-        // add an object to $scope which wraps the to-be-cropped image and the cropped (result) image; otherwise it
-        // will not work (see https://github.com/alexk111/ngImgCrop/issues/18). We also add config properties to it.
-        $scope.image = {
-          originalImage: image,
-          croppedImage: '',
-          aspectRatio: widthHeightRatio + "x" + 1
-        };
+        // nothing to do here
       });
     };
+
+    function hideImageCropModal() {
+      $scope.image = {};
+
+      vm.imageCropModal.hide();
+    }
 
     $scope.saveImageCropModal = function() {
       if (vm.imageCropSaveCallback) {
         vm.imageCropSaveCallback($scope.image.croppedImage);
         vm.imageCropSaveCallback = null;
       }
-      vm.imageCropModal.hide();
+
+      hideImageCropModal();
     };
 
     $scope.closeImageCropModal = function() {
@@ -292,7 +305,8 @@
         vm.imageCropCancelCallback();
         vm.imageCropCancelCallback = null;
       }
-      vm.imageCropModal.hide();
+
+      hideImageCropModal();
     };
 
     $scope.$on('$destroy', function() {
