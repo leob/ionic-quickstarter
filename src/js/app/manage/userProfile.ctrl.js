@@ -182,6 +182,8 @@
 
         log.info("FileManager#getFileInfo uncropped file = '" + 'uncropped-' + fileName +"', size = " + result.size);
 
+        Application.hideLoading();
+
         return cropImageFn(fileUrl);
 
       }).then(function (croppedImage) {
