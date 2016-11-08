@@ -38,7 +38,7 @@ The project has also been upgraded to use a newer Ionic framework version (1.3.x
 fixed a number of issues on iOS (improved iOS compatibility), and I've added Crosswalk for better performance and
 compatibility on Android (note: this will make your APK approx. 20 MB bigger, but in my experience it's worth it).
 
-For all of this to work properly, you should upgrade your ```nodejs`'` and ```cordova``` versions, if you haven't
+For all of this to work properly, you should upgrade your ```nodejs``` and ```cordova``` versions, if you haven't
 already. See [this](https://github.com/leob/ionic-quickstarter/wiki/Setting-up-Ionic-and-Cordova) Wiki page for
 details.
 
