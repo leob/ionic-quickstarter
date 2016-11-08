@@ -10,11 +10,25 @@ blog post</a>.
 
 [![Join the chat at https://gitter.im/leob/ionic-quickstarter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/leob/ionic-quickstarter)
 
-***IMPORTANT NOTE:***
+## Table of contents
+
+[Release notes](#release-notes)<br>
+[Wiki](#wiki)<br>
+[Introduction](#introduction)<br>
+[Installation and usage](#installation-and-usage)<br>
+[Gulp file](#gulp-file)<br>
+[Project structure](#project-structure)<br>
+[Contribute](#contributing)
+
+
+## RELEASE NOTES
 
 Starting with this version (released November 8, 2016), the project uses the Ionic CLI 2.x. This causes some BREAKING
 CHANGES if you try to upgrade to the new version of the quickstarter (it's not an issue of course if you start a new
 project using the quickstarter).
+
+(the big advantage of using the Ionic 2.x CLI is that it supports not only Ionic 1 apps, e.g. the ionic-quickstarter,
+but also Ionic 2 apps - you can switch between Ionic 1 and Ionic 2 mode with a command line parameter)
 
 The most important difference is that the configuration file ```ionic.project``` has been renamed to
 ```ionic.config.json```, and works slightly different. The quickstarter project has been modified so that it is
@@ -24,12 +38,9 @@ The project has also been upgraded to use a newer Ionic framework version (1.3.x
 fixed a number of issues on iOS (improved iOS compatibility), and I've added Crosswalk for better performance and
 compatibility on Android (note: this will make your APK approx. 20 MB bigger, but in my experience it's worth it).
 
-For all of this to work properly, you should upgrade your ```nodejs`` and ```cordova``` versions, of you haven't
+For all of this to work properly, you should upgrade your ```nodejs`'` and ```cordova``` versions, if you haven't
 already. See [this](https://github.com/leob/ionic-quickstarter/wiki/Setting-up-Ionic-and-Cordova) Wiki page for
 details.
-
-The big advantage of using the Ionic 2.x CLI is that it supports not only Ionic 1 apps (e.g. the ionic-quickstarter)
-but also Ionic 2 apps.
 
 ## Wiki
 
@@ -49,14 +60,6 @@ See [Todo and Roadmap](https://github.com/leob/ionic-quickstarter/wiki/Todo-and-
 The upcoming new Ionic 2 release will, in all likelihood, address 80-90% of the issues which this starter app aims to
 address (e.g. build system, SASS/styling, common Ionic 'gotchas' and so on). So, "post-Ionic 2" this starter (and most
 other starters) will probably lose a lot of their relevance.
-
-## Table of contents
-
-[Introduction](#introduction)<br>
-[Installation and usage](#installation-and-usage)<br>
-[Gulp file](#gulp-file)<br>
-[Project structure](#project-structure)<br>
-[Contribute](#contributing)
 
 ## Introduction
 
