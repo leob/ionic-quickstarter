@@ -68,6 +68,11 @@
     //
     //$ionicConfigProvider.navBar.positionPrimaryButtons('left');
     //$ionicConfigProvider.navBar.positionSecondaryButtons('right');
+
+// Solution for "disableScroll not working" (keyboard scrolling the view up too much on iOS), see:
+// https://forum.ionicframework.com/t/ionic-keyboard-scroll-issue-ios/34420/4
+    $ionicConfigProvider.scrolling.jsScrolling(false);
+
   })
 
   .config(function ($logProvider, APP) {

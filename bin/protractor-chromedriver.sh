@@ -1,7 +1,9 @@
 #!/bin/sh
 # http://stackoverflow.com/questions/31662828/how-to-access-chromedriver-logs-for-protractor-test/31840996#31840996
 NODE_MODULES="$(dirname $0)/../node_modules"
-CHROMEDRIVER="${NODE_MODULES}/protractor/selenium/chromedriver"
+# PATH TO CHROME DRIVER CHANGED - see: http://stackoverflow.com/a/39897937/2474068
+#CHROMEDRIVER="${NODE_MODULES}/protractor/selenium/chromedriver"
+CHROMEDRIVER="${NODE_MODULES}/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.25"
 
 #LOGFILE="_chromedriver.$$.log"
 #LOG="_logs/$LOGFILE"

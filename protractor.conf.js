@@ -77,8 +77,9 @@ exports.config = {
 
     jasmine.getEnv().addReporter(new SpecReporter(opts));
 
-    browser.driver.manage().window().setSize(900, 750);
-    browser.driver.manage().window().setPosition(400, 0);
+    // Removed this because it caused the Protractor tests to fail ...
+    //browser.driver.manage().window().setSize(900, 750);
+    //browser.driver.manage().window().setPosition(400, 0);
   },
 
   afterLaunch: function () {

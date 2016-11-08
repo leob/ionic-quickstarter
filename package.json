@@ -33,7 +33,7 @@
     "karma-chrome-launcher": "^0.2.0",
     "karma-jasmine": "^0.3.6",
     "karma-story-reporter": "^0.3.1",
-    "protractor": "^3.0.0",
+    "protractor": "^4.0.0",
     "protractor-fail-fast": "^2.0.0",
     "shelljs": "^0.3.0",
     "vinyl-paths": "^1.0.0"
@@ -51,7 +51,10 @@
     "cordova-plugin-device",
     "cordova-plugin-console",
     "cordova-plugin-splashscreen",
-    "cordova-plugin-inappbrowser"
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-statusbar",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-crosswalk-webview@1.6.1"
   ],
   "scripts": {
     "preupdate-webdriver": "npm install",
@@ -59,5 +62,8 @@
     "preprotractor": "npm run update-webdriver",
     "protractor": "protractor protractor.conf.js"
   },
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "android",
+    "ios"
+  ]
 }

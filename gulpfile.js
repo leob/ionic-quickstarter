@@ -23,7 +23,9 @@ var imagemin = require('gulp-imagemin');
 var htmlreplace = require('gulp-html-replace');
 var replace = require('gulp-replace');
 var sh = require('shelljs');
-var karma = require('karma').server;
+// We load the karma module conditionally (only when it is needed: wen we need to run tests) to avoid problems with the Ionic 2 CLI, see:
+// http://stackoverflow.com/questions/35597719/log4js-and-winston-loggers-conflicting-when-trying-to-run-karma-from-ionic-cli
+var karma = null;
 var ngConstant = require('gulp-ng-constant');
 var extend = require('gulp-extend');
 var gulpif = require('gulp-if');
@@ -81,6 +83,7 @@ var paths = {
     './src/lib/angular-messages/angular-messages.min.js',
     './src/lib/angular-elastic/elastic.js',
     './src/lib/ngCordova/dist/ng-cordova.min.js',
+    './src/lib/ng-cordova-oauth/dist/ng-cordova-oauth.min.js',
     './src/lib/ionic-content-banner/dist/ionic.content.banner.min.js',
     './src/lib/angular-translate/angular-translate.min.js',
     './src/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js',
@@ -98,6 +101,10 @@ var paths = {
 // === TOP LEVEL TASKS (invoke with "gulp <task-name>") ===
 //
 
+// NOTE: the "serve:before" task replaces the "gulpStartupTasks" setting in ionic.project when using the Ionic 2 CLI,
+// see: https://forum.ionicframework.com/t/gulp-task-not-running-with-ionic-serve/54457/12
+gulp.task('serve:before', ['watch']);
+
 // default task for DEV
 
 gulp.task('default', ['dev-config', 'dev-sass', 'inject-index']);
@@ -108,13 +115,18 @@ gulp.task('default', ['dev-config', 'dev-sass', 'inject-index']);
 // and you want to inject them into index.html, then you just need to restart "ionic serve" so that the "default" task
 // can re-run 'inject-index'.
 
-gulp.task('watch', function() {
+gulp.task('watch', ['default'], function() {
   gulp.watch(paths.sass, ['dev-sass']);
 });
 
 // karma tasks for TEST
 
 var runtest = function (single) {
+
+  if (karma == null) {
+    karma = require('karma').server;
+  }
+
   karma.start({
     configFile: __dirname + '/karma.conf.js',
     singleRun: single,
@@ -231,7 +243,7 @@ gulp.task('dev-config', function() {
 // imagemin images and output them in dist
 gulp.task('imagemin', ['clean'], function() {
   gulp.src(paths.images)
-    .pipe(imagemin())
+    //.pipe(imagemin())   // NOTE: TOOK OUT IMAGE MINIFICATION BECAUSE IT DOES NOT WORK ANYMORE (DUE TO NODEJS UPGRADE?)
     .pipe(gulp.dest(paths.dist + '/img'));
 });
 

@@ -17,12 +17,18 @@
     "angularfire": "~1.1.2",
     "firebase": "~2.2.9",
     "ionic-content-banner": "~1.0.1",
-    "ngCordova": "0.1.20-alpha",
+    "ngCordova": "0.1.27-alpha",
     "fus-messages": "~0.0.2",
-    "jsSHA": "1.6.0"
+    "jsSHA": "1.6.0",
+    "ng-cordova-oauth": "^0.2.10"
   },
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.2.4",
-    "angular-mocks": "1.4.3"
+    "ionic": "driftyco/ionic-bower#1.3.2",
+    "angular-mocks": "1.5.0"
+  },
+  "resolutions": {
+    "angular": "1.5.3",
+    "angular-animate": "1.5.3",
+    "angular-sanitize": "1.5.3"
   }
 }
